@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<div th:replace="admin/header :: header">
+
+</div>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Spring boot thymeleaf child adoption app</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin/parents}">Parents</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin/parents/newparent}">Add new parent</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class=""container>
+  <div class="row">
+    <h1>Parents</h1>
+  </div>
+
+  <div style="overflow-x: auto; overflow-y: hidden">
+  <table class="table table-striped table hover table-bordered" style="font-size: 16px; overflow-x: auto; width: 1100px; white-space: nowrap">
+    <thead  class="table-light">       <!-- style="background-color: aqua" -->
+    <th style="width: 2%">#</th>
+    <th style="width: 3%">Parent Id</th>
+    <th style="width: 10%">Name</th>
+    <th style="width: 8%">Occupation</th>
+    <th style="width: 5%">Gender</th>
+    <th style="width: 3%">Age</th>
+    <th style="width: 5%">Marital Status</th>
+    <th style="width: 5%">Religion</th>
+    <th style="width: 2%">Qualification</th>
+    <th style="width: 7%">Nationality</th>
+    <th style="width: 17%">Official Address</th>
+    <th style="width: 18%">Home Address</th>
+    <th style="width: 5%">Phone No.</th>
+    <th style="width: 5%">Status</th>
+    <th style="width: 5%">Action</th>
+
+    <!-- All the width Must be equal to 100 -->
+    </thead>
+    <tbody>
+    <tr th:each = "parent, parentStat : ${allParents}">
+      <td th:text="${parentStat.count}">1</td>
+      <td th:text="${parent.id}">Parent Id</td>
+      <td th:text="${parent.name}">Name</td>
+      <td th:text="${parent.occupation}">Occupation</td>
+      <td th:text="${parent.gender}">Gender</td>
+      <td th:text="${parent.age}">Age(yrs)</td>
+      <td th:text="${parent.maritalStatus}">Marital Status</td>
+      <td th:text="${parent.religion}">Religion</td>
+      <td th:text="${parent.qualification}">Qualification</td>
+      <td th:text="${parent.nationality}">Nationality</td>
+      <td th:text="${parent.officialAddress}">Official Address</td>
+      <td th:text="${parent.homeAddress}">Home Address</td>
+      <td th:text="${parent.phoneNumber}">Phone No.</td>
+      <td th:text="${parent.status}">Status</td>
+      <td>
+        <button type="submit" class="btn btn-primary"><a style="color: white; text-decoration: none" th:href="@{/admin/parents/{parentId}/edit(parentId=${parent.id})}">edit</a></button>
+        <button type="submit" class="btn btn-danger"><a style="color: white; text-decoration: none" th:href="@{/admin/parents/{parentId}/delete(parentId=${parent.id})}">delete</a></button>
+
+      </td>
+
+    </tr>
+
+    </tbody>
+  </table>
+  </div>
+</div>
+<div th:replace="admin/footer :: footer">
+
+</div>
+</body>
+</html>

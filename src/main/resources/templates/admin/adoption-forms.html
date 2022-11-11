@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<div th:replace="admin/header :: header">
+
+</div>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Spring boot thymeleaf child adoption app</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin/adoptionforms}">Adoption Form</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin/adoptionforms/newform}">Adoption Form</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class=""container>
+  <div class="row">
+    <h1>List Adoption Forms</h1>
+  </div>
+  <table class="table table-striped table hover table-bordered">
+    <thead  class="table-light">       <!-- style="background-color: aqua" -->
+    <th style="width: 5%">#</th>
+    <th style="width: 5%">Form Id</th>
+    <th style="width: 10%">Adoption Date</th>
+    <th style="width: 5%">Preferred Age of Child</th>
+    <th style="width: 20%">Description of Culture on Adoption</th>
+    <th style="width: 5%">Duration(yrs)</th>
+    <th style="width: 20%">Files</th>
+    <th style="width: 15%">Witness</th>
+    <th style="width: 5%">Inheritance Status</th>
+    <th style="width: 10%">other Info</th>
+    <!-- 10 + 10 + 15 + 20 + 30 + 15 == 100  Must be equal to 100 -->
+    </thead>
+    <tbody>
+    <tr th:each = "form, formStat : ${allAdoptionForms}">
+      <td th:text="${formStat.count}">1</td>
+      <td th:text="${form.id}">Form Id</td>
+      <td th:text="${form.dateOfAdoption}">Adoption Date</td>
+      <td th:text="${form.preferredAgeOfChild}">Preferred Age of Child</td>
+      <td th:text="${form.descriptionOfCultureOnAdoption}">Culture</td>
+      <td th:text="${form.durationOfAdoption}">Duration(yrs)</td>
+      <td th:text="${form.files}">Files</td>
+      <td th:text="${form.witness}">Witness</td>
+      <td th:text="${form.inheritanceStatus}">Inheritance-Status</td>
+      <td th:text="${form.otherInfo}">Other Info</td>
+      <!--            <td>Actions</td>-->
+
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+<div th:replace="admin/footer :: footer">
+
+</div>
+</body>
+</html>

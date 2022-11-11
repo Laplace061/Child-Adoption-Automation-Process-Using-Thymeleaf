@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="admin/header :: header"></div>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Spring boot thymeleaf child adoption app</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin/guardians}">Guardians</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin/guardians/newguardian}">Register new staff</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+
+<div class="container">
+  <div class="row col-md-8 offset-md-2">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="text-center">Guardian Registration</h2>
+      </div>
+      <div class="card-body">
+        <form role="form" method="post" th:action="@{/admin/guardians}" th:object="${create_guardian}">
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
+            <div class="mb-3">
+              <label class="form-label">Firstname</label>
+              <input type="text" class="form-control" id="firstname" placeholder="Enter your firstname" name="firstname" th:field="*{firstname}"/>
+              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
+              <!--               th:errors="*{title}"></p>-->
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Lastname</label>
+              <input type="text" class="form-control" id="lastname" placeholder="Enter your lastname" name="lastname" th:field="*{lastname}"/>
+              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
+              <!--               th:errors="*{title}"></p>-->
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
+              <div class="mb-3" style="display: flex ; flex-direction: column">
+                <label class="form-label">Gender</label>
+                <select name="gender"  style="width: 200px;flex:1;border-radius: 5px; width: 100%; padding: 5px 50px 5px 5px">
+                  <option th:each="genderoption : ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.Gender).values()}"
+                          th:value="${genderoption}" th:text="${genderoption.displayValue}"></option>
+                </select>
+                <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
+                <!--               th:errors="*{shortDescription}"></p>-->
+              </div>
+
+            <div class="mb-3" >
+              <label class="form-label">Phone Number</label>
+              <input type="text" class="form-control" id="phone" placeholder="Enter your mobile No." name="phone" th:field="*{phoneNumber}"/>
+              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
+              <!--               th:errors="*{title}"></p>-->
+            </div>
+
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="text" class="form-control" id="email" placeholder="Enter your email" name="email" th:field="*{email}"/>
+              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
+              <!--               th:errors="*{shortDescription}"></p>-->
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Location</label>
+              <input type="text" class="form-control" id="location" placeholder="Enter your location." name="location" th:field="*{location}"/>
+              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
+              <!--               th:errors="*{shortDescription}"></p>-->
+            </div>
+
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Report</label>
+            <textarea class="form-control" id="report" placeholder="Your report" name="report" th:field="*{report}" />
+            </textarea>
+<!--            <p th:if="${#fields.hasErrors('content')}" class="text-danger"-->
+<!--               th:errors="*{content}"></p>-->
+          </div>
+
+          <div>
+            <button type="submit" class="btn btn-light">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+<br><br><br>
+<div th:replace="admin/footer :: footer"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+30JU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+<script>
+                ClassicEditor
+                        .create(document.querySelector('#report'))
+                        .then(editor => {
+                                console.log(editor);
+                        })
+                        .catch(error => {
+                                console.error(error)
+                        })
+        </script>
+
+</body>
+</html>

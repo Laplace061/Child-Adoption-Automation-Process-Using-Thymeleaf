@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="admin/header :: header"></div>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Spring boot thymeleaf child adoption app</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin/children}">Children</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin/children/newchild}">Register new child</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+
+<div class="container">
+  <div class="row col-md-8 offset-md-2">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="text-center">Child Registration</h2>
+      </div>
+      <div class="card-body">
+        <form role="form" method="post" th:action="@{/admin/children}" th:object="${create_child}">
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
+            <div class="mb-3">
+            <label class="form-label">Firstname</label>
+            <input type="text" class="form-control" id="firstname" placeholder="Enter your firstname" name="firstname" th:field="*{firstName}"/>
+            <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
+            <!--               th:errors="*{title}"></p>-->
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Lastname</label>
+              <input type="text" class="form-control" id="lastname" placeholder="Enter your lastname" name="lastname" th:field="*{lastName}"/>
+              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
+              <!--               th:errors="*{title}"></p>-->
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
+            <div class="mb-3">
+              <label class="form-label">Mother's name</label>
+              <input type="text" class="form-control" id="mother" placeholder="Enter your mother's name" name="mother" th:field="*{motherName}"/>
+              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
+              <!--               th:errors="*{title}"></p>-->
+            </div>
+
+            <div class="mb-3" >
+              <label class="form-label">Father's name</label>
+              <input type="text" class="form-control" id="father" placeholder="Enter your father's name" name="father" th:field="*{fatherName}"/>
+              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
+              <!--               th:errors="*{title}"></p>-->
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
+            <div class="mb-3">
+              <label class="form-label">Nationality</label>
+              <input type="text" class="form-control" id="nationality" placeholder="Enter your country name" name="nationality" th:field="*{nationality}"/>
+              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
+              <!--               th:errors="*{shortDescription}"></p>-->
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Date of birth</label>
+              <input type="text" class="form-control" id="dob" placeholder="Enter your date of birth." name="dob" th:field="*{dob}"/>
+              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
+              <!--               th:errors="*{shortDescription}"></p>-->
+            </div>
+
+          </div>
+
+          <div>
+            <div class="mb-3">
+              <label class="form-label">Orphanage Code</label>
+              <input type="text" class="form-control" id="orphanage" placeholder="Enter a valid Orphanage home." name="orphanage" th:field="*{orphanageCode}"/>
+              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
+              <!--               th:errors="*{shortDescription}"></p>-->
+            </div>
+          </div>
+
+          <div style="display: flex ; justify-content: space-between ; align-items:center ">
+            <div class="mb-3" style="display: flex ; flex-direction: column">
+              <label class="form-label">Gender</label>
+              <select name="gender" style="width: 200px; padding: 5px 0 5px 5px">
+                <option th:each="genderoption : ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.Gender).values()}"
+                        th:value="${genderoption}" th:text="${genderoption.displayValue}"></option>
+              </select>
+              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
+              <!--               th:errors="*{shortDescription}"></p>-->
+            </div>
+            <div class="mb-3" style="display: flex ; flex-direction: column">
+              <label class="form-label">Religion</label>
+              <select name="religion" style="width: 200px; padding: 5px 0 5px 5px">
+                <option th:each="religionoption : ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.Religion).values()}"
+                        th:value="${religionoption}" th:text="${religionoption.displayValue}"></option>
+              </select>
+              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
+              <!--               th:errors="*{shortDescription}"></p>-->
+            </div>
+
+            <div class="mb-3" style="display: flex ; flex-direction: column">
+              <label class="form-label">Adoption Status</label>
+              <select name="status" style="width: 200px ; padding: 5px 0 5px 5px">
+                <option th:each="adoptionoption : ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.AdoptionStatus).values()}"
+                        th:value="${adoptionoption}" th:text="${adoptionoption.displayValue}"></option>
+              </select>
+              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
+              <!--               th:errors="*{shortDescription}"></p>-->
+            </div>
+          </div>
+
+          <div>
+          <button type="submit" class="btn btn-light">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+<br><br><br>
+<div th:replace="admin/footer :: footer"></div>
+</body>
+</html>

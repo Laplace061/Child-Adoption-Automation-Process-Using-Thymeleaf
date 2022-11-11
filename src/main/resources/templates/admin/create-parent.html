@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="admin/header :: header"></div>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Spring boot thymeleaf child adoption app</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin/parents}">Parents</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin/parents/newparent}">Register new parent</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+
+<div class="container">
+  <div class="row col-md-8 offset-md-2">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="text-center">Register Adoptive Parent</h2>
+      </div>
+      <div class="card-body">
+        <form role="form" method="post" th:action="@{/admin/parents}" th:object="${create_parent}">
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter Parent Full name" name="name" th:field="*{name}"/>
+            <p th:if="${#fields.hasErrors('name')}" class="text-danger"
+               th:errors="*{name}"></p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
+            <div class="mb-3" >
+              <label class="form-label">Occupation</label>
+              <input type="text" class="form-control" id="job" placeholder="Occupation" name="job" th:field="*{occupation}"/>
+              <p th:if="${#fields.hasErrors('occupation')}" class="text-danger"
+                 th:errors="*{occupation}"></p>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Age</label>
+              <input type="text" class="form-control" id="age" placeholder="Enter your age" name="age" th:field="*{age}"/>
+              <p th:if="${#fields.hasErrors('age')}" class="text-danger"
+                 th:errors="*{age}"></p>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
+            <div class="mb-3" style="display: flex ; flex-direction: column">
+              <label class="form-label">Religion</label>
+              <select name="religion" style="width: 200px;flex:1;border-radius: 5px; width: 100%; padding: 5px 50px 5px 5px">
+                <option th:each="religionoption : ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.Religion).values()}"
+                        th:value="${religionoption}" th:text="${religionoption.displayValue}"></option>
+              </select>
+            </div>
+            <div class="mb-3" style="display: flex ; flex-direction: column">
+              <label class="form-label">Gender</label>
+              <select name="gender" style="width: 200px;flex:1;border-radius: 5px; width: 100%; padding: 5px 50px 5px 5px">
+                <option th:each="genderoption : ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.Gender).values()}"
+                        th:value="${genderoption}" th:text="${genderoption.displayValue}"></option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
+            <div class="mb-3">
+              <label class="form-label">Nationality</label>
+              <input type="text" class="form-control" id="nationality" placeholder="Enter your country name" name="nationality" th:field="*{nationality}"/>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Phone Number</label>
+              <input type="text" class="form-control" id="contact" placeholder="Enter your Mobile No." name="contact" th:field="*{phoneNumber}"/>
+            </div>
+          </div>
+
+          <div style="display: flex ; justify-content: space-between ; align-items:center ">
+            <div class="mb-3" style="display: flex ; flex-direction: column">
+              <label class="form-label">Marital Status</label>
+              <select name="maritalStatus" style="width: 200px;flex:1;border-radius: 5px; width: 100%; padding: 5px 50px 5px 5px">
+                <option th:each="maritalstatus : ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.MaritalStatus).values()}"
+                        th:value="${maritalstatus}" th:text="${maritalstatus.displayValue}"></option>
+              </select>
+            </div>
+
+            <div class="mb-3" style="display: flex ; flex-direction: column">
+              <label class="form-label">Adoption Status</label>
+              <select name="status" style="width: 200px;flex:1;border-radius: 5px; width: 100%; padding: 5px 50px 5px 5px">
+                <option th:each="adoptionoption : ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.AdoptionStatus).values()}"
+                        th:value="${adoptionoption}" th:text="${adoptionoption.displayValue}"></option>
+              </select>
+            </div>
+
+            <div class="mb-3" style="display: flex ; flex-direction: column">
+              <label class="form-label">Qualification</label>
+              <select name="qualification" style="width: 200px;flex:1;border-radius: 5px; width: 100%; padding: 5px 50px 5px 5px">
+                <option th:each="educationoption : ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.Education).values()}"
+                        th:value="${educationoption}" th:text="${educationoption.displayValue}"></option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Home Address</label>
+            <textarea class="form-control" row="5" cols="25" id="address1" placeholder="Enter your residential address"
+                      th:field="*{homeAddress}"></textarea>
+            <p th:if="${#fields.hasErrors('homeAddress')}" class="text-danger"
+                 th:errors="*{homeAddress}"></p>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Official Address</label>
+            <textarea class="form-control" row="5" cols="25" id="address2" placeholder="Enter your official address"
+                      th:field="*{officialAddress}"></textarea>
+            <p th:if="${#fields.hasErrors('officialAddress')}" class="text-danger"
+               th:errors="*{officialAddress}"></p>
+          </div>
+
+          <button type="submit" class="btn btn-light">Submit</button>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+<br><br><br>
+<div th:replace="admin/footer :: footer"></div>
+</body>
+</html>

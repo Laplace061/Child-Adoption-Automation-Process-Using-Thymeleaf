@@ -1,0 +1,47 @@
+package com.interswitch.academy.adoptionautomationsystem.dto;
+
+import com.interswitch.academy.adoptionautomationsystem.entities.AdoptionRequest;
+import com.interswitch.academy.adoptionautomationsystem.entities.Documents;
+import com.interswitch.academy.adoptionautomationsystem.entities.enums.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class AdoptiveParentDto {
+
+    private String id;
+    @NotEmpty(message = "name cannot be empty")
+    private String name;
+    @NotEmpty(message = "occupation cannot be empty")
+    private String occupation;
+    private Gender gender;
+    @Min(25) @Max(99)
+    private int age;
+    private MaritalStatus maritalStatus;
+    private Religion religion;
+    private Education qualification;
+    private String nationality;
+    @NotEmpty(message = "Official address cannot be empty")
+    private String officialAddress;
+    @NotEmpty(message = "Home address cannot be empty")
+    private String homeAddress;
+    private String phoneNumber;
+    private AdoptionStatus status;
+    private List<Documents> documents;
+//    @OneToOne(mappedBy = "parentName")
+//    private AdoptionRequest request;
+}

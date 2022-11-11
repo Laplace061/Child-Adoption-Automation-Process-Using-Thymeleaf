@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<div th:replace="admin/header :: header">
+
+</div>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Spring boot thymeleaf child adoption app</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin/documents}">Documents</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin/documents/newdocument}">Upload Document</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class=""container>
+  <div class="row">
+    <h1>List of Documents</h1>
+  </div>
+  <table class="table table-striped table hover table-bordered">
+    <thead  class="table-light">       <!-- style="background-color: aqua" -->
+    <th style="width: 10%">#</th>
+    <th style="width: 10%">Id</th>
+    <th style="width: 30%">Filename</th>
+    <th style="width: 30%">Data</th>
+    <th style="width: 10%">Parent_id</th>
+    <th style="width: 10%">Child_id</th>
+    <!-- All the width Must be equal to 100 -->
+    </thead>
+    <tbody>
+    <tr th:each = "document, documentStat : ${allDocuments}">
+      <td th:text="${documentStat.count}">1</td>
+      <td th:text="${document.id}">Id</td>
+      <td th:text="${document.fileName}">Filename</td>
+      <td th:text="${document.data}">Data</td>
+<!--      <td th:text="${document.parent_id}">Parent_id</td>-->
+<!--      <td th:text="${document.child_id}">Child_id</td>-->
+
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+<div th:replace="admin/footer :: footer">
+
+</div>
+</body>
+</html>
