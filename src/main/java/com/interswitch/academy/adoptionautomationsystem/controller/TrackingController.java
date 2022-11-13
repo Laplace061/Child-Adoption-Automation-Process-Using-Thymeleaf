@@ -73,4 +73,11 @@ public class TrackingController {
         trackingService.updateTracking(tracking);
         return "redirect:/admin/tracking";
     }
+
+    // handler method to handle delete tracking
+    @GetMapping("/admin/tracking/{trackingId}/delete")
+    public String deleteTracking(@PathVariable("trackingId") String trackingId){
+        trackingService.deleteTracking(trackingId);
+        return "redirect:/admin/tracking";
+    }
 }

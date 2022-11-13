@@ -11,4 +11,5 @@ public interface TrackingService {
     Tracking addTracking(TrackingDto trackingDto);
     TrackingDto findTrackingById(String trackingId);
     void updateTracking(TrackingDto trackingDto);
+    void deleteTracking(String trackingId);
 }

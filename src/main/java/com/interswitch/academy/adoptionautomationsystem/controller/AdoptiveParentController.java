@@ -77,4 +77,10 @@ public class AdoptiveParentController {
         return "redirect:/admin/parents";
     }
 
+    // handler method to handle delete Adoptive Parent
+    @GetMapping("/admin/parents/{parentId}/delete")
+    public String deletePost(@PathVariable("parentId") String parentId){
+        parentService.deleteParent(parentId);
+        return "redirect:/admin/parents";
+    }
 }

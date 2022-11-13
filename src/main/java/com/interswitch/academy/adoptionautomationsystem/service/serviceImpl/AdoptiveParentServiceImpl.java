@@ -50,4 +50,9 @@ public class AdoptiveParentServiceImpl implements AdoptiveParentService {
         AdoptiveParent parent = AdoptiveParentMapper.mapToAdoptiveParent(parentDto);
         parentRepository.save(parent);
     }
+
+    @Override
+    public void deleteParent(String parentId) {
+        parentRepository.deleteById(parentId);
+    }
 }

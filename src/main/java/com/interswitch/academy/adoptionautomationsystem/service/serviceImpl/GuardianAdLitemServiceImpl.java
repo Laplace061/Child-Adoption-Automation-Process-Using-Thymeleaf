@@ -52,4 +52,9 @@ public class GuardianAdLitemServiceImpl implements GuardianAdLitemService {
         GuardianAdLitem guardian = GuardianAdLitemMapper.mapToGuardianAdLitem(guardianDto);
         guardianRepository.save(guardian);
     }
+
+    @Override
+    public void deleteGuardian(String guardianId) {
+        guardianRepository.deleteById(guardianId);
+    }
 }

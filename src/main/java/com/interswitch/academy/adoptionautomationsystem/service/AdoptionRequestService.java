@@ -16,4 +16,5 @@ public interface AdoptionRequestService {
     RequestDto findRequestById(String requestId);
 
     void updateRequest(RequestDto requestDto);
+    void deleteRequest(String requestId);
 }

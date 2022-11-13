@@ -57,7 +57,7 @@
       <td th:text="${tracking.comment}">Comment</td>
       <td>
         <a th:href="@{/admin/tracking/{trackingId}/edit(trackingId=${tracking.id})}" class="btn btn-primary"> Edit</a>
-<!--        <a th:href="@{/admin/posts/{postId}/delete(postId=${post.id})}" class="btn btn-danger">Delete</a>-->
+        <a th:href="@{/admin/tracking/{trackingId}/delete(trackingId=${tracking.id})}" class="btn btn-danger">Delete</a>
 <!--        <a th:href="@{/admin/posts/{postUrl}/view(postUrl=${post.url})}" class="btn btn-info">View</a>-->
       </td>
     </tr>

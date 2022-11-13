@@ -77,4 +77,11 @@ public class GuardianAdLitemController {
        guardianService.updateGuardian(guardian);
         return "redirect:/admin/guardians";
     }
+
+    // handler method to handle delete Guardian Ad Litem
+    @GetMapping("/admin/guardians/{guardianId}/delete")
+    public String deleteGuardian(@PathVariable("guardianId") String guardianId){
+        guardianService.deleteGuardian(guardianId);
+        return "redirect:/admin/guardians";
+    }
 }

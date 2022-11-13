@@ -51,4 +51,8 @@ public class ChildrenServiceImpl implements ChildrenService {
         childrenRepository.save(child);
     }
 
+    @Override
+    public void deleteChild(String childId) {
+        childrenRepository.deleteById(childId);
+    }
 }

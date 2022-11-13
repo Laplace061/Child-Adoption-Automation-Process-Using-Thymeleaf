@@ -52,5 +52,17 @@ public class TrackingServiceImpl implements TrackingService {
         Tracking tracking = TrackingMapper.mapToTracking(trackingDto);
         trackingRepository.save(tracking);
     }
+
+    @Override
+    public void deleteTracking(String trackingId) {
+
+        trackingRepository.deleteById(trackingId);
+    }
+
+//    @Override
+//    public TrackingDto findPostByUrl(String postUrl) {
+//        Post post = postRepository.findByUrl(postUrl).get();
+//        return PostMapper.mapToPostDto(post);
+//    }
 }
 

@@ -11,4 +11,5 @@ public interface GuardianAdLitemService {
     GuardianAdLitem addStaff(GuardianAdLitemDto guardianAdLitemDto);
     GuardianAdLitemDto findGuardianById(String GuardianId);
     void updateGuardian(GuardianAdLitemDto guardianDto);
+    void deleteGuardian(String guardianId);
 }

@@ -77,4 +77,11 @@ private AdoptionFormService adoptionFormService;
         adoptionFormService.updateAdoptionForm(form);
         return "redirect:/admin/adoptionforms";
     }
+
+    // handler method to handle form delete
+    @GetMapping("/admin/adoptionforms/{formId}/delete")
+    public String deleteAdoptionForm(@PathVariable("formId") String formId){
+        adoptionFormService.deleteAdoptionForm(formId);
+        return "redirect:/admin/adoptionforms";
+    }
 }

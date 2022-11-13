@@ -57,7 +57,7 @@
       <td th:text="${form.otherInfo}">Other Info</td>
       <td>
         <a th:href="@{/admin/adoptionforms/{formId}/edit(formId=${form.id})}" class="btn btn-primary"> Edit</a>
-
+        <a th:href="@{/admin/adoptionforms/{formId}/delete(formId=${form.id})}" class="btn btn-danger">Delete</a>
       </td>
 
     </tr>

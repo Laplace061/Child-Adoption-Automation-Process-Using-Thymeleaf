@@ -13,5 +13,6 @@ public interface AdoptiveParentService {
     AdoptiveParent createParent(AdoptiveParentDto adoptiveParentDto);
     AdoptiveParentDto findParentById(String parentId);
     void updateParent(AdoptiveParentDto parentDto);
+    void deleteParent(String parentId);
 
 }

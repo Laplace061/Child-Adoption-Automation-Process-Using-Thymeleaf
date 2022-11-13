@@ -67,7 +67,7 @@
       <td th:text="${parent.status}">Status</td>
       <td>
         <a th:href="@{/admin/parents/{parentId}/edit(parentId=${parent.id})}" class="btn btn-primary"> Edit</a>
-
+        <a th:href="@{/admin/parents/{parentId}/delete(parentId=${parent.id})}" class="btn btn-danger">Delete</a>
 
       </td>
 

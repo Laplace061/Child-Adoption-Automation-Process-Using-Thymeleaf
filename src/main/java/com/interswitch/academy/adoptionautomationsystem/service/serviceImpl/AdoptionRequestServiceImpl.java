@@ -63,6 +63,11 @@ public class AdoptionRequestServiceImpl implements AdoptionRequestService {
         requestRepository.save(request);
     }
 
+    @Override
+    public void deleteRequest(String requestId) {
+        requestRepository.deleteById(requestId);
+    }
+
 //  @Override
 //   public String getParentName() {
 //        return parentRepository.findById().getName();

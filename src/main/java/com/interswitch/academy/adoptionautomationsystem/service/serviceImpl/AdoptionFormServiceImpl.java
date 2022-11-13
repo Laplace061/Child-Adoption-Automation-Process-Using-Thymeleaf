@@ -50,4 +50,9 @@ public class AdoptionFormServiceImpl implements AdoptionFormService {
         AdoptionForm form = AdoptionFormMapper.mapToAdoptionForm(formDto);
         adoptionFormRepository.save(form);
     }
+
+    @Override
+    public void deleteAdoptionForm(String formId) {
+        adoptionFormRepository.deleteById(formId);
+    }
 }

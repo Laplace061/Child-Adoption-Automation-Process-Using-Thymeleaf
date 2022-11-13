@@ -76,4 +76,11 @@ public class ChildrenController {
         childrenService.updateChild(child);
         return "redirect:/admin/children";
     }
+
+    // handler method to handle delete Child
+    @GetMapping("/admin/children/{childId}/delete")
+    public String deleteChild(@PathVariable("childId") String childId){
+        childrenService.deleteChild(childId);
+        return "redirect:/admin/children";
+    }
 }
