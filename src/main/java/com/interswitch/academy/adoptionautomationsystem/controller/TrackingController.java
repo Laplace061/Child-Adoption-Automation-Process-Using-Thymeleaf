@@ -1,16 +1,17 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
-import com.interswitch.academy.adoptionautomationsystem.dto.AdoptiveParentDto;
-import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.TrackingDto;
 import com.interswitch.academy.adoptionautomationsystem.service.TrackingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 @Slf4j
 @Controller
@@ -45,5 +46,31 @@ public class TrackingController {
         trackingService.addTracking(trackingDto);
         return "redirect:/admin/tracking";
 
+    }
+
+    // handler method to handle edit post request
+    @GetMapping("/admin/tracking/{trackingId}/edit")
+    public String editTrackingForm(@PathVariable("trackingId") String trackingId,
+                               Model model){
+
+       TrackingDto trackingDto = trackingService.findTrackingById(trackingId);
+        model.addAttribute("tracking", trackingDto);
+        return "admin/edit_tracking";
+    }
+
+    // handler method to handle edit post form submit request
+    @PostMapping("/admin/tracking/{trackingId}")
+    public String updateTracking(@PathVariable("trackingId") String trackingId,
+                             @Valid @ModelAttribute("tracking") TrackingDto tracking,
+                             BindingResult result,
+                             Model model){
+        if(result.hasErrors()){
+            model.addAttribute("tracking", tracking);
+            return "admin/edit_tracking";
+        }
+
+        tracking.setId(trackingId);
+        trackingService.updateTracking(tracking);
+        return "redirect:/admin/tracking";
     }
 }

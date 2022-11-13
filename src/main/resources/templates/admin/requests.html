@@ -34,7 +34,10 @@
             <td th:text="${request.reasonOrPurposeForAdoption}">Reason for Adoption</td>
             <td th:text="${request.status}">Status</td>
 <!--            <td th:text="${request.parentName}">ParentName</td>-->
-<!--            <td>Actions</td>-->
+           <td>
+               <a th:href="@{/admin/requests/{requestId}/edit(requestId=${request.id})}" class="btn btn-primary"> Edit</a>
+
+           </td>
 
         </tr>
 

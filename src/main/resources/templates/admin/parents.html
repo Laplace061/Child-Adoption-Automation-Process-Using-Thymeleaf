@@ -66,8 +66,8 @@
       <td th:text="${parent.phoneNumber}">Phone No.</td>
       <td th:text="${parent.status}">Status</td>
       <td>
-        <button type="submit" class="btn btn-primary"><a style="color: white; text-decoration: none" th:href="@{/admin/parents/{parentId}/edit(parentId=${parent.id})}">edit</a></button>
-        <button type="submit" class="btn btn-danger"><a style="color: white; text-decoration: none" th:href="@{/admin/parents/{parentId}/delete(parentId=${parent.id})}">delete</a></button>
+        <a th:href="@{/admin/parents/{parentId}/edit(parentId=${parent.id})}" class="btn btn-primary"> Edit</a>
+
 
       </td>
 

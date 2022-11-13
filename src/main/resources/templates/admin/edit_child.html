@@ -26,17 +26,18 @@
   <div class="row col-md-8 offset-md-2">
     <div class="card">
       <div class="card-header">
-        <h2 class="text-center">Child Registration</h2>
+        <h2 class="text-center">Edit Child Information</h2>
       </div>
       <div class="card-body">
-        <form role="form" method="post" th:action="@{/admin/children}" th:object="${create_child}">
+        <form role="form" method="post" th:action="@{/admin/children/{childId}(childId=${child.id})}" th:object="${child}">
+              <input type="hidden" th:field="*{id}">
 
           <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
             <div class="mb-3">
-            <label class="form-label">Firstname</label>
-            <input type="text" class="form-control" id="firstname" placeholder="Enter your firstname" name="firstname" th:field="*{firstName}"/>
-            <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
-            <!--               th:errors="*{title}"></p>-->
+              <label class="form-label">Firstname</label>
+              <input type="text" class="form-control" id="firstname" placeholder="Enter your firstname" name="firstname" th:field="*{firstName}"/>
+              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
+              <!--               th:errors="*{title}"></p>-->
             </div>
             <div class="mb-3">
               <label class="form-label">Lastname</label>
@@ -120,7 +121,7 @@
           </div>
 
           <div>
-          <button type="submit" class="btn btn-light">Submit</button>
+            <button type="submit" class="btn btn-light">Submit</button>
           </div>
         </form>
       </div>

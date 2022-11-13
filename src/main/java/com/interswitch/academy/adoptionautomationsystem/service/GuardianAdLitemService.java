@@ -8,6 +8,7 @@ import java.util.List;
 public interface GuardianAdLitemService {
 
     List<GuardianAdLitemDto> findAllGuardians();
-
     GuardianAdLitem addStaff(GuardianAdLitemDto guardianAdLitemDto);
+    GuardianAdLitemDto findGuardianById(String GuardianId);
+    void updateGuardian(GuardianAdLitemDto guardianDto);
 }

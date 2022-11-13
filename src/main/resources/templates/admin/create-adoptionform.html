@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="admin/header :: header"></div>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Spring boot thymeleaf child adoption app</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin/adoptionforms}">Forms</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin/adoptionforms/newadoptionform}">Adoption Form</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+
+<div class="container">
+  <div class="row col-md-8 offset-md-2">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="text-center">Adoption Form</h2>
+      </div>
+      <div class="card-body">
+        <form role="form" method="post" th:action="@{/admin/adoptionforms}" th:object="${create_adoptionform}">
+
+          <div class="mb-3">
+            <label class="form-label">Date of Adoption</label>
+            <input type="date" class="form-control" id="date" placeholder="Date of adoption" name="date" th:field="*{dateOfAdoption}"/>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
+          <div class="mb-3">
+            <label class="form-label">Preferred age of child </label>
+            <input type="number" class="form-control" id="age" placeholder="Enter Preferred age of child" name="age" th:field="*{preferredAgeOfChild}"/>
+            <p th:if="${#fields.hasErrors('preferredAgeOfChild')}" class="text-danger"
+               th:errors="*{preferredAgeOfChild}"></p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Duration of Adoption (In years) </label>
+            <input type="number" class="form-control" id="duration" placeholder="Enter Duration of adoption" name="duration" th:field="*{durationOfAdoption}"/>
+          </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
+            <div class="mb-3" >
+              <label class="form-label">Witness</label>
+              <input type="text" class="form-control" id="witness" placeholder="Name of witness" name="witness" th:field="*{witness}"/>
+              <p th:if="${#fields.hasErrors('witness')}" class="text-danger"
+                 th:errors="*{witness}"></p>
+            </div>
+            <div class="mb-3" style="display: flex ; flex-direction: column">
+              <label class="form-label">Inheritance</label>
+              <select name="inheritance" style="width: 200px; padding: 5px 0 5px 5px">
+                <option th:each="inheritanceoption: ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.InheritanceStatus).values()}"
+                        th:value="${inheritanceoption}" th:text="${inheritanceoption.displayValue}"></option>
+              </select>
+              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
+              <!--               th:errors="*{shortDescription}"></p>-->
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Other Info</label>
+            <textarea class="form-control" row="5" cols="25" id="info" placeholder="Any other information"
+                      th:field="*{otherInfo}"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-light">Submit</button>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+<br><br><br>
+<div th:replace="admin/footer :: footer"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+30JU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+<script>
+  ClassicEditor
+          .create(document.querySelector('#info'))
+          .then(editor => {
+            console.log(editor);
+          })
+          .catch(error => {
+            console.error(error)
+          })
+</script>
+</body>
+</html>

@@ -6,10 +6,13 @@ import com.interswitch.academy.adoptionautomationsystem.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 @Slf4j
 @Controller
@@ -46,5 +49,31 @@ public class ChildrenController {
         childrenService.addChild(childrenDto);
         return "redirect:/admin/children";
 
+    }
+
+    // handler method to handle edit post request
+    @GetMapping("/admin/children/{childId}/edit")
+    public String editChildForm(@PathVariable("childId") String childId,
+                               Model model){
+
+        ChildrenDto childDto = childrenService.findChildById(childId);
+        model.addAttribute("child", childDto);
+        return "admin/edit_child";
+    }
+
+    // handler method to handle edit post form submit request
+    @PostMapping("/admin/children/{childId}")
+    public String updateChild(@PathVariable("childId") String childId,
+                             @Valid @ModelAttribute("child") ChildrenDto child,
+                             BindingResult result,
+                             Model model){
+        if(result.hasErrors()){
+            model.addAttribute("child", child);
+            return "admin/edit_child";
+        }
+
+        child.setId(childId);
+        childrenService.updateChild(child);
+        return "redirect:/admin/children";
     }
 }

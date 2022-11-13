@@ -29,8 +29,7 @@
                 <h2 class="text-center">Edit Parent Information</h2>
             </div>
             <div class="card-body">
-                <form role="form" method="post" th:action="@{/admin/parents}" th:object="${edit_parent}">
-                   <input type = "hidden" th:field="*{id}"> <!--Created input tag for the auto generated field -->
+                <form role="form" method="post" th:action="@{/admin/parents/{parentId}(parentId=${parent.id})}" th:object="${parent}">
                     <div class="mb-3">
                         <label class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" placeholder="Enter Parent Full name" name="name" th:field="*{name}"/>

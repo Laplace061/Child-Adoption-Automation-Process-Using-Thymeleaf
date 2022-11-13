@@ -29,7 +29,7 @@ public class AdoptiveParentDto {
     @NotEmpty(message = "occupation cannot be empty")
     private String occupation;
     private Gender gender;
-    @Min(25) @Max(99)
+    @Min(value = 25, message = "Sorry you are too young to adopt a child!!!") @Max(value = 99, message = "Sorry you are too old to adopt a child!!!")
     private int age;
     private MaritalStatus maritalStatus;
     private Religion religion;

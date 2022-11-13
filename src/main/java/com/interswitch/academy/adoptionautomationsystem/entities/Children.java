@@ -22,7 +22,8 @@ public class Children {
     private String id;
     private String firstName;
     private String lastName;
-    private String dob;
+    @Temporal(TemporalType.DATE)
+    private Date dob;
     private String motherName;
     private String fatherName;
     @Enumerated(EnumType.STRING)

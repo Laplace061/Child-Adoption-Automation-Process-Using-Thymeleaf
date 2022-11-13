@@ -40,4 +40,16 @@ public class GuardianAdLitemServiceImpl implements GuardianAdLitemService {
         guardianRepository.save(staff);
         return staff;
     }
+
+    @Override
+    public GuardianAdLitemDto findGuardianById(String guardianId) {
+        GuardianAdLitem guardian = guardianRepository.findById(guardianId).get();
+        return GuardianAdLitemMapper.mapToGuardianAdLitemDto(guardian);
+    }
+
+    @Override
+    public void updateGuardian(GuardianAdLitemDto guardianDto) {
+        GuardianAdLitem guardian = GuardianAdLitemMapper.mapToGuardianAdLitem(guardianDto);
+        guardianRepository.save(guardian);
+    }
 }

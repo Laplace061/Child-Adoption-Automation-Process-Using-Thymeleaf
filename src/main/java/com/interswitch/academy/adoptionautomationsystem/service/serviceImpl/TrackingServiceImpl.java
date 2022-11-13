@@ -40,5 +40,17 @@ public class TrackingServiceImpl implements TrackingService {
             trackingRepository.save(trackingInfo);
             return trackingInfo;
     }
+
+    @Override
+    public TrackingDto findTrackingById(String trackingId) {
+        Tracking tracking = trackingRepository.findById(trackingId).get();
+        return TrackingMapper.mapToTrackingDto(tracking);
+    }
+
+    @Override
+    public void updateTracking(TrackingDto trackingDto) {
+        Tracking tracking = TrackingMapper.mapToTracking(trackingDto);
+        trackingRepository.save(tracking);
+    }
 }
 

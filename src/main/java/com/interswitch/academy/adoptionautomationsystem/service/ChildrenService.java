@@ -9,4 +9,8 @@ public interface ChildrenService {
 
     List<ChildrenDto> findAllChildren();
     Children addChild(ChildrenDto childrenDto);
+    ChildrenDto findChildById(String childId);
+
+    void updateChild(ChildrenDto childrenDto);
+
 }

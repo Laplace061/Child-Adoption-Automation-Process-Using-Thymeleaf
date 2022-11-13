@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GuardianAdLitemRepository extends JpaRepository<GuardianAdLitem,Long> {
+public interface GuardianAdLitemRepository extends JpaRepository<GuardianAdLitem,String> {
 
 }

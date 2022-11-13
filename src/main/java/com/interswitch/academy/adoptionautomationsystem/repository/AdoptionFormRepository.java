@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AdoptionFormRepository extends JpaRepository<AdoptionForm,Long> {
+public interface AdoptionFormRepository extends JpaRepository<AdoptionForm,String> {
 
 }

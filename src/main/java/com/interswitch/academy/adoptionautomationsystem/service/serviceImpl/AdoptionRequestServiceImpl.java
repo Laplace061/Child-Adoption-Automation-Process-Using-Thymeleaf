@@ -51,6 +51,18 @@ public class AdoptionRequestServiceImpl implements AdoptionRequestService {
         return request;
     }
 
+    @Override
+    public RequestDto findRequestById(String requestId) {
+        AdoptionRequest request = requestRepository.findById(requestId).get();
+        return RequestMapper.mapToRequestDto(request);
+    }
+
+    @Override
+    public void updateRequest(RequestDto requestDto) {
+        AdoptionRequest request = RequestMapper.mapToRequest(requestDto);
+        requestRepository.save(request);
+    }
+
 //  @Override
 //   public String getParentName() {
 //        return parentRepository.findById().getName();

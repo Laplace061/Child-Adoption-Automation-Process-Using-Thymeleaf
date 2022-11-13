@@ -39,6 +39,16 @@ public class ChildrenServiceImpl implements ChildrenService {
         return child;
     }
 
+    @Override
+    public ChildrenDto findChildById(String childId) {
+        Children child = childrenRepository.findById(childId).get();
+        return ChildrenMapper.mapToChildrenDto(child);
+    }
 
+    @Override
+    public void updateChild(ChildrenDto childrenDto) {
+        Children child = ChildrenMapper.mapToChildren(childrenDto);
+        childrenRepository.save(child);
+    }
 
 }

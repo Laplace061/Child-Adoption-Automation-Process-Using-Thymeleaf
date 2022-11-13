@@ -9,14 +9,14 @@ public class AdoptionFormMapper {
 
         return AdoptionForm.builder()
                 .id(adoptionFormDto.getId())
-                .adoptiveParent(adoptionFormDto.getAdoptiveParent())
+               .adoptiveParent(adoptionFormDto.getAdoptiveParent())
                 .dateOfAdoption(adoptionFormDto.getDateOfAdoption())
-                .descriptionOfCultureOnAdoption(adoptionFormDto.getDescriptionOfCultureOnAdoption())
+//                .descriptionOfCultureOnAdoption(adoptionFormDto.getDescriptionOfCultureOnAdoption())
                 .preferredAgeOfChild(adoptionFormDto.getPreferredAgeOfChild())
                 .durationOfAdoption(adoptionFormDto.getDurationOfAdoption())
                 .files(adoptionFormDto.getFiles())
                 .Witness(adoptionFormDto.getWitness())
-                .inheritanceStatus(adoptionFormDto.isInheritanceStatus())
+                .inheritanceStatus(adoptionFormDto.getInheritanceStatus())
                 .otherInfo(adoptionFormDto.getOtherInfo())
                 .build();
     }
@@ -25,14 +25,14 @@ public class AdoptionFormMapper {
 
         return AdoptionFormDto.builder()
                 .id(adoptionForm.getId())
-                .adoptiveParent(adoptionForm.getAdoptiveParent())
+               .adoptiveParent(adoptionForm.getAdoptiveParent())
                 .dateOfAdoption(adoptionForm.getDateOfAdoption())
-                .descriptionOfCultureOnAdoption(adoptionForm.getDescriptionOfCultureOnAdoption())
+//                .descriptionOfCultureOnAdoption(adoptionForm.getDescriptionOfCultureOnAdoption())
                 .preferredAgeOfChild(adoptionForm.getPreferredAgeOfChild())
                 .durationOfAdoption(adoptionForm.getDurationOfAdoption())
                 .files(adoptionForm.getFiles())
                 .Witness(adoptionForm.getWitness())
-                .inheritanceStatus(adoptionForm.isInheritanceStatus())
+                .inheritanceStatus(adoptionForm.getInheritanceStatus())
                 .otherInfo(adoptionForm.getOtherInfo())
                 .build();
     }

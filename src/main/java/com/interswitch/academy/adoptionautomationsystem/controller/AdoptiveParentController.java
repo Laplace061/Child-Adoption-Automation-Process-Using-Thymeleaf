@@ -51,19 +51,30 @@ public class AdoptiveParentController {
 
     }
 
-    // Method to edit post
+    // handler method to handle edit post request
     @GetMapping("/admin/parents/{parentId}/edit")
-    public String editParentForm(@PathVariable("parentId") String parentId, Model model){
-            AdoptiveParentDto parentDto = parentService.findParentById(parentId);
-            model.addAttribute("edit_parent", parentDto);
-            return "admin/edit-parent";
+    public String editParentForm(@PathVariable("parentId") String parentId,
+                               Model model){
+
+        AdoptiveParentDto parentDto = parentService.findParentById(parentId);
+        model.addAttribute("parent", parentDto);
+        return "admin/edit-parent";
     }
 
-    // Method to delete post by ID
-    @GetMapping("/admin/parents/{parentId}/delete")
-    public String deleteParent(@PathVariable("parentId") String parentId){
+    // handler method to handle edit post form submit request
+    @PostMapping("/admin/parents/{parentId}")
+    public String updateParent(@PathVariable("parentId") String parentId,
+                             @Valid @ModelAttribute("parent") AdoptiveParentDto parent,
+                             BindingResult result,
+                             Model model){
+        if(result.hasErrors()){
+            model.addAttribute("parent", parent);
+            return "admin/edit-parent";
+        }
 
-        parentService.deleteParentById(parentId);
+        parent.setId(parentId);
+        parentService.updateParent(parent);
         return "redirect:/admin/parents";
     }
+
 }

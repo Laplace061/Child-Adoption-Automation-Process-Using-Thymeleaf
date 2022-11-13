@@ -1,5 +1,6 @@
 package com.interswitch.academy.adoptionautomationsystem.entities;
 
+import com.interswitch.academy.adoptionautomationsystem.entities.enums.InheritanceStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,27 +26,23 @@ public class AdoptionForm {
     @OneToOne
     @JoinColumn(name = "adoptiveParent_id")
     private AdoptiveParent adoptiveParent;
+
     @Column(nullable = false)
     private int preferredAgeOfChild;
+
     private int durationOfAdoption;
-    @Column(nullable = false)
-    private boolean inheritanceStatus;
-    private String descriptionOfCultureOnAdoption;
+
+    private InheritanceStatus inheritanceStatus;
+
+//    private String descriptionOfCultureOnAdoption;
     private String otherInfo;
+
     @OneToMany
     private Set<Documents> files;
+
     @Column(nullable = false)
     private String Witness;
-    @Column(nullable = false)
-    @CreatedDate
-    private LocalDateTime dateOfAdoption;
 
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-
+    @Temporal(TemporalType.DATE)
+    private Date dateOfAdoption;
 }

@@ -42,14 +42,12 @@ public class AdoptiveParentServiceImpl implements AdoptiveParentService {
     @Override
     public AdoptiveParentDto findParentById(String parentId) {
         AdoptiveParent parent = parentRepository.findById(parentId).get();
-// Expects a DTO object so we need to map it
         return AdoptiveParentMapper.mapToAdoptiveParentDto(parent);
-
     }
 
     @Override
-    public void deleteParentById(String id) {
-        parentRepository.deleteById(id);
-        System.out.println("Parent deleted Successfully");
+    public void updateParent(AdoptiveParentDto parentDto) {
+        AdoptiveParent parent = AdoptiveParentMapper.mapToAdoptiveParent(parentDto);
+        parentRepository.save(parent);
     }
 }
