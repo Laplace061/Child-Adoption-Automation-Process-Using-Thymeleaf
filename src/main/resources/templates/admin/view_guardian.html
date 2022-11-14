@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<div th:replace="admin/header :: header"></div>
+<body>
+<div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Spring boot thymeleaf child adoption app</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/admin/guardians}">Guardian</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/admin/guardians/newguardian}">Add new Guardian</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <strong> Guardian Identification No :</strong>
+      <p  th:text="${guardian.id}"></p>
+      <hr/>
+      <strong> Firstname :</strong>
+      <p  th:text="${guardian.firstname}"></p>
+      <hr />
+      <strong> Lastname :</strong>
+      <p th:text="${guardian.lastname}"></p>
+      <hr />
+      <strong> Gender :</strong>
+      <p th:text="${guardian.gender}"></p>
+      <hr />
+      <strong> Phone Number :</strong>
+      <p th:text="${guardian.phoneNumber}"></p>
+      <hr />
+      <strong> Email :</strong>
+      <p th:text="${guardian.email}"></p>
+      <hr />
+      <strong> Location :</strong>
+      <p th:text="${guardian.location}"></p>
+      <hr />
+      <strong> Report :</strong>
+      <p th:text="${guardian.report}"></p>
+      <hr />
+
+    </div>
+
+  </div>
+</div>
+<div th:replace="admin/footer :: footer"></div>
+</body>
+</html>

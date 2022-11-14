@@ -1,6 +1,7 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
+import com.interswitch.academy.adoptionautomationsystem.dto.TrackingDto;
 import com.interswitch.academy.adoptionautomationsystem.service.ChildrenService;
 import com.interswitch.academy.adoptionautomationsystem.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -82,5 +83,15 @@ public class ChildrenController {
     public String deleteChild(@PathVariable("childId") String childId){
         childrenService.deleteChild(childId);
         return "redirect:/admin/children";
+    }
+
+    // handler method to handle view Children
+    @GetMapping("/admin/children/{childId}/view")
+    public String viewChildren(@PathVariable("childId") String childId,
+                               Model model){
+        ChildrenDto childrenDto = childrenService.findChildById(childId);
+        model.addAttribute("children", childrenDto);
+        return "admin/view_children";
+
     }
 }

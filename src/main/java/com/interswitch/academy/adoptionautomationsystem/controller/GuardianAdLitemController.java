@@ -2,6 +2,7 @@ package com.interswitch.academy.adoptionautomationsystem.controller;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.GuardianAdLitemDto;
+import com.interswitch.academy.adoptionautomationsystem.dto.TrackingDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.GuardianAdLitem;
 import com.interswitch.academy.adoptionautomationsystem.service.GuardianAdLitemService;
 import lombok.extern.slf4j.Slf4j;
@@ -83,5 +84,15 @@ public class GuardianAdLitemController {
     public String deleteGuardian(@PathVariable("guardianId") String guardianId){
         guardianService.deleteGuardian(guardianId);
         return "redirect:/admin/guardians";
+    }
+
+    // handler method to handle view Guardian
+    @GetMapping("/admin/guardians/{guardianId}/view")
+    public String viewGuardianAdLitem(@PathVariable("guardianId") String guardianId,
+                               Model model){
+        GuardianAdLitemDto guardianDto = guardianService.findGuardianById(guardianId);
+        model.addAttribute("guardian", guardianDto);
+        return "admin/view_guardian";
+
     }
 }

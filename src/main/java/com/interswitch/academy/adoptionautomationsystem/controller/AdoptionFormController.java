@@ -2,6 +2,7 @@ package com.interswitch.academy.adoptionautomationsystem.controller;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.AdoptionFormDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.AdoptiveParentDto;
+import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptionForm;
 import com.interswitch.academy.adoptionautomationsystem.service.AdoptionFormService;
 import org.springframework.stereotype.Controller;
@@ -83,5 +84,15 @@ private AdoptionFormService adoptionFormService;
     public String deleteAdoptionForm(@PathVariable("formId") String formId){
         adoptionFormService.deleteAdoptionForm(formId);
         return "redirect:/admin/adoptionforms";
+    }
+
+    // handler method to handle view Adoption Form
+    @GetMapping("/admin/adoptionforms/{formId}/view")
+    public String viewForm(@PathVariable("formId") String formId,
+                               Model model){
+        AdoptionFormDto formDto = adoptionFormService.findFormById(formId);
+        model.addAttribute("form", formDto);
+        return "admin/view_adoptionform";
+
     }
 }

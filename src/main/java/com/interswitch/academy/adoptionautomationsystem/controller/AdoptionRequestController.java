@@ -1,5 +1,6 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
+import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.RequestDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.enums.RequestStatus;
 import com.interswitch.academy.adoptionautomationsystem.service.AdoptionRequestService;
@@ -83,5 +84,15 @@ public class AdoptionRequestController {
     public String deletePost(@PathVariable("requestId") String requestId){
         requestService.deleteRequest(requestId);
         return "redirect:/admin/requests";
+    }
+
+    // handler method to handle view Adoption Request
+    @GetMapping("/admin/requests/{requestId}/view")
+    public String viewRequests(@PathVariable("requestId") String requestId,
+                               Model model){
+        RequestDto requestDto = requestService.findRequestById(requestId);
+        model.addAttribute("request", requestDto);
+        return "admin/view_request";
+
     }
 }

@@ -1,6 +1,7 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.AdoptiveParentDto;
+import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
 import com.interswitch.academy.adoptionautomationsystem.service.AdoptiveParentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -82,5 +83,15 @@ public class AdoptiveParentController {
     public String deletePost(@PathVariable("parentId") String parentId){
         parentService.deleteParent(parentId);
         return "redirect:/admin/parents";
+    }
+
+    // handler method to handle view Parent
+    @GetMapping("/admin/parents/{parentId}/view")
+    public String viewAdoptiveParent(@PathVariable("parentId") String parentId,
+                               Model model){
+        AdoptiveParentDto parentDto = parentService.findParentById(parentId);
+        model.addAttribute("parent", parentDto);
+        return "admin/view_parent";
+
     }
 }

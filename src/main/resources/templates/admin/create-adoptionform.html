@@ -58,7 +58,7 @@
             <div class="mb-3" style="display: flex ; flex-direction: column">
               <label class="form-label">Inheritance</label>
               <select name="inheritance" style="width: 200px; padding: 5px 0 5px 5px">
-                <option th:each="inheritanceoption: ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.InheritanceStatus).values()}"
+                <option th:each="inheritanceoption: ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.InheritanceEligibility).values()}"
                         th:value="${inheritanceoption}" th:text="${inheritanceoption.displayValue}"></option>
               </select>
               <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->

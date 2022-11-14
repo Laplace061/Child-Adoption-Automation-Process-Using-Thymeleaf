@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<div th:replace="admin/header :: header"></div>
+<body>
+<div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Spring boot thymeleaf child adoption app</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/admin/parents}">Parent</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/admin/parents/newparent}">Add new Parent</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <strong> Adoptive Parent Identification No :</strong>
+      <p  th:text="${parent.id}"></p>
+      <hr/>
+      <strong> Name :</strong>
+      <p  th:text="${parent.name}"></p>
+      <hr />
+      <strong> Occupation :</strong>
+      <p th:text="${parent.occupation}"></p>
+      <hr />
+      <strong> Gender :</strong>
+      <p th:text="${parent.gender}"></p>
+      <hr />
+      <strong> Age :</strong>
+      <p th:text="${parent.age}"></p>
+      <hr />
+      <strong> Marital Status :</strong>
+      <p th:text="${parent.maritalStatus}"></p>
+      <hr />
+      <strong> Religion :</strong>
+      <p th:text="${parent.religion}"></p>
+      <hr />
+      <strong> Qualification :</strong>
+      <p th:text="${parent.qualification}"></p>
+      <hr />
+      <strong> Nationality :</strong>
+      <p th:text="${parent.nationality}"></p>
+      <hr />
+      <strong> Office Address:</strong>
+      <p th:text="${parent.officialAddress}"></p>
+      <hr />
+      <strong> Home Address :</strong>
+      <p th:text="${parent.homeAddress}"></p>
+      <hr />
+      <strong> Phone Number :</strong>
+      <p th:text="${parent.phoneNumber}"></p>
+      <hr />
+      <strong> Adoption Status :</strong>
+      <p th:text="${parent.status}"></p>
+      <hr />
+
+    </div>
+
+  </div>
+</div>
+<div th:replace="admin/footer :: footer"></div>
+</body>
+</html>

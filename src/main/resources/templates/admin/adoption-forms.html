@@ -53,11 +53,12 @@
       <td th:text="${form.durationOfAdoption}">Duration(yrs)</td>
       <td th:text="${form.files}">Files</td>
       <td th:text="${form.witness}">Witness</td>
-      <td th:text="${form.inheritanceStatus}">Inheritance-Status</td>
+      <td th:text="${form.getInheritanceEligibility}">Inheritance-Status</td>
       <td th:text="${form.otherInfo}">Other Info</td>
       <td>
         <a th:href="@{/admin/adoptionforms/{formId}/edit(formId=${form.id})}" class="btn btn-primary"> Edit</a>
         <a th:href="@{/admin/adoptionforms/{formId}/delete(formId=${form.id})}" class="btn btn-danger">Delete</a>
+        <a th:href="@{/admin/adoptionforms/{formId}/view(formId=${form.id})}" class="btn btn-info">View</a>
       </td>
 
     </tr>

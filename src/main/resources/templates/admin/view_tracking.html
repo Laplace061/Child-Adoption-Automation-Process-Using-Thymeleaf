@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<div th:replace="admin/header :: header"></div>
+<body>
+<div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Spring boot thymeleaf child adoption app</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/admin/tracking}">Tracking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/admin/tracking/newtracking}">Add new tracking</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <strong> Tracking Identification No :</strong>
+            <p  th:text="${tracking.id}"></p>
+            <hr/>
+            <strong> Child Identification No :</strong>
+            <p  th:text="${tracking.child}"></p>
+            <hr />
+            <strong> Staff Assigned Identification No :</strong>
+            <p th:text="${tracking.staffAssigned}"></p>
+            <hr />
+            <strong> Adoptive Parent Identification No :</strong>
+            <p th:text="${tracking.adoptiveParent}"></p>
+            <hr />
+            <strong> Date of Next Checked :</strong>
+            <p th:text="${tracking.nextChecked}"></p>
+            <hr />
+            <strong> Date of last Checked :</strong>
+            <p th:text="${tracking.lastChecked}"></p>
+            <hr />
+            <strong> Location :</strong>
+            <p th:text="${tracking.location}"></p>
+            <hr />
+            <strong> Tracking Status :</strong>
+            <p th:text="${tracking.status}"></p>
+            <hr />
+            <strong> Tracker's Comment :</strong>
+            <p th:text="${tracking.comment}"></p>
+            <hr />
+
+        </div>
+
+    </div>
+</div>
+<div th:replace="admin/footer :: footer"></div>
+</body>
+</html>

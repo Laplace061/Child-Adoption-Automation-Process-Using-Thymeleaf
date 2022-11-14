@@ -24,7 +24,7 @@ public class TrackingController {
     }
 
     @GetMapping("/admin/tracking")
-    public String getAllParents(Model model){
+    public String getAllTracking(Model model){
         List<TrackingDto> trackings = trackingService.findAllTracking();
         model.addAttribute("allTracking", trackings);
         return "/admin/tracking";  // return a view
@@ -79,5 +79,15 @@ public class TrackingController {
     public String deleteTracking(@PathVariable("trackingId") String trackingId){
         trackingService.deleteTracking(trackingId);
         return "redirect:/admin/tracking";
+    }
+
+    // handler method to handle view tracking
+    @GetMapping("/admin/tracking/{trackingId}/view")
+    public String viewTracking(@PathVariable("trackingId") String trackingId,
+                           Model model){
+        TrackingDto trackingDto = trackingService.findTrackingById(trackingId);
+        model.addAttribute("tracking", trackingDto);
+        return "admin/view_tracking";
+
     }
 }

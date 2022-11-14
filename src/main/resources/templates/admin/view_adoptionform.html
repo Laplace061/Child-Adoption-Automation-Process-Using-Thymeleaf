@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<div th:replace="admin/header :: header"></div>
+<body>
+<div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Spring boot thymeleaf child adoption app</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/admin/adoptionforms}">Adoption Form</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/admin/adoptionsforms/newadoptionform}">New Adoption Form</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <strong> Form Identification No :</strong>
+      <p  th:text="${form.id}"></p>
+      <hr/>
+      <strong> Date of Adoption :</strong>
+      <p  th:text="${form.dateOfAdoption}"></p>
+      <hr />
+      <strong> Preferred Age of Child :</strong>
+      <p th:text="${form.preferredAgeOfChild}"></p>
+      <hr />
+      <strong> Duration of Adoption :</strong>
+      <p th:text="${form.durationOfAdoption}"></p>
+      <hr />
+      <strong> Witness :</strong>
+      <p th:text="${form.witness}"></p>
+      <hr />
+      <strong> Inheritance Status :</strong>
+      <p th:text="${form.getInheritanceEligibility}"></p>
+      <hr />
+      <strong> Other Info :</strong>
+      <p th:text="${form.otherInfo}"></p>
+      <hr />
+    </div>
+
+  </div>
+</div>
+<div th:replace="admin/footer :: footer"></div>
+</body>
+</html>

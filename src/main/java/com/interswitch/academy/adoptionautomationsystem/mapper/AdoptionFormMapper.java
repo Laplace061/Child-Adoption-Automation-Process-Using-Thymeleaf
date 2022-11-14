@@ -16,7 +16,7 @@ public class AdoptionFormMapper {
                 .durationOfAdoption(adoptionFormDto.getDurationOfAdoption())
                 .files(adoptionFormDto.getFiles())
                 .Witness(adoptionFormDto.getWitness())
-                .inheritanceStatus(adoptionFormDto.getInheritanceStatus())
+                .inheritanceEligibility(adoptionFormDto.getInheritanceEligibility())
                 .otherInfo(adoptionFormDto.getOtherInfo())
                 .build();
     }
@@ -32,7 +32,7 @@ public class AdoptionFormMapper {
                 .durationOfAdoption(adoptionForm.getDurationOfAdoption())
                 .files(adoptionForm.getFiles())
                 .Witness(adoptionForm.getWitness())
-                .inheritanceStatus(adoptionForm.getInheritanceStatus())
+                .inheritanceEligibility(adoptionForm.getInheritanceEligibility())
                 .otherInfo(adoptionForm.getOtherInfo())
                 .build();
     }

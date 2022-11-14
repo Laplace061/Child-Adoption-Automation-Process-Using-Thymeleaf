@@ -1,15 +1,13 @@
 package com.interswitch.academy.adoptionautomationsystem.entities;
 
-import com.interswitch.academy.adoptionautomationsystem.entities.enums.InheritanceStatus;
+import com.interswitch.academy.adoptionautomationsystem.entities.enums.InheritanceEligibility;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
@@ -32,7 +30,8 @@ public class AdoptionForm {
 
     private int durationOfAdoption;
 
-    private InheritanceStatus inheritanceStatus;
+    @Enumerated(EnumType.STRING)
+    private InheritanceEligibility inheritanceEligibility;
 
 //    private String descriptionOfCultureOnAdoption;
     private String otherInfo;

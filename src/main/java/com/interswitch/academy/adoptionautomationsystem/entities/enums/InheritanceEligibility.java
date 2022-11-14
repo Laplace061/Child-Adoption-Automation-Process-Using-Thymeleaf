@@ -1,14 +1,12 @@
 package com.interswitch.academy.adoptionautomationsystem.entities.enums;
 
-import lombok.Getter;
-
-public enum InheritanceStatus {
+public enum InheritanceEligibility {
 
     AGREED("Agreed"),
     NOT_AGREED ("Not_Agreed");
     private final String displayValue;
 
-    InheritanceStatus(String displayValue) {
+    InheritanceEligibility(String displayValue) {
         this.displayValue = displayValue;
     }
 
