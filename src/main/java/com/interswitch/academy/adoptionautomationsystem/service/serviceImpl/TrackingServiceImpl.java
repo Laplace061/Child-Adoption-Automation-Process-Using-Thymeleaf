@@ -59,10 +59,12 @@ public class TrackingServiceImpl implements TrackingService {
         trackingRepository.deleteById(trackingId);
     }
 
-//    @Override
-//    public TrackingDto findPostByUrl(String postUrl) {
-//        Post post = postRepository.findByUrl(postUrl).get();
-//        return PostMapper.mapToPostDto(post);
-//    }
+    @Override
+    public List<TrackingDto> searchTracking(String text) {
+        List<Tracking> tracking = trackingRepository.searchTracking(text);
+        return tracking.stream()
+                .map(TrackingMapper::mapToTrackingDto)
+                .collect(Collectors.toList());
+    }
 }
 

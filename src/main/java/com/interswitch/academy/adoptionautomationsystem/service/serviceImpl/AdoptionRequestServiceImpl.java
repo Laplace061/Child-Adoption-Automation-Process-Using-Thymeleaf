@@ -2,10 +2,13 @@ package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.AdoptiveParentDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.RequestDto;
+import com.interswitch.academy.adoptionautomationsystem.dto.TrackingDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptionRequest;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
+import com.interswitch.academy.adoptionautomationsystem.entities.Tracking;
 import com.interswitch.academy.adoptionautomationsystem.mapper.AdoptiveParentMapper;
 import com.interswitch.academy.adoptionautomationsystem.mapper.RequestMapper;
+import com.interswitch.academy.adoptionautomationsystem.mapper.TrackingMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptionRequestRepository;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.AdoptionRequestService;
@@ -66,6 +69,14 @@ public class AdoptionRequestServiceImpl implements AdoptionRequestService {
     @Override
     public void deleteRequest(String requestId) {
         requestRepository.deleteById(requestId);
+    }
+
+    @Override
+    public List<RequestDto> searchRequest(String text) {
+        List<AdoptionRequest> request = requestRepository.searchAdoptionRequest(text);
+        return request.stream()
+                .map(RequestMapper::mapToRequestDto)
+                .collect(Collectors.toList());
     }
 
 //  @Override

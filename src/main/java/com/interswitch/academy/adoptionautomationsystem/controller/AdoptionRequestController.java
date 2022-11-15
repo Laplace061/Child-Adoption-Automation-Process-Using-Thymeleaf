@@ -1,5 +1,6 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
+import com.interswitch.academy.adoptionautomationsystem.dto.AdoptionFormDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.RequestDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.enums.RequestStatus;
@@ -8,10 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -94,5 +92,15 @@ public class AdoptionRequestController {
         model.addAttribute("request", requestDto);
         return "admin/view_request";
 
+    }
+
+    // handler method to handle search adoption request
+    // localhost:${Port:0}/admin/requests/search?text=java
+    @GetMapping("/admin/requests/search")
+    public String searchForms(@RequestParam(value = "text") String text,
+                              Model model){
+        List<RequestDto> request = requestService.searchRequest(text);
+        model.addAttribute("allRequest", request);
+        return "admin/requests";
     }
 }

@@ -8,10 +8,7 @@ import com.interswitch.academy.adoptionautomationsystem.service.AdoptionFormServ
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -93,6 +90,15 @@ private AdoptionFormService adoptionFormService;
         AdoptionFormDto formDto = adoptionFormService.findFormById(formId);
         model.addAttribute("form", formDto);
         return "admin/view_adoptionform";
+    }
 
+    // handler method to handle search blog adoption form request
+    // localhost:${Port:0}/admin/adoptionforms/search?text=java
+    @GetMapping("/admin/adoptionforms/search")
+    public String searchForms(@RequestParam(value = "text") String text,
+                              Model model){
+        List<AdoptionFormDto> form = adoptionFormService.searchForm(text);
+        model.addAttribute("allAdoptionForms", form);
+        return "admin/adoption-forms";
     }
 }

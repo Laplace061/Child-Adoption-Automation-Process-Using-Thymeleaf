@@ -1,10 +1,13 @@
 package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.GuardianAdLitemDto;
+import com.interswitch.academy.adoptionautomationsystem.dto.TrackingDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.Children;
 import com.interswitch.academy.adoptionautomationsystem.entities.GuardianAdLitem;
+import com.interswitch.academy.adoptionautomationsystem.entities.Tracking;
 import com.interswitch.academy.adoptionautomationsystem.mapper.ChildrenMapper;
 import com.interswitch.academy.adoptionautomationsystem.mapper.GuardianAdLitemMapper;
+import com.interswitch.academy.adoptionautomationsystem.mapper.TrackingMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.GuardianAdLitemRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.GuardianAdLitemService;
 import com.interswitch.academy.adoptionautomationsystem.util.IdUtil;
@@ -56,5 +59,13 @@ public class GuardianAdLitemServiceImpl implements GuardianAdLitemService {
     @Override
     public void deleteGuardian(String guardianId) {
         guardianRepository.deleteById(guardianId);
+    }
+
+    @Override
+    public List<GuardianAdLitemDto> searchGuardian(String text) {
+        List<GuardianAdLitem> guardian = guardianRepository.searchGuardian(text);
+        return guardian.stream()
+                .map(GuardianAdLitemMapper::mapToGuardianAdLitemDto)
+                .collect(Collectors.toList());
     }
 }

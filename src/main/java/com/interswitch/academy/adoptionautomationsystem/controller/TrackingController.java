@@ -1,15 +1,13 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
+import com.interswitch.academy.adoptionautomationsystem.dto.RequestDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.TrackingDto;
 import com.interswitch.academy.adoptionautomationsystem.service.TrackingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -89,5 +87,15 @@ public class TrackingController {
         model.addAttribute("tracking", trackingDto);
         return "admin/view_tracking";
 
+    }
+
+    // handler method to handle search Tracking
+    // localhost:${Port:0}/admin/tracking/search?text=java
+    @GetMapping("/admin/tracking/search")
+    public String searchForms(@RequestParam(value = "text") String text,
+                              Model model){
+        List<TrackingDto> tracking = trackingService.searchTracking(text);
+        model.addAttribute("allTracking", tracking);
+        return "admin/tracking";
     }
 }

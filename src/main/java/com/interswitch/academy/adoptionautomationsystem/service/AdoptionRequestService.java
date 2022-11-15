@@ -17,4 +17,5 @@ public interface AdoptionRequestService {
 
     void updateRequest(RequestDto requestDto);
     void deleteRequest(String requestId);
+    List<RequestDto> searchRequest(String query);
 }

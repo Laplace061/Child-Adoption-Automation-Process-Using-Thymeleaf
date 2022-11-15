@@ -12,4 +12,5 @@ public interface GuardianAdLitemService {
     GuardianAdLitemDto findGuardianById(String GuardianId);
     void updateGuardian(GuardianAdLitemDto guardianDto);
     void deleteGuardian(String guardianId);
+    List<GuardianAdLitemDto> searchGuardian(String text);
 }

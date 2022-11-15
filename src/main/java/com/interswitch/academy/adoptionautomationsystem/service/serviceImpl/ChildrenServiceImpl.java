@@ -1,8 +1,11 @@
 package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
+import com.interswitch.academy.adoptionautomationsystem.dto.TrackingDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.Children;
+import com.interswitch.academy.adoptionautomationsystem.entities.Tracking;
 import com.interswitch.academy.adoptionautomationsystem.mapper.ChildrenMapper;
+import com.interswitch.academy.adoptionautomationsystem.mapper.TrackingMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.ChildrenRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.ChildrenService;
 import com.interswitch.academy.adoptionautomationsystem.util.IdUtil;
@@ -54,5 +57,13 @@ public class ChildrenServiceImpl implements ChildrenService {
     @Override
     public void deleteChild(String childId) {
         childrenRepository.deleteById(childId);
+    }
+
+    @Override
+    public List<ChildrenDto> searchChildren(String text) {
+        List<Children> child = childrenRepository.searchChildren(text);
+        return child.stream()
+                .map(ChildrenMapper::mapToChildrenDto)
+                .collect(Collectors.toList());
     }
 }

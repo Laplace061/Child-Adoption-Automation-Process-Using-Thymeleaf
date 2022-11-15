@@ -2,6 +2,7 @@ package com.interswitch.academy.adoptionautomationsystem.controller;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.GuardianAdLitemDto;
+import com.interswitch.academy.adoptionautomationsystem.dto.RequestDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.TrackingDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.GuardianAdLitem;
 import com.interswitch.academy.adoptionautomationsystem.service.GuardianAdLitemService;
@@ -9,10 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -94,5 +92,15 @@ public class GuardianAdLitemController {
         model.addAttribute("guardian", guardianDto);
         return "admin/view_guardian";
 
+    }
+
+    // handler method to handle search guardians
+    // localhost:${Port:0}/admin/guardians/search?text=java
+    @GetMapping("/admin/guardians/search")
+    public String searchForms(@RequestParam(value = "text") String text,
+                              Model model){
+        List<GuardianAdLitemDto> guardian = guardianService.searchGuardian(text);
+        model.addAttribute("allGuardians", guardian);
+        return "admin/guardians";
     }
 }

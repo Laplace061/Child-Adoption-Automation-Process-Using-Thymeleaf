@@ -14,5 +14,5 @@ public interface AdoptionFormRepository extends JpaRepository<AdoptionForm,Strin
     @Query("SELECT f from AdoptionForm f WHERE " +
             " f.id LIKE CONCAT('%', :text, '%') OR " +
             " f.Witness LIKE CONCAT('%', :text, '%')")
-    List<Children> searchAdoptionForm(String text);
+    List<AdoptionForm> searchAdoptionForm(String text);
 }

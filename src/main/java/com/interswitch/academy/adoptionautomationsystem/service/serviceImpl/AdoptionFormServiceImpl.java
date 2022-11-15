@@ -1,8 +1,11 @@
 package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.AdoptionFormDto;
+import com.interswitch.academy.adoptionautomationsystem.dto.TrackingDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptionForm;
+import com.interswitch.academy.adoptionautomationsystem.entities.Tracking;
 import com.interswitch.academy.adoptionautomationsystem.mapper.AdoptionFormMapper;
+import com.interswitch.academy.adoptionautomationsystem.mapper.TrackingMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptionFormRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.AdoptionFormService;
 import com.interswitch.academy.adoptionautomationsystem.util.IdUtil;
@@ -54,5 +57,13 @@ public class AdoptionFormServiceImpl implements AdoptionFormService {
     @Override
     public void deleteAdoptionForm(String formId) {
         adoptionFormRepository.deleteById(formId);
+    }
+
+    @Override
+    public List<AdoptionFormDto> searchForm(String text) {
+        List<AdoptionForm> form = adoptionFormRepository.searchAdoptionForm(text);
+        return form.stream()
+                .map(AdoptionFormMapper::mapToAdoptionFormDto)
+                .collect(Collectors.toList());
     }
 }

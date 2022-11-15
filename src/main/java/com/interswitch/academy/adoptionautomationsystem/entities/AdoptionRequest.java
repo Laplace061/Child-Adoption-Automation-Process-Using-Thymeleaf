@@ -19,7 +19,7 @@ public class AdoptionRequest {
 
     @Id
     private String id;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name ="adoptiveParent_id", referencedColumnName = "id")
     private AdoptiveParent adoptiveParent;
 
@@ -35,7 +35,7 @@ public class AdoptionRequest {
     @Enumerated(EnumType.STRING)  //Need to  pre persist as pending
     private RequestStatus status;
 
-//   @OneToOne(cascade = CascadeType.ALL)
-//   @JoinColumn(name = "parent_name", referencedColumnName = "name")
- //  private  parentName;
+   @OneToOne(cascade = CascadeType.ALL)
+   @JoinColumn(name = "parent_name", referencedColumnName = "name")
+   private AdoptiveParent parentName;
 }

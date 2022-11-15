@@ -12,5 +12,6 @@ public interface TrackingService {
     TrackingDto findTrackingById(String trackingId);
     void updateTracking(TrackingDto trackingDto);
     void deleteTracking(String trackingId);
+    List<TrackingDto> searchTracking(String text);
 
 }

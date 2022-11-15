@@ -1,6 +1,7 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
+import com.interswitch.academy.adoptionautomationsystem.dto.RequestDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.TrackingDto;
 import com.interswitch.academy.adoptionautomationsystem.service.ChildrenService;
 import com.interswitch.academy.adoptionautomationsystem.util.IdUtil;
@@ -8,10 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -93,5 +91,16 @@ public class ChildrenController {
         model.addAttribute("children", childrenDto);
         return "admin/view_children";
 
+    }
+
+    // handler method to handle search Child
+    // localhost:${Port:0}/admin/children/search?text=java
+    @GetMapping("/admin/children/search")
+    public String searchChildren(@RequestParam(value = "text") String text,
+                              Model model){
+        List<ChildrenDto> child = childrenService.searchChildren(text);
+        System.out.println(child);
+        model.addAttribute("allChildren", child);
+        return "admin/children";
     }
 }

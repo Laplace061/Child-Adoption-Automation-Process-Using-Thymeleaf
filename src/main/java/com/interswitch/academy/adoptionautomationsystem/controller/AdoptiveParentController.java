@@ -2,15 +2,13 @@ package com.interswitch.academy.adoptionautomationsystem.controller;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.AdoptiveParentDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
+import com.interswitch.academy.adoptionautomationsystem.dto.RequestDto;
 import com.interswitch.academy.adoptionautomationsystem.service.AdoptiveParentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -93,5 +91,15 @@ public class AdoptiveParentController {
         model.addAttribute("parent", parentDto);
         return "admin/view_parent";
 
+    }
+
+    // handler method to handle search Parent
+    // localhost:${Port:0}/admin/parents/search?text=java
+    @GetMapping("/admin/parents/search")
+    public String searchParents(@RequestParam(value = "text") String text,
+                              Model model){
+        List<AdoptiveParentDto> parent = parentService.searchParent(text);
+        model.addAttribute("allParents", parent);
+        return "admin/parents";
     }
 }

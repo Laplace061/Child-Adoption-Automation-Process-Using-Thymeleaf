@@ -1,8 +1,11 @@
 package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.AdoptiveParentDto;
+import com.interswitch.academy.adoptionautomationsystem.dto.TrackingDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
+import com.interswitch.academy.adoptionautomationsystem.entities.Tracking;
 import com.interswitch.academy.adoptionautomationsystem.mapper.AdoptiveParentMapper;
+import com.interswitch.academy.adoptionautomationsystem.mapper.TrackingMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.AdoptiveParentService;
 import com.interswitch.academy.adoptionautomationsystem.util.IdUtil;
@@ -54,5 +57,13 @@ public class AdoptiveParentServiceImpl implements AdoptiveParentService {
     @Override
     public void deleteParent(String parentId) {
         parentRepository.deleteById(parentId);
+    }
+
+    @Override
+    public List<AdoptiveParentDto> searchParent(String text) {
+        List<AdoptiveParent> parents = parentRepository.searchAdoptiveParent(text);
+        return parents.stream()
+                .map(AdoptiveParentMapper::mapToAdoptiveParentDto)
+                .collect(Collectors.toList());
     }
 }

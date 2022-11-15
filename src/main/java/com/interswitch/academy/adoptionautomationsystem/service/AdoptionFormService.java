@@ -15,4 +15,5 @@ public interface AdoptionFormService {
 
     void updateAdoptionForm(AdoptionFormDto formDto);
     void deleteAdoptionForm(String formId);
+    List<AdoptionFormDto> searchForm(String text);
 }

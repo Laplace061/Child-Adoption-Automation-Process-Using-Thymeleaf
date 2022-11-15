@@ -52,7 +52,7 @@ public class AdoptiveParent {
     @OneToOne(mappedBy = "parent")
     private AdoptedChildren child;
 
-    @OneToOne(mappedBy ="adoptiveParent", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy ="adoptiveParent")
     private AdoptionRequest Request;
 
 }

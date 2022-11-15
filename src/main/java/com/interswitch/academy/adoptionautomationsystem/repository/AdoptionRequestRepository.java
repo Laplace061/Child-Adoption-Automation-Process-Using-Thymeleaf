@@ -14,5 +14,5 @@ public interface AdoptionRequestRepository extends JpaRepository<AdoptionRequest
     @Query("SELECT r from AdoptionRequest  r WHERE " +
             " r.id LIKE CONCAT('%', :text, '%') OR " +
             " r.location LIKE CONCAT('%', :text, '%')")
-    List<Children> searchAdoptionRequest(String text);
+    List<AdoptionRequest> searchAdoptionRequest(String text);
 }

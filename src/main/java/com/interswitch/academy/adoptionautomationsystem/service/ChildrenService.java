@@ -11,6 +11,7 @@ public interface ChildrenService {
     Children addChild(ChildrenDto childrenDto);
     ChildrenDto findChildById(String childId);
     void deleteChild(String childId);
+    List<ChildrenDto> searchChildren(String text);
 
     void updateChild(ChildrenDto childrenDto);
 
