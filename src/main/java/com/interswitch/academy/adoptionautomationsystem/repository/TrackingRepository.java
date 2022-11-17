@@ -15,6 +15,6 @@ public interface TrackingRepository extends JpaRepository<Tracking,String> {
             " t.id LIKE CONCAT('%', :text, '%') OR " +
             " t.location LIKE CONCAT('%', :text, '%') OR " +
             " t.staffAssigned.id LIKE CONCAT('%', :text, '%') OR " +
-            "t.child.id LIKE CONCAT('%', :text, '%')")
+            "t.child.id LIKE CONCAT('%', :text, '%') ")
     List<Tracking> searchTracking(String text);
 }
