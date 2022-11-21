@@ -19,8 +19,7 @@ import java.util.Set;
 public class AdoptedChildren {
     // Use the same ID as children
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "adoptiveParent_id")
@@ -32,6 +31,6 @@ public class AdoptedChildren {
     @Column(nullable = false)
     @OneToMany()
     @JoinColumn(name = "documents_id")
-    private Set<Documents> proofOfAdoption;  //signedUndertaking and courtOrder;
+    private Set<Documents> proofOfAdoption;  //signedUndertaking and courtOrder; separate it
 
 }

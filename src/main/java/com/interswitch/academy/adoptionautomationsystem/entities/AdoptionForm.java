@@ -44,4 +44,8 @@ public class AdoptionForm {
 
     @Temporal(TemporalType.DATE)
     private Date dateOfAdoption;
+
+    @OneToOne
+    @JoinColumn(name = "request_id")
+    private AdoptionRequest request;
 }

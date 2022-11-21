@@ -1,5 +1,6 @@
 package com.interswitch.academy.adoptionautomationsystem.dto;
 
+import com.interswitch.academy.adoptionautomationsystem.entities.AdoptedChildren;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
 import com.interswitch.academy.adoptionautomationsystem.entities.Children;
 import com.interswitch.academy.adoptionautomationsystem.entities.GuardianAdLitem;
@@ -20,7 +21,7 @@ import java.util.Date;
 public class TrackingDto {
 
     private String id;
-    private Children child;
+    private AdoptedChildren child;
     private AdoptiveParent adoptiveParent;
     private GuardianAdLitem staffAssigned;
     private String location;

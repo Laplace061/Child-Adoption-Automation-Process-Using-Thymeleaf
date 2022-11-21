@@ -18,7 +18,7 @@ import java.util.Set;
 @Builder
 public class AdoptedChildrenDto {
 
-    private Long id;
+    private String id;
     private AdoptiveParent parent;
     private LocalDateTime leaveDate;
     private Set<Documents> proofOfAdoption;  //signedUndertaking and courtOrder;

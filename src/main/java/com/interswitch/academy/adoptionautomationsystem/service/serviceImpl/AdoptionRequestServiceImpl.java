@@ -47,6 +47,7 @@ public class AdoptionRequestServiceImpl implements AdoptionRequestService {
 
     @Override
     public AdoptionRequest createRequest(RequestDto requestDto) {
+
         String requestId = idUtil.generateId(); // UUID.randomUUID().toString() was moved to the ChildIdUtil class
         requestDto.setId(requestId);
        AdoptionRequest request = RequestMapper.mapToRequest(requestDto);

@@ -1,5 +1,6 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
+import com.interswitch.academy.adoptionautomationsystem.dto.AdoptionFormDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.RegistrationDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.User;
 import com.interswitch.academy.adoptionautomationsystem.service.UserService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class AuthController {
@@ -52,5 +54,13 @@ public class AuthController {
     public String loginForm() {
 
         return "login";
+    }
+
+    @GetMapping("/")
+    public String getAllUsers(Model model){
+
+        List<RegistrationDto> users = userService.findAllUsers();
+        model.addAttribute("allUsers", users);
+        return "admin/dashboard";
     }
 }

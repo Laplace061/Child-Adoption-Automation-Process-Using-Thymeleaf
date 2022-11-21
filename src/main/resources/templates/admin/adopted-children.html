@@ -1,7 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
 
-<div th:replace="admin/header :: header">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <div th:replace="admin/header :: header"> </div>
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/dashboard/">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+  <meta name="theme-color" content="#712cf9">
+  <link href="./css/style.css" rel="stylesheet">
+</head>
 
 </div>
 <body>
@@ -11,32 +24,116 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" th:href="@{/admin/adopted}">Adopted Children</a>
-        </li>
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link active" aria-current="page" th:href="@{/admin/adopted/newadopted}">Add New Child</a>-->
-<!--        </li>-->
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
-        </li>
-      </ul>
+
+  </div>
+
+  <div class="row">
+    <div class="">
+      <div class="form-group">
+        <form class="form-inline" th:action="@{/admin/adopted/search}">
+          <div class="input-group">
+            <input type="text" class="form-control" name="text" />
+            <span class="input-group-btn">
+                 <button class="btn btn-primary" type="submit">Search</button>
+            </span>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
+
 </nav>
-<div class=""container>
+
+<div class="container-fluid">
   <div class="row">
-    <h1>List of Adopted Children</h1>
-  </div>
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+
+
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/}" style="color:black;">
+              <span data-feather="users" class="align-text-bottom"></span>
+              Users
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/children}" style="color:black;">
+              <span data-feather="users" class="align-text-bottom"></span>
+              Children
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/parents}" style="color:black;">
+              <span data-feather="users" class="align-text-bottom"></span>
+              Adoptive Parent
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/guardians}" style="color:black;">
+              <span data-feather="users" class="align-text-bottom"></span>
+              Guardian
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/adopted}" style="color: black">
+              <span data-feather="users" class="align-text-bottom"></span>
+              Adopted Children
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/tracking}" style="color:black;">
+              <span data-feather="hash" class="align-text-bottom"></span>
+              Tracking
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/documents}" style="color:black;">
+              <span data-feather="file" class="align-text-bottom"></span>
+              Documents
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/requests}" style="color:black;">
+              <span data-feather="star" class="align-text-bottom"></span>
+              Make a request
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/adoptionforms}" style="color:black;">
+              <span data-feather="plus-square" class="align-text-bottom"></span>
+              Adoption Form
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/logout}" style="color: black">
+              <span data-feather="log-out" class="align-text-bottom"></span>
+              Logout</a>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div style="display: flex; justify-content: space-between; margin-top: 10px">
+        <h1>Children</h1>
+        <a class="nav-link active btn btn-primary" aria-current="page" th:href="@{/admin/adopted/newchild}" hidden>
+          <span data-feather="user-plus" ></span>
+          Add Child</a>
+
+
+
+      </div>
+      <div style="overflow-x: auto; overflow-y: hidden; margin-top: 30px">
   <table class="table table-striped table hover table-bordered">
     <thead  class="table-light">       <!-- style="background-color: aqua" -->
-    <th style="width: 10%">#</th>
+    <th style="width: 5%">#</th>
     <th style="width: 10%">Id</th>
     <th style="width: 10%">Parent Id</th>
     <th style="width: 20%">Leave Date</th>
     <th style="width: 50%">Proof of Adoption</th>
+    <th style="width: 5%">Action</th>
 
     <!-- All the width Must be equal to 100 -->
     </thead>
@@ -58,8 +155,20 @@
     </tbody>
   </table>
 </div>
+</main>
+</div>
+</div>
 <div th:replace="admin/footer :: footer">
 
 </div>
+<script>
+  feather.replace()
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 </body>
 </html>

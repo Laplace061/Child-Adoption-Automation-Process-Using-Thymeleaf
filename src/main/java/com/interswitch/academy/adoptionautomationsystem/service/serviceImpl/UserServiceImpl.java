@@ -1,29 +1,42 @@
 package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 
-import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.RegistrationDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.Role;
 import com.interswitch.academy.adoptionautomationsystem.entities.User;
+import com.interswitch.academy.adoptionautomationsystem.mapper.UserMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.RoleRepository;
 import com.interswitch.academy.adoptionautomationsystem.repository.UserRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.UserService;
 import com.interswitch.academy.adoptionautomationsystem.util.IdUtil;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private RoleRepository roleRepository;
     private UserRepository userRepository;
+
+    private PasswordEncoder passwordEncoder;
     private IdUtil idUtil;
 
 
-    public UserServiceImpl(RoleRepository roleRepository, UserRepository userRepository, IdUtil idUtil) {
+    public UserServiceImpl(RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder, IdUtil idUtil) {
         this.roleRepository = roleRepository;
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
         this.idUtil = idUtil;
+    }
+
+    @Override
+    public List<RegistrationDto> findAllUsers() {
+        List<User> users = userRepository.findAll();
+        return users.stream().map((user) -> UserMapper.mapToRegistrationDto(user))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -38,12 +51,11 @@ public class UserServiceImpl implements UserService {
         user.setName(registrationDto.getFirstName() + " " + registrationDto.getLastName());
         user.setEmail(registrationDto.getEmail());
         // use spring security to encrypt the password
-//        user.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
-        user.setPassword(registrationDto.getPassword());
-        Role role = roleRepository.findByName("ROLE_USER"); // Create the role inside the database
+        user.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
+        Role role = roleRepository.findByName("ROLE_ADMIN"); // Create the role inside the database
         user.setRoles(Arrays.asList(role));
-        String childId = idUtil.generateId(); // UUID.randomUUID().toString() was moved to the Util class
-        user.setId(childId);
+        String userId = idUtil.generateId(); // UUID.randomUUID().toString() was moved to the Util class
+        user.setId(userId);
         userRepository.save(user);
     }
 }

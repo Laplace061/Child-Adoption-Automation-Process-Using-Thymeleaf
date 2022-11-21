@@ -20,7 +20,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a aria-current="page" class="nav-link active" th:href="@{/}" >All Posts</a>
+          <a aria-current="page" class="nav-link active" th:href="@{/}" >Home</a>
         </li>
       </ul>
     </div>
@@ -29,7 +29,7 @@
 <br /><br /><br /><br />
 <div class="container">
 
-  <p th:text="${message}">Hello Good Morning!</p>
+<!--  <p th:text="${message}">Hello Good Morning!</p>-->
 
   <div class="row">
     <div class="col-md-6 offset-md-3">
@@ -56,7 +56,7 @@
                      id="username"
                      name="username"
                      class="form-control"
-                     placeholder="Email"
+                     placeholder="Email address"
               />
             </div>
 
@@ -73,7 +73,7 @@
             <div class="mb-3">
               <button type="submit" class="btn btn-primary">Login</button>
               <span> Not registered?
-                            <a th:href="@{/register}"> Register/SignUp Here</a>
+                            <a th:href="@{/register}"> Register ?</a>
                         </span>
             </div>
           </form>

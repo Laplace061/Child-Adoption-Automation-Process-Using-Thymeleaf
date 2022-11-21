@@ -32,10 +32,6 @@ public class AdoptionRequest {
     @Lob
     private String reasonOrPurposeForAdoption;
 
-    @Enumerated(EnumType.STRING)  //Need to  pre persist as pending
+    @Enumerated(EnumType.STRING)
     private RequestStatus status;
-
-   @OneToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "parent_name", referencedColumnName = "name")
-   private AdoptiveParent parentName;
 }

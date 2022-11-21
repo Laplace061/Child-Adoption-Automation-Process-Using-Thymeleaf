@@ -20,7 +20,7 @@ public class Tracking {
     @Id
     private String id;
     @OneToOne
-    private Children child;
+    private AdoptedChildren child;
     @OneToOne
     private AdoptiveParent adoptiveParent;
 

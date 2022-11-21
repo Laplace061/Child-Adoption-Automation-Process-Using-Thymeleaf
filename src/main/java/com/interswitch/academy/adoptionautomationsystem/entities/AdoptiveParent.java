@@ -52,7 +52,4 @@ public class AdoptiveParent {
     @OneToOne(mappedBy = "parent")
     private AdoptedChildren child;
 
-    @OneToOne(mappedBy ="adoptiveParent")
-    private AdoptionRequest Request;
-
 }
