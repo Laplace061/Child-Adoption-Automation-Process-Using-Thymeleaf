@@ -4,11 +4,14 @@ import com.interswitch.academy.adoptionautomationsystem.dto.AdoptiveParentDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.TrackingDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
 import com.interswitch.academy.adoptionautomationsystem.entities.Tracking;
+import com.interswitch.academy.adoptionautomationsystem.entities.User;
 import com.interswitch.academy.adoptionautomationsystem.mapper.AdoptiveParentMapper;
 import com.interswitch.academy.adoptionautomationsystem.mapper.TrackingMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
+import com.interswitch.academy.adoptionautomationsystem.repository.UserRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.AdoptiveParentService;
 import com.interswitch.academy.adoptionautomationsystem.util.IdUtil;
+import com.interswitch.academy.adoptionautomationsystem.util.SecurityUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,10 +22,12 @@ public class AdoptiveParentServiceImpl implements AdoptiveParentService {
 
     private IdUtil idUtil;
     private AdoptiveParentRepository parentRepository;
+    private UserRepository userRepository;
 
-    public AdoptiveParentServiceImpl(IdUtil idUtil, AdoptiveParentRepository parentRepository) {
+    public AdoptiveParentServiceImpl(IdUtil idUtil, AdoptiveParentRepository parentRepository, UserRepository userRepository) {
         this.idUtil = idUtil;
         this.parentRepository = parentRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -35,9 +40,11 @@ public class AdoptiveParentServiceImpl implements AdoptiveParentService {
 
     @Override
     public AdoptiveParent createParent(AdoptiveParentDto adoptiveParentDto) {
+
         String parentId = idUtil.generateId();
         adoptiveParentDto.setId(parentId);
         AdoptiveParent parent = AdoptiveParentMapper.mapToAdoptiveParent(adoptiveParentDto);
+
         parentRepository.save(parent);
         return parent;
     }

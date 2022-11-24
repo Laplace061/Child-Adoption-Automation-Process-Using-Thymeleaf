@@ -1,6 +1,5 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
-import com.interswitch.academy.adoptionautomationsystem.dto.AdoptionFormDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.RegistrationDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.User;
 import com.interswitch.academy.adoptionautomationsystem.service.UserService;
@@ -21,6 +20,12 @@ public class AuthController {
 
     public AuthController(UserService userService) {
         this.userService = userService;
+    }
+
+
+    @GetMapping("/")
+    public String homepage(){
+        return "homepage";
     }
 
     // handler method to handle user registration request
@@ -56,7 +61,7 @@ public class AuthController {
         return "login";
     }
 
-    @GetMapping("/")
+    @GetMapping("/users")
     public String getAllUsers(Model model){
 
         List<RegistrationDto> users = userService.findAllUsers();

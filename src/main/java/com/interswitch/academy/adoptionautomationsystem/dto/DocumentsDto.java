@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 @Builder
 public class DocumentsDto {
 
-    private Long id;
+    private String id;
     private String fileName;
-    private byte[] data;
-    //AdoptiveParent parent_id
-    //Children child_id
+    private String fileURL;
+
+    public DocumentsDto(String filename, String url) {
+    }
 }

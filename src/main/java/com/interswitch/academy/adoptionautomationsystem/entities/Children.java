@@ -34,5 +34,8 @@ public class Children {
     private String nationality;
     @Lob
     private String image;
+    @OneToOne()
+    @JoinColumn(name = "parent_id")
+    private AdoptiveParent parent;
 
 }

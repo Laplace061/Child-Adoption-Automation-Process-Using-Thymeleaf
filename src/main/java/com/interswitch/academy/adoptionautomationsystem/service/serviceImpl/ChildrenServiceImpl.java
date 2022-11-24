@@ -1,14 +1,16 @@
 package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
-import com.interswitch.academy.adoptionautomationsystem.dto.TrackingDto;
+import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
 import com.interswitch.academy.adoptionautomationsystem.entities.Children;
-import com.interswitch.academy.adoptionautomationsystem.entities.Tracking;
+import com.interswitch.academy.adoptionautomationsystem.entities.User;
 import com.interswitch.academy.adoptionautomationsystem.mapper.ChildrenMapper;
-import com.interswitch.academy.adoptionautomationsystem.mapper.TrackingMapper;
+import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
 import com.interswitch.academy.adoptionautomationsystem.repository.ChildrenRepository;
+import com.interswitch.academy.adoptionautomationsystem.repository.UserRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.ChildrenService;
 import com.interswitch.academy.adoptionautomationsystem.util.IdUtil;
+import com.interswitch.academy.adoptionautomationsystem.util.SecurityUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,9 +22,12 @@ public class ChildrenServiceImpl implements ChildrenService {
     private IdUtil idUtil;
     private ChildrenRepository childrenRepository;
 
-    public ChildrenServiceImpl(IdUtil idUtil, ChildrenRepository childrenRepository) {
+    private AdoptiveParentRepository parentRepository;
+
+    public ChildrenServiceImpl(IdUtil idUtil, ChildrenRepository childrenRepository, UserRepository userRepository) {
         this.idUtil = idUtil;
         this.childrenRepository = childrenRepository;
+        this.parentRepository = parentRepository;
     }
 
     @Override
@@ -35,9 +40,13 @@ public class ChildrenServiceImpl implements ChildrenService {
     @Override
     public Children addChild(ChildrenDto childrenDto) {
 
-        String childId = idUtil.generateId(); // UUID.randomUUID().toString() was moved to the ChildIdUtil class
+        String name = SecurityUtils.getCurrentUser().getName();
+        AdoptiveParent parent = parentRepository.findAdoptiveParentByNameIgnoreCase(name);
+
+        String childId = idUtil.generateId();
         childrenDto.setId(childId);
         Children child= ChildrenMapper.mapToChildren(childrenDto);
+        child.setParent(parent);
         childrenRepository.save(child);
         return child;
     }

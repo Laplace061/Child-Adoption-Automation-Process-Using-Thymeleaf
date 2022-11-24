@@ -10,7 +10,7 @@ public class DocumentsMapper {
         return Documents.builder()
                 .id(documentsDto.getId())
                 .fileName(documentsDto.getFileName())
-                .data(documentsDto.getData())
+                .data(documentsDto.getFileURL().getBytes())
                 //.parentId
                 //.childId
                 .build();
@@ -21,7 +21,6 @@ public class DocumentsMapper {
         return DocumentsDto.builder()
                 .id(documents.getId())
                 .fileName(documents.getFileName())
-                .data(documents.getData())
                 //.parentId
                 //.childId
                 .build();

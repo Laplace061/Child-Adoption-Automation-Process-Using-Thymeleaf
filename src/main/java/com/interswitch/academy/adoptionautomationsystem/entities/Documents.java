@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -15,11 +16,17 @@ import javax.persistence.*;
 public class Documents {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private String fileName;
+    private String fileType;
+    private String mimeType;  // Document format
+    @Lob
     private byte[] data;
-    //AdoptiveParent parent_id
-    //Children child_id
+//    @ManyToOne()
+//    @JoinColumn(name = "parent_id")
+//    AdoptiveParent parent;
+
+    public Documents(String originalFilename, String contentType, byte[] bytes) {
+    }
 }

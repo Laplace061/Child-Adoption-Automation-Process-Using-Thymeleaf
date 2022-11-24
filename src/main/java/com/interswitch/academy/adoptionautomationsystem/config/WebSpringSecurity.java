@@ -41,7 +41,7 @@ public class WebSpringSecurity {
                 .formLogin(
                         form -> form
                                 .loginPage("/login")
-                                .defaultSuccessUrl("/")
+                                .defaultSuccessUrl("/users")
                                 .loginProcessingUrl("/login")
                                 .permitAll()
                 ).logout(

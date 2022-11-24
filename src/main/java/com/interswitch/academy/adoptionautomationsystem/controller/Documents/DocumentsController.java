@@ -1,4 +1,4 @@
-package com.interswitch.academy.adoptionautomationsystem.controller;
+package com.interswitch.academy.adoptionautomationsystem.controller.Documents;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.AdoptiveParentDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.DocumentsDto;
@@ -18,10 +18,10 @@ public class DocumentsController {
         this.documentsService = documentsService;
     }
 
-    @GetMapping("/admin/documents")
-    public String getAllDocuments(Model model){
-        List<DocumentsDto> documents = documentsService.findAllDocuments();
-        model.addAttribute("allDocuments", documents);
-        return "/admin/documents";  // return a view
-    }
+//    @GetMapping("/admin/documents")
+//    public String getAllDocuments(Model model){
+//        List<DocumentsDto> documents = documentsService.findAllDocuments();
+//        model.addAttribute("allDocuments", documents);
+//        return "/admin/documents";  // return a view
+//    }
 }

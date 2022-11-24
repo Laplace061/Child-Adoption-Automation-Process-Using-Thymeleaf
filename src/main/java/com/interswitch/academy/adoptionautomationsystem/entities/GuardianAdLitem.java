@@ -25,5 +25,4 @@ public class GuardianAdLitem {
     private String location;
     private String report; //JQUERY CKEDITOR
 
-
 }
