@@ -1,7 +1,6 @@
 package com.interswitch.academy.adoptionautomationsystem.repository;
 
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
-import com.interswitch.academy.adoptionautomationsystem.entities.Children;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -18,5 +17,5 @@ public interface AdoptiveParentRepository extends JpaRepository<AdoptiveParent,S
             " p.phoneNumber LIKE CONCAT('%', :text, '%')")
     List<AdoptiveParent> searchAdoptiveParent(String text);
 
-    AdoptiveParent findAdoptiveParentByNameIgnoreCase(String name);
+
 }

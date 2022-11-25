@@ -34,7 +34,7 @@ public class Children {
     private String nationality;
     @Lob
     private String image;
-    @OneToOne()
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "parent_id")
     private AdoptiveParent parent;
 

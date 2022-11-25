@@ -24,7 +24,7 @@ public class RegistrationDto {
     @Email
     private String email;
     @NotEmpty(message = "Password cannot be blank.")
-    @Size(min = 8, message = "Password too short. It should not be less than 8 characters")
+    @Size(min = 4, message = "Password too short. It should not be less than 8 characters")
     private String password;
     List<Role> role;
     private String name;

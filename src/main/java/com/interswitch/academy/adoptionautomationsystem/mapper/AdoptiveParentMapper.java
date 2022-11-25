@@ -21,7 +21,7 @@ public class AdoptiveParentMapper {
                 .qualification(parent.getQualification())
                 .homeAddress(parent.getHomeAddress())
                 .officialAddress(parent.getOfficialAddress())
-//                .documents(parent.getDocuments())
+                .documents(parent.getDocuments())
                 .status(parent.getStatus())
                 .build();
     }

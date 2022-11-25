@@ -23,9 +23,9 @@ public class Documents {
     private String mimeType;  // Document format
     @Lob
     private byte[] data;
-//    @ManyToOne()
-//    @JoinColumn(name = "parent_id")
-//    AdoptiveParent parent;
+    @ManyToOne()
+    @JoinColumn(name = "parent_id")
+    AdoptiveParent parent;
 
     public Documents(String originalFilename, String contentType, byte[] bytes) {
     }

@@ -1,5 +1,6 @@
 package com.interswitch.academy.adoptionautomationsystem.dto;
 
+import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
 import com.interswitch.academy.adoptionautomationsystem.entities.enums.AdoptionStatus;
 import com.interswitch.academy.adoptionautomationsystem.entities.enums.Gender;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ import java.util.Date;
 public class ChildrenDto {
 
     private String id;
+    private AdoptiveParent parent;
     private String firstName;
     private String lastName;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

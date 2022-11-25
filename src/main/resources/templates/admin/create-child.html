@@ -29,10 +29,16 @@
         <h2 class="text-center">Child Registration</h2>
       </div>
       <div class="card-body">
-        <form role="form" method="post" th:action="@{/admin/children}" th:object="${create_child}">
+
+        <div>
+          <div th:if = "${create_child.id == null}">Child registration</div>
+          <div th:unless = "${create_child.id == null}">Edit Child Info </div>
+
+          <form role="form" method="post" th:action="@{/admin/children}" th:object="${create_child}">
 
           <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
             <div class="mb-3">
+<!--              <input type="hidden" th:field="*{id}">-->
             <label class="form-label">Firstname</label>
             <input type="text" class="form-control" id="firstname" placeholder="Enter your firstname" name="firstname" th:field="*{firstName}"/>
             <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
@@ -79,12 +85,20 @@
 
           </div>
 
-          <div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
             <div class="mb-3">
               <label class="form-label">Orphanage Code</label>
               <input type="text" class="form-control" id="orphanage" placeholder="Enter a valid Orphanage home." name="orphanage" th:field="*{orphanageCode}"/>
               <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
               <!--               th:errors="*{shortDescription}"></p>-->
+            </div>
+            <div class="mb-3" style="display: flex ; flex-direction: column">
+              <label class="form-label">Parent Id</label>
+              <select name="parent" th:field="*{parent}" style="width: 100%; padding: 5px 0 5px 5px;border-radius: 5px">
+                <th:block th:each="parent: ${listParents}">
+                  <option th:value="${parent.id}" th:text="${parent.id}"></option>
+                </th:block>
+              </select>
             </div>
           </div>
 
@@ -123,6 +137,7 @@
           <button type="submit" class="btn btn-light">Submit</button>
           </div>
         </form>
+      </div>
       </div>
     </div>
 

@@ -1,6 +1,7 @@
 package com.interswitch.academy.adoptionautomationsystem.mapper;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
+import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
 import com.interswitch.academy.adoptionautomationsystem.entities.Children;
 
 import java.sql.Date;
@@ -21,6 +22,7 @@ public class ChildrenMapper {
                 .orphanageCode(childrenDto.getOrphanageCode())
                 .status(childrenDto.getStatus())
                 .image(childrenDto.getImage())
+                .parent(childrenDto.getParent())
                 .build();
     }
 
@@ -38,6 +40,7 @@ public class ChildrenMapper {
                 .orphanageCode(children.getOrphanageCode())
                 .status(children.getStatus())
                 .image(children.getImage())
+                .parent(children.getParent())
                 .build();
     }
 }

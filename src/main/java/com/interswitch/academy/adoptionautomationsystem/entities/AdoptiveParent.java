@@ -45,8 +45,8 @@ public class AdoptiveParent {
     @Enumerated(EnumType.STRING)
     private AdoptionStatus status;
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    private List<Documents> documents;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Documents> documents;
 
     @OneToOne(mappedBy = "parent", cascade = CascadeType.ALL)
     private AdoptedChildren child;

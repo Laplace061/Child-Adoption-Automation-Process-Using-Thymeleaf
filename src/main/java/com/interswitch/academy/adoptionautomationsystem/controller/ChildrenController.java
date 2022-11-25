@@ -1,8 +1,8 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
-import com.interswitch.academy.adoptionautomationsystem.dto.RequestDto;
-import com.interswitch.academy.adoptionautomationsystem.dto.TrackingDto;
+import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
+import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.ChildrenService;
 import com.interswitch.academy.adoptionautomationsystem.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Slf4j
 @Controller
 public class ChildrenController {
@@ -20,9 +22,12 @@ public class ChildrenController {
     private IdUtil childIdUtil;
     private ChildrenService childrenService;
 
-    public ChildrenController(IdUtil idUtil, ChildrenService childrenService) {
-        this.childIdUtil = idUtil;
+    private AdoptiveParentRepository parentRepository;
+
+    public ChildrenController(IdUtil childIdUtil, ChildrenService childrenService, AdoptiveParentRepository parentRepository) {
+        this.childIdUtil = childIdUtil;
         this.childrenService = childrenService;
+        this.parentRepository = parentRepository;
     }
 
     @GetMapping("/admin/children")
@@ -35,8 +40,11 @@ public class ChildrenController {
     @GetMapping("admin/children/newchild")
     public String newChildForm(Model model) {
 
+        List<AdoptiveParent> parents = parentRepository.findAll();
+        log.info("parent is:  {}", parents);
         ChildrenDto childDto = new ChildrenDto();
         model.addAttribute("create_child", childDto);
+        model.addAttribute("listParents", parents);
         return "admin/create-child";
     }
 
@@ -44,8 +52,8 @@ public class ChildrenController {
     public String createChild(@ModelAttribute ChildrenDto childrenDto) {
 
         log.info("Dto is:  {}", childrenDto);
-
         childrenService.addChild(childrenDto);
+        log.info("Dto is:  {}", childrenDto.getParent().getId());
         return "redirect:/admin/children";
 
     }

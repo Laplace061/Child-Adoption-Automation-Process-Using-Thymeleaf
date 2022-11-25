@@ -3,19 +3,18 @@ package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
 import com.interswitch.academy.adoptionautomationsystem.entities.Children;
-import com.interswitch.academy.adoptionautomationsystem.entities.User;
 import com.interswitch.academy.adoptionautomationsystem.mapper.ChildrenMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
 import com.interswitch.academy.adoptionautomationsystem.repository.ChildrenRepository;
-import com.interswitch.academy.adoptionautomationsystem.repository.UserRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.ChildrenService;
 import com.interswitch.academy.adoptionautomationsystem.util.IdUtil;
-import com.interswitch.academy.adoptionautomationsystem.util.SecurityUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class ChildrenServiceImpl implements ChildrenService {
 
@@ -24,7 +23,7 @@ public class ChildrenServiceImpl implements ChildrenService {
 
     private AdoptiveParentRepository parentRepository;
 
-    public ChildrenServiceImpl(IdUtil idUtil, ChildrenRepository childrenRepository, UserRepository userRepository) {
+    public ChildrenServiceImpl(IdUtil idUtil, ChildrenRepository childrenRepository, AdoptiveParentRepository parentRepository) {
         this.idUtil = idUtil;
         this.childrenRepository = childrenRepository;
         this.parentRepository = parentRepository;
@@ -40,13 +39,14 @@ public class ChildrenServiceImpl implements ChildrenService {
     @Override
     public Children addChild(ChildrenDto childrenDto) {
 
-        String name = SecurityUtils.getCurrentUser().getName();
-        AdoptiveParent parent = parentRepository.findAdoptiveParentByNameIgnoreCase(name);
+//        AdoptiveParent parent = parentRepository.findById()
 
         String childId = idUtil.generateId();
+        System.out.println("child : " + childId);
         childrenDto.setId(childId);
+
         Children child= ChildrenMapper.mapToChildren(childrenDto);
-        child.setParent(parent);
+        log.info("new child Dto is:  {}", child);
         childrenRepository.save(child);
         return child;
     }
@@ -59,6 +59,7 @@ public class ChildrenServiceImpl implements ChildrenService {
 
     @Override
     public void updateChild(ChildrenDto childrenDto) {
+
         Children child = ChildrenMapper.mapToChildren(childrenDto);
         childrenRepository.save(child);
     }
