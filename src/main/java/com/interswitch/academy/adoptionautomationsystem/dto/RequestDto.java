@@ -20,5 +20,5 @@ public class RequestDto {
     private String reasonOrPurposeForAdoption;
     private Date requestDate;
     private RequestStatus status;
-//    private String ParentName;
+    private AdoptiveParent parent;
 }

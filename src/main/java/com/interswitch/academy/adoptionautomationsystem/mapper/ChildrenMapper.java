@@ -3,6 +3,7 @@ package com.interswitch.academy.adoptionautomationsystem.mapper;
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
 import com.interswitch.academy.adoptionautomationsystem.entities.Children;
+import lombok.Getter;
 
 import java.sql.Date;
 

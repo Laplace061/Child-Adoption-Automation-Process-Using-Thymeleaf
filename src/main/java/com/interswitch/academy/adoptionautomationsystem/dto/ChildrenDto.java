@@ -3,10 +3,7 @@ package com.interswitch.academy.adoptionautomationsystem.dto;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
 import com.interswitch.academy.adoptionautomationsystem.entities.enums.AdoptionStatus;
 import com.interswitch.academy.adoptionautomationsystem.entities.enums.Gender;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;

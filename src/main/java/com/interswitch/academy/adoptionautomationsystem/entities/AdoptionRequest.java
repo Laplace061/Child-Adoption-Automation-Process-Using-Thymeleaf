@@ -20,8 +20,8 @@ public class AdoptionRequest {
     @Id
     private String id;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name ="adoptiveParent_id", referencedColumnName = "id")
-    private AdoptiveParent adoptiveParent;
+    @JoinColumn(name ="adoptiveParent_id")
+    private AdoptiveParent parent;
 
     @CreationTimestamp
     @Temporal(TemporalType.DATE)

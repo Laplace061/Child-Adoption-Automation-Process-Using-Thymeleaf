@@ -39,14 +39,13 @@ public class ChildrenServiceImpl implements ChildrenService {
     @Override
     public Children addChild(ChildrenDto childrenDto) {
 
-//        AdoptiveParent parent = parentRepository.findById()
-
         String childId = idUtil.generateId();
         System.out.println("child : " + childId);
         childrenDto.setId(childId);
 
         Children child= ChildrenMapper.mapToChildren(childrenDto);
         log.info("new child Dto is:  {}", child);
+
         childrenRepository.save(child);
         return child;
     }

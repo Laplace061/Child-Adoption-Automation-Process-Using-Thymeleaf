@@ -16,8 +16,8 @@ public class RequestMapper {
                 .location(request.getLocation())
                 .reasonOrPurposeForAdoption(request.getReasonOrPurposeForAdoption())
                 .requestDate(request.getRequestDate())
-//                .ParentName(request.getParentName())
                 .status(request.getStatus())
+                .parent(request.getParent())
                 .build();
 
         return requestForm;
@@ -30,6 +30,7 @@ public class RequestMapper {
                 .location(requestForm.getLocation())
                 .reasonOrPurposeForAdoption(requestForm.getReasonOrPurposeForAdoption())
                .status(requestForm.getStatus())
+                .parent(requestForm.getParent())
                 .build();
     }
 }

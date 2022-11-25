@@ -53,7 +53,7 @@ public class ChildrenController {
 
         log.info("Dto is:  {}", childrenDto);
         childrenService.addChild(childrenDto);
-        log.info("Dto is:  {}", childrenDto.getParent().getId());
+        log.info("Parent Id is:  {}", childrenDto.getParent().getId());
         return "redirect:/admin/children";
 
     }
