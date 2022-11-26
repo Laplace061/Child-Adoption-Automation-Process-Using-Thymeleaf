@@ -1,9 +1,6 @@
 package com.interswitch.academy.adoptionautomationsystem.mapper;
 
-import com.interswitch.academy.adoptionautomationsystem.dto.AdoptionFormDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.RegistrationDto;
-import com.interswitch.academy.adoptionautomationsystem.entities.AdoptionForm;
-import com.interswitch.academy.adoptionautomationsystem.entities.Role;
 import com.interswitch.academy.adoptionautomationsystem.entities.User;
 
 

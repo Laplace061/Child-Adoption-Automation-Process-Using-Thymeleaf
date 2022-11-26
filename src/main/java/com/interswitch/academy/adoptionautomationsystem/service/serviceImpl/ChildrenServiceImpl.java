@@ -1,7 +1,6 @@
 package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
-import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
 import com.interswitch.academy.adoptionautomationsystem.entities.Children;
 import com.interswitch.academy.adoptionautomationsystem.mapper.ChildrenMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
@@ -22,7 +21,6 @@ public class ChildrenServiceImpl implements ChildrenService {
     private ChildrenRepository childrenRepository;
 
     private AdoptiveParentRepository parentRepository;
-
     public ChildrenServiceImpl(IdUtil idUtil, ChildrenRepository childrenRepository, AdoptiveParentRepository parentRepository) {
         this.idUtil = idUtil;
         this.childrenRepository = childrenRepository;

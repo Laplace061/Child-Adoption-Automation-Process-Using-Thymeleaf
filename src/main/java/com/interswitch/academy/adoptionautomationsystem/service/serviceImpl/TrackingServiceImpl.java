@@ -1,7 +1,6 @@
 package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.TrackingDto;
-import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
 import com.interswitch.academy.adoptionautomationsystem.entities.Tracking;
 import com.interswitch.academy.adoptionautomationsystem.mapper.TrackingMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.TrackingRepository;

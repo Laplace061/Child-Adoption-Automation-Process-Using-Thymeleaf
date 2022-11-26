@@ -134,7 +134,7 @@
     <th style="width: 5%">#</th>
     <th style="width: 5%">Id</th>
     <th style="width: 5%">Child_Id</th>
-    <th style="width: 5%">Parent_Id</th>
+    <th style="width: 5%">Parent</th>
     <th style="width: 5%">Staff Assigned</th>
     <th style="width: 10%">Location</th>
     <th style="width: 15%">Last Checked</th>
@@ -150,8 +150,8 @@
       <td th:text="${trackingStat.count}">1</td>
       <td th:text="${tracking.id}">Id</td>
       <td th:text="${tracking.child}">Child Id</td>
-      <td th:text="${tracking.adoptiveParent}">Parent Id</td>
-      <td th:text="${tracking.staffAssigned}">Staff Assigned</td>
+      <td th:text="${tracking.adoptiveParent.name}">Parent</td>
+      <td th:text="${tracking.staffAssigned.id}">Staff Assigned</td>
       <td th:text="${tracking.location}">Location</td>
       <td th:text="${tracking.lastChecked}">Last Checked</td>
       <td th:text="${tracking.nextChecked}">Next Checked</td>

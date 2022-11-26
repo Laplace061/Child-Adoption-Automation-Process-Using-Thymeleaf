@@ -22,8 +22,8 @@ public class Tracking {
     @OneToOne
     private AdoptedChildren child;
     @OneToOne
+    @JoinColumn(name = "parent_id")
     private AdoptiveParent adoptiveParent;
-
     @ManyToOne
     @JoinColumn(name = "staff_assigned_id")
     private GuardianAdLitem staffAssigned;

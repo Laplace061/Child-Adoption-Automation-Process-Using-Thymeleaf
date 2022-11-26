@@ -1,9 +1,9 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
-import com.interswitch.academy.adoptionautomationsystem.dto.AdoptionFormDto;
-import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.RequestDto;
+import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
 import com.interswitch.academy.adoptionautomationsystem.entities.enums.RequestStatus;
+import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.AdoptionRequestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -18,9 +18,11 @@ import java.util.List;
 @Slf4j
 public class AdoptionRequestController {
 
+    private AdoptiveParentRepository parentRepository;
     private AdoptionRequestService requestService;
 
-    public AdoptionRequestController(AdoptionRequestService requestService) {
+    public AdoptionRequestController(AdoptiveParentRepository parentRepository, AdoptionRequestService requestService) {
+        this.parentRepository = parentRepository;
         this.requestService = requestService;
     }
 
@@ -35,8 +37,11 @@ public class AdoptionRequestController {
     @GetMapping("admin/requests/newrequest")
     public String newRequestForm(Model model){
 
+        List<AdoptiveParent> parents = parentRepository.findAll();
+
         RequestDto requestDto = new RequestDto();
         model.addAttribute("create_request", requestDto);
+        model.addAttribute("listParents", parents);
         return "admin/create-request";
     }
 

@@ -1,14 +1,8 @@
 package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.AdoptedChildrenDto;
-import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
-import com.interswitch.academy.adoptionautomationsystem.dto.RequestDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptedChildren;
-import com.interswitch.academy.adoptionautomationsystem.entities.AdoptionRequest;
-import com.interswitch.academy.adoptionautomationsystem.entities.Children;
 import com.interswitch.academy.adoptionautomationsystem.mapper.AdoptedChildrenMapper;
-import com.interswitch.academy.adoptionautomationsystem.mapper.ChildrenMapper;
-import com.interswitch.academy.adoptionautomationsystem.mapper.RequestMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptedChildrenRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.AdoptedChildrenService;
 import org.springframework.stereotype.Service;

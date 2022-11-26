@@ -19,7 +19,7 @@ public class AdoptionRequest {
 
     @Id
     private String id;
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name ="adoptiveParent_id")
     private AdoptiveParent parent;
 

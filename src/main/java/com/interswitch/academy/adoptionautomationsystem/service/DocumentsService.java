@@ -1,7 +1,6 @@
 package com.interswitch.academy.adoptionautomationsystem.service;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.DocumentsDto;
-import com.interswitch.academy.adoptionautomationsystem.dto.RequestDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.Documents;
 
 import java.util.List;

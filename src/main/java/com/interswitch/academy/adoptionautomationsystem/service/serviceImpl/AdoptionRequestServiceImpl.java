@@ -1,14 +1,8 @@
 package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 
-import com.interswitch.academy.adoptionautomationsystem.dto.AdoptiveParentDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.RequestDto;
-import com.interswitch.academy.adoptionautomationsystem.dto.TrackingDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptionRequest;
-import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
-import com.interswitch.academy.adoptionautomationsystem.entities.Tracking;
-import com.interswitch.academy.adoptionautomationsystem.mapper.AdoptiveParentMapper;
 import com.interswitch.academy.adoptionautomationsystem.mapper.RequestMapper;
-import com.interswitch.academy.adoptionautomationsystem.mapper.TrackingMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptionRequestRepository;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.AdoptionRequestService;
@@ -51,6 +45,9 @@ public class AdoptionRequestServiceImpl implements AdoptionRequestService {
         String requestId = idUtil.generateId(); // UUID.randomUUID().toString() was moved to the ChildIdUtil class
         requestDto.setId(requestId);
        AdoptionRequest request = RequestMapper.mapToRequest(requestDto);
+
+       Boolean parent = parentRepository.existsById(requestDto.getParent().getId());
+
         requestRepository.save(request);
         return request;
     }

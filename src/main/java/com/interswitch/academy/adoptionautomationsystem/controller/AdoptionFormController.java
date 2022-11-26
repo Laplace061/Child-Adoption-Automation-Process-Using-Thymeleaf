@@ -1,9 +1,6 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.AdoptionFormDto;
-import com.interswitch.academy.adoptionautomationsystem.dto.AdoptiveParentDto;
-import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
-import com.interswitch.academy.adoptionautomationsystem.entities.AdoptionForm;
 import com.interswitch.academy.adoptionautomationsystem.service.AdoptionFormService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

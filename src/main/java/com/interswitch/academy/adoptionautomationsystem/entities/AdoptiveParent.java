@@ -51,4 +51,10 @@ public class AdoptiveParent {
     @OneToOne(mappedBy = "parent", cascade = CascadeType.ALL)
     private AdoptedChildren child;
 
+    @OneToOne(mappedBy = "parent")
+    private AdoptionRequest request;
+
+    @OneToOne(mappedBy = "adoptiveParent")
+    private Tracking tracking;
+
 }

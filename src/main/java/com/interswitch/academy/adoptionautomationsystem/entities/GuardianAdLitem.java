@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,5 +26,7 @@ public class GuardianAdLitem {
     private String email;
     private String location;
     private String report; //JQUERY CKEDITOR
+    @OneToMany(mappedBy = "staffAssigned")
+    private List<Tracking> trackId;
 
 }

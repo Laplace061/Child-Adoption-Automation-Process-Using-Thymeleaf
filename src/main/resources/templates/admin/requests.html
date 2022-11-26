@@ -129,9 +129,10 @@
         <th style="width: 10%">#</th>
         <th style="width: 10%">Request Id</th>
         <th style="width: 15%">Request Date</th>
-        <th style="width: 15%">Location</th>
+        <th style="width: 10%">Location</th>
         <th style="width: 30%">Reason or Purpose for Adoption</th>
-        <th style="width: 15%">Status</th>
+        <th style="width: 10%">Status</th>
+        <th style="width: 10%">Parent</th>
         <th style="width: 5%">Action</th>
 <!--        <th style="width: 10%">Parent Name</th>-->
         <!-- 10 + 10 + 15 + 20 + 30 + 15 == 100  Must be equal to 100 -->
@@ -144,6 +145,7 @@
             <td th:text="${request.location}">Location</td>
             <td th:text="${request.reasonOrPurposeForAdoption}">Reason for Adoption</td>
             <td th:text="${request.status}">Status</td>
+            <td th:text="${request.parent.name}">parent</td>
 <!--            <td th:text="${request.parentName}">ParentName</td>-->
            <td>
                <a th:href="@{/admin/requests/{requestId}/edit(requestId=${request.id})}" class="btn btn-primary"> Edit</a>

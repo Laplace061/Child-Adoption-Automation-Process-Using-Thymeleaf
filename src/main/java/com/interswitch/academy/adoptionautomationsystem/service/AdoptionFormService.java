@@ -1,9 +1,7 @@
 package com.interswitch.academy.adoptionautomationsystem.service;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.AdoptionFormDto;
-import com.interswitch.academy.adoptionautomationsystem.dto.AdoptiveParentDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptionForm;
-import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
 
 import java.util.List;
 

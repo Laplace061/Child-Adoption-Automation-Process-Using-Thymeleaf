@@ -1,11 +1,8 @@
 package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.DocumentsDto;
-import com.interswitch.academy.adoptionautomationsystem.dto.RequestDto;
-import com.interswitch.academy.adoptionautomationsystem.entities.AdoptionRequest;
 import com.interswitch.academy.adoptionautomationsystem.entities.Documents;
 import com.interswitch.academy.adoptionautomationsystem.mapper.DocumentsMapper;
-import com.interswitch.academy.adoptionautomationsystem.mapper.RequestMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.DocumentsRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.DocumentsService;
 import org.springframework.stereotype.Service;

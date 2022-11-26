@@ -65,6 +65,26 @@
             </div>
           </div>
 
+          <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
+            <div class="mb-3" style="display: flex ; flex-direction: column">
+              <label class="form-label">Parent</label>
+              <select name="parent" th:field="*{adoptiveParent}" style="width: 100%; padding: 5px 0 5px 5px;border-radius: 5px">
+                <th:block th:each="parent : ${listParents}">
+                  <option th:value="${parent.id}" th:text="${parent.id}"></option>
+                </th:block>
+              </select>
+            </div>
+
+            <div class="mb-3" style="display: flex ; flex-direction: column">
+              <label class="form-label">Assign Staff</label>
+              <select name="staff" th:field="*{staffAssigned}" style="width: 100%; padding: 5px 0 5px 5px;border-radius: 5px">
+                <th:block th:each="staff : ${listGuardians}">
+                  <option th:value="${staff.id}" th:text="${staff.id}"></option>
+                </th:block>
+              </select>
+            </div>
+          </div>
+
           <div>
             <div class="mb-3">
               <label class="form-label">Comment</label>

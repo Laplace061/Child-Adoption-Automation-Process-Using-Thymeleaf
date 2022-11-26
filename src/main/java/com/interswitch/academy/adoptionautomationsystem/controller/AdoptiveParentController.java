@@ -1,8 +1,6 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.AdoptiveParentDto;
-import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
-import com.interswitch.academy.adoptionautomationsystem.dto.RequestDto;
 import com.interswitch.academy.adoptionautomationsystem.service.AdoptiveParentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

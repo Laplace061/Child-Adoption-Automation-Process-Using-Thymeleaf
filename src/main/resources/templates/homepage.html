@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" style="background-color: black; color: #fff">
     <div class="container d-flex">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -19,19 +19,21 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" style="width: 180px; height: 180px" th:href="@{/}"><img src="/img.png" style="height: 100px; object-fit: cover"></a>
+            <a class="navbar-brand" style="width: 180px;color: #fff" th:href="@{/}"> Spring boot thymeleaf child adoption app
+<!--                <img src="/img.png" style="height: 100px; object-fit: cover">-->
+            </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a th:href="@{/}">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+            <ul class="nav navbar-nav" style="color: white">
+                <li style="color: #fff" class="active"><a th:href="@{/}">Home</a></li>
+                <li><a style="color: #fff" href="#">About</a></li>
+                <li><a style="color: #fff" href="#">Contact</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a th:href="@{/register}">Register <i class="fa fa-user-plus" aria-hidden="true"></i></a></li>
-                <li><a th:href="@{/login}">Login<i class="fa fa-user" aria-hidden="true"></i></a></li>
+            <ul class="nav navbar-nav navbar-right" style="color: #fff">
+                <li><a style="color: #fff" th:href="@{/register}">Register <i class="fa fa-user-plus" aria-hidden="true"></i></a></li>
+                <li><a style="color: #fff" th:href="@{/login}">Login<i class="fa fa-user" aria-hidden="true"></i></a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

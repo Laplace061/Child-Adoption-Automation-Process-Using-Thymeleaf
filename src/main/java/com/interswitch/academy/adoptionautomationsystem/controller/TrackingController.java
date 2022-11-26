@@ -1,9 +1,15 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
-import com.interswitch.academy.adoptionautomationsystem.dto.RequestDto;
+import com.interswitch.academy.adoptionautomationsystem.dto.AdoptiveParentDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.TrackingDto;
+import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
+import com.interswitch.academy.adoptionautomationsystem.entities.GuardianAdLitem;
+import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
+import com.interswitch.academy.adoptionautomationsystem.repository.GuardianAdLitemRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.TrackingService;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,14 +17,21 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-@Slf4j
+
 @Controller
 public class TrackingController {
 
-    private TrackingService trackingService;
+    private static final Logger log = LoggerFactory.getLogger(TrackingController.class);
 
-    public TrackingController(TrackingService trackingService) {
+    private TrackingService trackingService;
+    private AdoptiveParentRepository parentRepository;
+    private GuardianAdLitemRepository guardianRepository;
+
+
+    public TrackingController(TrackingService trackingService, AdoptiveParentRepository parentRepository, GuardianAdLitemRepository guardianRepository) {
         this.trackingService = trackingService;
+        this.parentRepository = parentRepository;
+        this.guardianRepository = guardianRepository;
     }
 
     @GetMapping("/admin/tracking")
@@ -31,8 +44,12 @@ public class TrackingController {
     @GetMapping("admin/tracking/newtracking")
     public String newTrackingForm(Model model) {
 
+        List<AdoptiveParent> parents = parentRepository.findAll();
+        List<GuardianAdLitem> guardians = guardianRepository.findAll();
         TrackingDto trackingDto = new TrackingDto();
         model.addAttribute("create_tracking", trackingDto);
+        model.addAttribute("listParents", parents);
+        model.addAttribute("listGuardians", guardians);
         return "admin/create-tracking";
     }
 
