@@ -33,6 +33,9 @@
       <strong> Child Identification No :</strong>
       <p  th:text="${children.id}"></p>
       <hr/>
+      <strong> Image :</strong>
+      <p th:text="${children.image}"></p>
+      <hr />
       <strong> Firstname :</strong>
       <p  th:text="${children.firstName}"></p>
       <hr />
@@ -51,9 +54,6 @@
       <strong> father's Name :</strong>
       <p th:text="${children.fatherName}"></p>
       <hr />
-      <strong> Status :</strong>
-      <p th:text="${children.status}"></p>
-      <hr />
       <strong> Orphanage Code :</strong>
       <p th:text="${children.orphanageCode}"></p>
       <hr />
@@ -63,8 +63,11 @@
       <strong> Parent :</strong>
       <p th:text="${children.parent.name}"></p>
       <hr />
-      <strong> Image :</strong>
-      <p th:text="${children.image}"></p>
+      <strong> Guardian :</strong>
+      <p th:text="${children.guardian.id}"></p>
+      <hr />
+      <strong> Status :</strong>
+      <p th:text="${children.status}"></p>
       <hr />
 
 

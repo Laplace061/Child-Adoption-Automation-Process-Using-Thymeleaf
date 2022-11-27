@@ -1,7 +1,11 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.AdoptiveParentDto;
+import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
+import com.interswitch.academy.adoptionautomationsystem.entities.Children;
+import com.interswitch.academy.adoptionautomationsystem.repository.ChildrenRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.AdoptiveParentService;
+import com.interswitch.academy.adoptionautomationsystem.service.ChildrenService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +19,11 @@ import java.util.List;
 @Slf4j
 public class AdoptiveParentController {
 
+    private ChildrenService childrenService;
     private AdoptiveParentService parentService;
 
-    public AdoptiveParentController(AdoptiveParentService parentService) {
+    public AdoptiveParentController(ChildrenService childrenService, AdoptiveParentService parentService) {
+        this.childrenService = childrenService;
         this.parentService = parentService;
     }
 
@@ -99,5 +105,14 @@ public class AdoptiveParentController {
         List<AdoptiveParentDto> parent = parentService.searchParent(text);
         model.addAttribute("allParents", parent);
         return "admin/parents";
+    }
+
+    @GetMapping("/admin/parents/{parentId}/viewchild")
+    public String viewChildInfo(@PathVariable("parentId") String parentId,
+                               Model model){
+        ChildrenDto children = childrenService.findChildByParentId(parentId);
+        model.addAttribute("children", children);
+        return "admin/view_child";
+
     }
 }

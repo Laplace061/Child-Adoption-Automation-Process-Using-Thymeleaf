@@ -4,7 +4,6 @@ import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
 import com.interswitch.academy.adoptionautomationsystem.entities.GuardianAdLitem;
 import com.interswitch.academy.adoptionautomationsystem.entities.enums.AdoptionStatus;
-import com.interswitch.academy.adoptionautomationsystem.entities.enums.RequestStatus;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
 import com.interswitch.academy.adoptionautomationsystem.repository.GuardianAdLitemRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.ChildrenService;
@@ -106,11 +105,11 @@ public class ChildrenController {
 
     // handler method to handle view Children
     @GetMapping("/admin/children/{childId}/view")
-    public String viewChildren(@PathVariable("childId") String childId,
+    public String viewChildInfo(@PathVariable("childId") String childId,
                                Model model){
         ChildrenDto childrenDto = childrenService.findChildById(childId);
         model.addAttribute("children", childrenDto);
-        return "admin/view_children";
+        return "admin/view_child";
 
     }
 

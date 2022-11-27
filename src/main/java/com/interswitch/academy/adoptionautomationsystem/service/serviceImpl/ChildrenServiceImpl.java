@@ -1,7 +1,6 @@
 package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
-import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
 import com.interswitch.academy.adoptionautomationsystem.entities.Children;
 import com.interswitch.academy.adoptionautomationsystem.mapper.ChildrenMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
@@ -97,7 +96,6 @@ public class ChildrenServiceImpl implements ChildrenService {
         childrenRepository.save(child);
     }
 
-
     @Override
     public void deleteChild(String childId) {
         childrenRepository.deleteById(childId);
@@ -109,6 +107,21 @@ public class ChildrenServiceImpl implements ChildrenService {
         return child.stream()
                 .map(ChildrenMapper::mapToChildrenDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Children> findChildByGuardianId(String guardianId) {
+
+        List<Children> children = childrenRepository.findChildrenByGuardianId(guardianId);
+        return (List<Children>) ChildrenMapper.mapToChildrenDto((Children) children);
+    }
+
+    @Override
+    public ChildrenDto findChildByParentId(String parentId) {
+
+        Children child = childrenRepository.findChildByParentId(parentId);
+
+        return ChildrenMapper.mapToChildrenDto(child);
     }
 
 

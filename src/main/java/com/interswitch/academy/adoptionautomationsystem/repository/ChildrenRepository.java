@@ -1,6 +1,7 @@
 package com.interswitch.academy.adoptionautomationsystem.repository;
 
 import com.interswitch.academy.adoptionautomationsystem.entities.Children;
+import com.interswitch.academy.adoptionautomationsystem.entities.GuardianAdLitem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -24,6 +25,10 @@ public interface ChildrenRepository extends JpaRepository<Children, String>{
 
     @Query("SELECT c.parent from Children c WHERE " + " c.parent.id LIKE (:parentId)")
     Optional<Children> findChildrenByParentExists(String parentId);
+
+    List<Children> findChildrenByGuardianId(String guardianId);
+
+    Children findChildByParentId(String parentId);
 
 
 }

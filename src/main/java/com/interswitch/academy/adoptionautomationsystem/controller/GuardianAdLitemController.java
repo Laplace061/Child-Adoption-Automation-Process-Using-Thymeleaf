@@ -1,6 +1,8 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.GuardianAdLitemDto;
+import com.interswitch.academy.adoptionautomationsystem.entities.Children;
+import com.interswitch.academy.adoptionautomationsystem.service.ChildrenService;
 import com.interswitch.academy.adoptionautomationsystem.service.GuardianAdLitemService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -15,9 +17,12 @@ import java.util.List;
 @Controller
 public class GuardianAdLitemController {
 
+    private ChildrenService childrenService;
     private GuardianAdLitemService guardianService;
 
-    public GuardianAdLitemController(GuardianAdLitemService guardianService) {
+
+    public GuardianAdLitemController(ChildrenService childrenService, GuardianAdLitemService guardianService) {
+        this.childrenService = childrenService;
         this.guardianService = guardianService;
     }
 
@@ -99,4 +104,12 @@ public class GuardianAdLitemController {
         model.addAttribute("allGuardians", guardian);
         return "admin/guardians";
     }
+
+    @GetMapping("/admin/guardian/{guardianId}/viewchidlren")
+    public String viewChildren(@PathVariable("guardianId") String guardianId,
+                                Model model){
+        List<Children> children = childrenService.findChildByGuardianId(guardianId);
+        model.addAttribute("allChildren", children);
+        return "admin/children";
+}
 }

@@ -19,4 +19,6 @@ public interface GuardianAdLitemRepository extends JpaRepository<GuardianAdLitem
             " g.phoneNumber LIKE CONCAT('%', :text, '%') OR " +
             "g.firstname LIKE CONCAT('%', :text, '%')")
     List<GuardianAdLitem> searchGuardian(String text);
+
+
 }

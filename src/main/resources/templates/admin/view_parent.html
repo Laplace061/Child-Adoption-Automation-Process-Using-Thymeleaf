@@ -30,6 +30,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-md-2">
+
+      <div style="margin-top: 5px; float: right">
+        <a th:href="@{/admin/parents/{parentId}/viewchild(parentId=${parent.id})}" class="btn btn-info">View Child Info</a>
+      </div>
+      <br> <br>
+
       <strong> Adoptive Parent Identification No :</strong>
       <p  th:text="${parent.id}"></p>
       <hr/>
