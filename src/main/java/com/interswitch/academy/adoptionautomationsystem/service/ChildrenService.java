@@ -3,6 +3,8 @@ package com.interswitch.academy.adoptionautomationsystem.service;
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.Children;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 public interface ChildrenService {
@@ -15,4 +17,5 @@ public interface ChildrenService {
 
     void updateChild(ChildrenDto childrenDto);
 
+//    int getChildAge(Date date);
 }

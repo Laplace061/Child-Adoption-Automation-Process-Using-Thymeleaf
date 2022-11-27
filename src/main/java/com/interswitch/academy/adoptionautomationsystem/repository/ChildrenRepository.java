@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ChildrenRepository extends JpaRepository<Children, String>{
@@ -20,6 +21,9 @@ public interface ChildrenRepository extends JpaRepository<Children, String>{
             "c.orphanageCode LIKE CONCAT('%', :text, '%') OR " +
             "c.parent.name LIKE CONCAT('%', :text, '%')")
     List<Children> searchChildren(String text);
+
+    @Query("SELECT c.parent from Children c WHERE " + " c.parent.id LIKE (:parentId)")
+    Optional<Children> findChildrenByParentExists(String parentId);
 
 
 }

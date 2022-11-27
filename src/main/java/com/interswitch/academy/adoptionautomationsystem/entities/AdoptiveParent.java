@@ -49,7 +49,7 @@ public class AdoptiveParent {
     private List<Documents> documents;
 
     @OneToOne(mappedBy = "parent", cascade = CascadeType.ALL)
-    private AdoptedChildren child;
+    private Children child;
 
     @OneToOne(mappedBy = "parent")
     private AdoptionRequest request;

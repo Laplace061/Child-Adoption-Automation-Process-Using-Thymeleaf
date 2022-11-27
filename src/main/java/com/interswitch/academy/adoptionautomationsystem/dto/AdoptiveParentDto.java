@@ -42,6 +42,4 @@ public class AdoptiveParentDto {
     private String phoneNumber;
     private AdoptionStatus status;
     private List<Documents> documents;
-//    @OneToOne(mappedBy = "parentName")
-//    private AdoptionRequest request;
 }

@@ -68,7 +68,28 @@
             </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
+
+                  <div class="mb-3" style="display: flex ; flex-direction: column">
+                      <label class="form-label">Assign a Guardian</label>
+                      <select name="guardian" th:field="*{guardian}" style="width: 100%; padding: 5px 0 5px 5px;border-radius: 5px">
+                          <th:block th:each="guardian : ${listGuardians}">
+                              <option th:value="${guardian.id}" th:text="${guardian.id}"></option>
+                          </th:block>
+                      </select>
+                  </div>
+
+                  <div class="mb-3" style="display: flex ; flex-direction: column">
+                      <label class="form-label">Parent Id</label>
+                      <select name="parent" th:field="*{parent}" style="width: 100%; padding: 5px 0 5px 5px;border-radius: 5px">
+                          <th:block th:each="parent : ${listParents}">
+                              <option th:value="${parent.id}" th:text="${parent.id}"></option>
+                          </th:block>
+                      </select>
+                  </div>
+              </div>
+
+          <div style="display: flex ; justify-content: space-between ; align-items:center ">
             <div class="mb-3">
               <label class="form-label">Nationality</label>
               <input type="text" class="form-control" id="nationality" placeholder="Enter your country name" name="nationality" th:field="*{nationality}"/>
@@ -83,24 +104,14 @@
               <!--               th:errors="*{shortDescription}"></p>-->
             </div>
 
+              <div class="mb-3">
+                  <label class="form-label">Orphanage Code</label>
+                  <input type="text" class="form-control" id="orphanage" placeholder="Enter a valid Orphanage home." name="orphanage" th:field="*{orphanageCode}"/>
+                  <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
+                  <!--               th:errors="*{shortDescription}"></p>-->
+              </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
-            <div class="mb-3">
-              <label class="form-label">Orphanage Code</label>
-              <input type="text" class="form-control" id="orphanage" placeholder="Enter a valid Orphanage home." name="orphanage" th:field="*{orphanageCode}"/>
-              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
-              <!--               th:errors="*{shortDescription}"></p>-->
-            </div>
-            <div class="mb-3" style="display: flex ; flex-direction: column">
-              <label class="form-label">Parent Id</label>
-              <select name="parent" th:field="*{parent}" style="width: 100%; padding: 5px 0 5px 5px;border-radius: 5px">
-                <th:block th:each="parent : ${listParents}">
-                  <option th:value="${parent.id}" th:text="${parent.id}"></option>
-                </th:block>
-              </select>
-            </div>
-          </div>
 
           <div style="display: flex ; justify-content: space-between ; align-items:center ">
             <div class="mb-3" style="display: flex ; flex-direction: column">

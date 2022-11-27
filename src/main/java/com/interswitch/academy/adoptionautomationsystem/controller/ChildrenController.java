@@ -2,7 +2,9 @@ package com.interswitch.academy.adoptionautomationsystem.controller;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
+import com.interswitch.academy.adoptionautomationsystem.entities.GuardianAdLitem;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
+import com.interswitch.academy.adoptionautomationsystem.repository.GuardianAdLitemRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.ChildrenService;
 import com.interswitch.academy.adoptionautomationsystem.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -17,16 +19,18 @@ import java.util.List;
 @Slf4j
 @Controller
 public class ChildrenController {
-
     private IdUtil childIdUtil;
     private ChildrenService childrenService;
-
     private AdoptiveParentRepository parentRepository;
+    private GuardianAdLitemRepository guardianAdLitemRepository;
 
-    public ChildrenController(IdUtil childIdUtil, ChildrenService childrenService, AdoptiveParentRepository parentRepository) {
+
+    public ChildrenController(IdUtil childIdUtil, ChildrenService childrenService,
+                              AdoptiveParentRepository parentRepository, GuardianAdLitemRepository guardianAdLitemRepository) {
         this.childIdUtil = childIdUtil;
         this.childrenService = childrenService;
         this.parentRepository = parentRepository;
+        this.guardianAdLitemRepository = guardianAdLitemRepository;
     }
 
     @GetMapping("/admin/children")
@@ -39,11 +43,13 @@ public class ChildrenController {
     @GetMapping("admin/children/newchild")
     public String newChildForm(Model model) {
 
+        List<GuardianAdLitem> guardians = guardianAdLitemRepository.findAll();
         List<AdoptiveParent> parents = parentRepository.findAll();
         log.info("parent is:  {}", parents);
         ChildrenDto childDto = new ChildrenDto();
         model.addAttribute("create_child", childDto);
         model.addAttribute("listParents", parents);
+        model.addAttribute("listGuardians", guardians);
         return "admin/create-child";
     }
 
@@ -62,8 +68,14 @@ public class ChildrenController {
     public String editChildForm(@PathVariable("childId") String childId,
                                Model model){
 
+        //List<GuardianAdLitem> guardians = guardianAdLitemRepository.findAll();
+       // List<AdoptiveParent> parents = parentRepository.findAll();
+
         ChildrenDto childDto = childrenService.findChildById(childId);
         model.addAttribute("child", childDto);
+       // model.addAttribute("listParents", parents);
+       // model.addAttribute("listGuardians", guardians);
+
         return "admin/edit_child";
     }
 

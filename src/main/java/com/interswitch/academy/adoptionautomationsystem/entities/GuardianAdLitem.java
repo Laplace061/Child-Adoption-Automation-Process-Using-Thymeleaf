@@ -26,7 +26,9 @@ public class GuardianAdLitem {
     private String email;
     private String location;
     private String report; //JQUERY CKEDITOR
-    @OneToMany(mappedBy = "staffAssigned")
+    @OneToMany(mappedBy = "staffAssigned", cascade = CascadeType.ALL)
     private List<Tracking> trackId;
+    @OneToMany(mappedBy = "guardian", cascade = CascadeType.ALL)
+    List<Children> children;
 
 }

@@ -76,7 +76,7 @@
             </div>
 
             <div class="mb-3" style="display: flex ; flex-direction: column">
-              <label class="form-label">Assign Staff</label>
+              <label class="form-label">Assign One or More Staff</label>
               <select name="staff" th:field="*{staffAssigned}" style="width: 100%; padding: 5px 0 5px 5px;border-radius: 5px">
                 <th:block th:each="staff : ${listGuardians}">
                   <option th:value="${staff.id}" th:text="${staff.id}"></option>
