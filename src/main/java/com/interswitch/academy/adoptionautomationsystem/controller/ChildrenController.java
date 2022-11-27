@@ -3,6 +3,8 @@ package com.interswitch.academy.adoptionautomationsystem.controller;
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
 import com.interswitch.academy.adoptionautomationsystem.entities.GuardianAdLitem;
+import com.interswitch.academy.adoptionautomationsystem.entities.enums.AdoptionStatus;
+import com.interswitch.academy.adoptionautomationsystem.entities.enums.RequestStatus;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
 import com.interswitch.academy.adoptionautomationsystem.repository.GuardianAdLitemRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.ChildrenService;
@@ -45,7 +47,7 @@ public class ChildrenController {
 
         List<GuardianAdLitem> guardians = guardianAdLitemRepository.findAll();
         List<AdoptiveParent> parents = parentRepository.findAll();
-        log.info("parent is:  {}", parents);
+
         ChildrenDto childDto = new ChildrenDto();
         model.addAttribute("create_child", childDto);
         model.addAttribute("listParents", parents);
@@ -56,9 +58,9 @@ public class ChildrenController {
     @PostMapping("admin/children")
     public String createChild(@ModelAttribute ChildrenDto childrenDto) {
 
+        childrenDto.setStatus(AdoptionStatus.PROBATION);
         log.info("Dto is:  {}", childrenDto);
         childrenService.addChild(childrenDto);
-        log.info("Parent Id is:  {}", childrenDto.getParent().getId());
         return "redirect:/admin/children";
 
     }

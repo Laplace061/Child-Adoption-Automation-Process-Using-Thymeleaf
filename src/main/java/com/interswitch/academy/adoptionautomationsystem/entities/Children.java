@@ -5,7 +5,6 @@ import com.interswitch.academy.adoptionautomationsystem.entities.enums.Gender;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data

@@ -51,14 +51,12 @@ public class ChildrenServiceImpl implements ChildrenService {
         Children child = ChildrenMapper.mapToChildren(childrenDto);
         log.info("Child is:  {}", child);
 
-        // Boolean parent = parentRepository.existsById(child.getParent().getId());
-
-//        Optional<Children> optional = childrenRepository.findById(child.getParent().getId());
 
         Optional<Children> optional = childrenRepository.findChildrenByParentExists(child.getParent().getId());
 
         if (optional.isPresent()) {
-            throw new RuntimeException(" This parent already exist with id :: " + child.getParent().getId());
+            throw new RuntimeException(child.getParent().getName() + " is already attached to " + child.getFirstName() +
+                    " " + child.getLastName() + "with child id :: " + child.getId());
 
         } else if ( // Conditions for Single Parent
                 !(child.getParent().getMaritalStatus().getDisplayValue().equalsIgnoreCase("Single")

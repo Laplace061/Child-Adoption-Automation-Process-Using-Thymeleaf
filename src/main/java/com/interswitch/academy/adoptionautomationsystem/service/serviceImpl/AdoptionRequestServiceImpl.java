@@ -46,7 +46,7 @@ public class AdoptionRequestServiceImpl implements AdoptionRequestService {
         requestDto.setId(requestId);
        AdoptionRequest request = RequestMapper.mapToRequest(requestDto);
 
-       Boolean parent = parentRepository.existsById(requestDto.getParent().getId());
+//       Boolean parent = parentRepository.existsById(requestDto.getParent().getId());
 
         requestRepository.save(request);
         return request;
@@ -76,10 +76,4 @@ public class AdoptionRequestServiceImpl implements AdoptionRequestService {
                 .map(RequestMapper::mapToRequestDto)
                 .collect(Collectors.toList());
     }
-
-//  @Override
-//   public String getParentName() {
-//        return parentRepository.findById().getName();
-//
-//   }
 }

@@ -20,6 +20,7 @@ public class ChildrenMapper {
                 .status(childrenDto.getStatus())
                 .image(childrenDto.getImage())
                 .parent(childrenDto.getParent())
+                .guardian(childrenDto.getGuardian())
                 .build();
     }
 
@@ -38,6 +39,7 @@ public class ChildrenMapper {
                 .status(children.getStatus())
                 .image(children.getImage())
                 .parent(children.getParent())
+                .guardian(children.getGuardian())
                 .build();
     }
 }

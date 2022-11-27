@@ -135,13 +135,14 @@
     <th style="width: 7%">Lastname</th>
     <th style="width: 5%">Birthdate</th>
     <th style="width: 10%">Mother's Name</th>
-    <th style="width: 10%">Father's Name</th>
+    <th style="width: 5%">Father's Name</th>
     <th style="width: 6%">Gender</th>
     <th style="width: 5%">Adoption Status</th>
     <th style="width: 5%">Orphanage Code</th>
     <th style="width: 7%">Nationality</th>
     <th style="width: 10%">image</th>
     <th style="width: 5%">Parent</th>
+    <th style="width: 5%">Guardian</th>
     <th style="width: 5%">Action</th>
 
     <!-- All the width Must be equal to 100 -->
@@ -161,6 +162,7 @@
       <td th:text="${child.nationality}">Nationality</td>
       <td th:text="${child.image}">Image</td>
       <td th:text="${child.parent.name}">parent</td> <!-- When we change to child.parent.id or any other thing, remember to change the repo because of search -->
+      <td th:text="${child.guardian.id}">parent</td>
 
       <td>
         <a th:href="@{/admin/children/{childId}/edit(childId=${child.id})}" class="btn btn-primary"> Edit</a>
