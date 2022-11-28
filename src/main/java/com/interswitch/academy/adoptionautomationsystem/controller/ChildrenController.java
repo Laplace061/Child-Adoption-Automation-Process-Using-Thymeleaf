@@ -55,11 +55,16 @@ public class ChildrenController {
     }
 
     @PostMapping("admin/children")
-    public String createChild(@ModelAttribute ChildrenDto childrenDto) {
+    public String createChild(@Valid @ModelAttribute("create_child") ChildrenDto childDto, BindingResult result, Model model) {
 
-        childrenDto.setStatus(AdoptionStatus.PROBATION);
-        log.info("Dto is:  {}", childrenDto);
-        childrenService.addChild(childrenDto);
+        if(result.hasErrors()){
+            model.addAttribute("create_child", childDto);
+            return "admin/create-child";
+        }
+        childDto.setStatus(AdoptionStatus.PROBATION);
+        log.info("Dto is:  {}", childDto);
+
+        childrenService.addChild(childDto);
         return "redirect:/admin/children";
 
     }
@@ -69,13 +74,13 @@ public class ChildrenController {
     public String editChildForm(@PathVariable("childId") String childId,
                                Model model){
 
-        //List<GuardianAdLitem> guardians = guardianAdLitemRepository.findAll();
-       // List<AdoptiveParent> parents = parentRepository.findAll();
+        List<GuardianAdLitem> guardians = guardianAdLitemRepository.findAll();
+        List<AdoptiveParent> parents = parentRepository.findAll();
 
         ChildrenDto childDto = childrenService.findChildById(childId);
         model.addAttribute("child", childDto);
-       // model.addAttribute("listParents", parents);
-       // model.addAttribute("listGuardians", guardians);
+        model.addAttribute("listParents", parents);
+        model.addAttribute("listGuardians", guardians);
 
         return "admin/edit_child";
     }
@@ -88,7 +93,7 @@ public class ChildrenController {
                              Model model){
         if(result.hasErrors()){
             model.addAttribute("child", child);
-            return "admin/edit_child";
+            return "/admin/children";
         }
 
         child.setId(childId);

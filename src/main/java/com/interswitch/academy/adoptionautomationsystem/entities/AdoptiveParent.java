@@ -1,18 +1,16 @@
 package com.interswitch.academy.adoptionautomationsystem.entities;
 
 import com.interswitch.academy.adoptionautomationsystem.entities.enums.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Adoptive_Parent") // To override the table name
 public class AdoptiveParent {

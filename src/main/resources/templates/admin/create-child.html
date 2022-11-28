@@ -41,14 +41,14 @@
 <!--              <input type="hidden" th:field="*{id}">-->
             <label class="form-label">Firstname</label>
             <input type="text" class="form-control" id="firstname" placeholder="Enter your firstname" name="firstname" th:field="*{firstName}"/>
-            <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
-            <!--               th:errors="*{title}"></p>-->
+                        <p th:if="${#fields.hasErrors('firstName')}" class="text-danger"
+                           th:errors="*{firstName}"></p>
             </div>
             <div class="mb-3">
               <label class="form-label">Lastname</label>
               <input type="text" class="form-control" id="lastname" placeholder="Enter your lastname" name="lastname" th:field="*{lastName}"/>
-              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
-              <!--               th:errors="*{title}"></p>-->
+                          <p th:if="${#fields.hasErrors('lastName')}" class="text-danger"
+                             th:errors="*{lastName}"></p>
             </div>
           </div>
 
@@ -79,8 +79,8 @@
                   <div class="mb-3">
                       <label class="form-label">Orphanage Code</label>
                       <input type="text" class="form-control" id="orphanage" placeholder="Enter a valid Orphanage home." name="orphanage" th:field="*{orphanageCode}"/>
-                      <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
-                      <!--               th:errors="*{shortDescription}"></p>-->
+                                  <p th:if="${#fields.hasErrors('orphanageCode')}" class="text-danger"
+                                     th:errors="*{orphanageCode}"></p>
                   </div>
               </div>
 
