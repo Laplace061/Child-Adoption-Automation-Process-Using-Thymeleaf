@@ -46,7 +46,7 @@ public class AdoptiveParent {
     private AdoptionStatus status;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Documents> documents;
+    private List<Document> documents;
 
     @OneToOne(mappedBy = "parent", cascade = CascadeType.ALL)
     private Children child;

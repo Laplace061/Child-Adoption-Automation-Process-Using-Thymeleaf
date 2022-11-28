@@ -12,11 +12,7 @@ public interface ChildrenService {
     ChildrenDto findChildById(String childId);
     void deleteChild(String childId);
     List<ChildrenDto> searchChildren(String text);
-
     void updateChild(ChildrenDto childrenDto);
-
-//    int getChildAge(Date date);
-
     List<Children> findChildByGuardianId(String guardianId);
     ChildrenDto findChildByParentId(String parentId);
 }

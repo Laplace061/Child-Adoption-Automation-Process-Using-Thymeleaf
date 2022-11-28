@@ -1,14 +1,12 @@
 package com.interswitch.academy.adoptionautomationsystem.dto;
 
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
-import com.interswitch.academy.adoptionautomationsystem.entities.Documents;
+import com.interswitch.academy.adoptionautomationsystem.entities.Document;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -21,5 +19,5 @@ public class AdoptedChildrenDto {
     private String id;
     private AdoptiveParent parent;
     private LocalDateTime leaveDate;
-    private Set<Documents> proofOfAdoption;  //signedUndertaking and courtOrder;
+    private Set<Document> proofOfAdoption;  //signedUndertaking and courtOrder;
 }

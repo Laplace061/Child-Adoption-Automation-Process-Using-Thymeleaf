@@ -51,11 +51,11 @@ public class ChildrenServiceImpl implements ChildrenService {
         log.info("Child is:  {}", child);
 
 
-        Optional<Children> optional = childrenRepository.findChildrenByParentExists(child.getParent().getId());
+        Optional<Children> optionalParent = childrenRepository.findChildrenByParentExists(child.getParent().getId());
+        Optional<Children> optionalChild = childrenRepository.findById(child.getId());
 
-        if (optional.isPresent()) {
-            throw new RuntimeException(child.getParent().getName() + " is already attached to " + child.getFirstName() +
-                    " " + child.getLastName() + "with child id :: " + child.getId());
+        if (optionalParent.isPresent() || optionalChild.isPresent()) {
+            throw new RuntimeException("Child or Parent already exist");
 
         } else if ( // Conditions for Single Parent
                 !(child.getParent().getMaritalStatus().getDisplayValue().equalsIgnoreCase("Single")

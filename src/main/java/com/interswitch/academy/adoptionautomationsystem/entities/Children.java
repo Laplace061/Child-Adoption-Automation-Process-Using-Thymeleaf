@@ -30,13 +30,10 @@ public class Children {
     private String nationality;
     @Lob
     private String image;
-
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "parent_id")
     private AdoptiveParent parent;
     @ManyToOne
     @JoinColumn(name = "guardian_id")
     private GuardianAdLitem guardian;
-
-
 }

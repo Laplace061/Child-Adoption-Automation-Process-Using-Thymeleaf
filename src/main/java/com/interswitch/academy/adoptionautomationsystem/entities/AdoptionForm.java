@@ -37,7 +37,7 @@ public class AdoptionForm {
     private String otherInfo;
 
     @OneToMany
-    private Set<Documents> files;
+    private Set<Document> files;
 
     @Column(nullable = false)
     private String Witness;

@@ -1,7 +1,7 @@
 package com.interswitch.academy.adoptionautomationsystem.dto;
 
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
-import com.interswitch.academy.adoptionautomationsystem.entities.Documents;
+import com.interswitch.academy.adoptionautomationsystem.entities.Document;
 import com.interswitch.academy.adoptionautomationsystem.entities.enums.InheritanceEligibility;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,7 +31,7 @@ public class AdoptionFormDto {
     private Date dateOfAdoption;
 //    private String descriptionOfCultureOnAdoption;
     private String otherInfo;
-    private Set<Documents> files;
+    private Set<Document> files;
     @NotEmpty(message = "Please provide a witness")
     private String Witness;
 }

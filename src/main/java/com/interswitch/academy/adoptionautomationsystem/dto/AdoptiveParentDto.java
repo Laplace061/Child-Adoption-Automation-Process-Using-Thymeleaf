@@ -1,16 +1,12 @@
 package com.interswitch.academy.adoptionautomationsystem.dto;
 
-import com.interswitch.academy.adoptionautomationsystem.entities.AdoptionRequest;
-import com.interswitch.academy.adoptionautomationsystem.entities.Documents;
+import com.interswitch.academy.adoptionautomationsystem.entities.Document;
 import com.interswitch.academy.adoptionautomationsystem.entities.enums.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.*;
 import java.util.List;
 
@@ -41,5 +37,5 @@ public class AdoptiveParentDto {
     private String homeAddress;
     private String phoneNumber;
     private AdoptionStatus status;
-    private List<Documents> documents;
+    private List<Document> documents;
 }

@@ -31,6 +31,6 @@ public class AdoptedChildren {
     @Column(nullable = false)
     @OneToMany()
     @JoinColumn(name = "documents_id")
-    private Set<Documents> proofOfAdoption;  //signedUndertaking and courtOrder; separate it
+    private Set<Document> proofOfAdoption;  //signedUndertaking and courtOrder; separate it
 
 }

@@ -8,6 +8,7 @@ import lombok.Getter;
 public enum Education {
 
     SSCE("SSCE"),
+    ND("ND"),
     HND("HND"),
     BSC("Bsc"),
     MSC("Msc"),
