@@ -37,14 +37,14 @@
             <div class="mb-3">
               <label class="form-label">Firstname</label>
               <input type="text" class="form-control" id="firstname" placeholder="Enter your firstname" name="firstname" th:field="*{firstname}"/>
-              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
-              <!--               th:errors="*{title}"></p>-->
+                          <p th:if="${#fields.hasErrors('firstname')}" class="text-danger"
+                             th:errors="*{firstname}"></p>
             </div>
             <div class="mb-3">
               <label class="form-label">Lastname</label>
               <input type="text" class="form-control" id="lastname" placeholder="Enter your lastname" name="lastname" th:field="*{lastname}"/>
-              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
-              <!--               th:errors="*{title}"></p>-->
+                          <p th:if="${#fields.hasErrors('lastname')}" class="text-danger"
+                             th:errors="*{lastname}"></p>
             </div>
           </div>
 
@@ -55,15 +55,11 @@
                   <option th:each="genderoption : ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.Gender).values()}"
                           th:value="${genderoption}" th:text="${genderoption.displayValue}"></option>
                 </select>
-                <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
-                <!--               th:errors="*{shortDescription}"></p>-->
               </div>
 
             <div class="mb-3" >
               <label class="form-label">Phone Number</label>
               <input type="text" class="form-control" id="phone" placeholder="Enter your mobile No." name="phone" th:field="*{phoneNumber}"/>
-              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
-              <!--               th:errors="*{title}"></p>-->
             </div>
 
           </div>
@@ -72,15 +68,13 @@
             <div class="mb-3">
               <label class="form-label">Email</label>
               <input type="text" class="form-control" id="email" placeholder="Enter your email" name="email" th:field="*{email}"/>
-              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
-              <!--               th:errors="*{shortDescription}"></p>-->
+                          <p th:if="${#fields.hasErrors('email')}" class="text-danger"
+                             th:errors="*{email}"></p>
             </div>
 
             <div class="mb-3">
               <label class="form-label">Location</label>
               <input type="text" class="form-control" id="location" placeholder="Enter your location." name="location" th:field="*{location}"/>
-              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
-              <!--               th:errors="*{shortDescription}"></p>-->
             </div>
 
           </div>

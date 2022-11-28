@@ -19,17 +19,27 @@ public class ChildrenDto {
     private String id;
     private AdoptiveParent parent;
     private GuardianAdLitem guardian;
-    @NotEmpty()
+
+    @NotEmpty(message = "name cannot be blank")
     @Size(min = 2, message = "FirstName too short")
+    @Pattern(regexp="^[A-Za-z]*$",message = "Invalid Input, Numbers and symbols not allowed")
     private String firstName;
-    @NotBlank()
+
+    @NotBlank(message = "Name cannot be blank")
     @Size(min = 2, message = "LastName too short")
+    @Pattern(regexp="^[A-Za-z]*$",message = "Invalid Input,")
     private String lastName;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @PastOrPresent(message = "Future date not allowed here")
     private Date dob;
+
+    @Pattern(regexp="^[A-Za-z]*$",message = "Invalid Input, Numbers and symbols not allowed")
     private String motherName;
+
+    @Pattern(regexp="^[A-Za-z]*$",message = "Invalid Input, Numbers and symbols not allowed")
     private String fatherName;
+
     private Gender gender;
     private AdoptionStatus status;
     @NotEmpty(message = "Orphanage code is required.")

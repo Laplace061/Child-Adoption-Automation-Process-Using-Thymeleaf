@@ -11,6 +11,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Future;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -26,10 +29,17 @@ public class TrackingDto {
     private GuardianAdLitem staffAssigned;
     private String location;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @PastOrPresent(message = "Please enter a past date")
     private Date lastChecked;
+
+    @Future(message = "future date require")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date nextChecked;
+
     private TrackingStatus status;
+
+    @Size(min = 10, max = 200, message
+            = "Comment must be between 10 and 200 characters")
     private String comment; //JQUERY CKEditor
 }
 

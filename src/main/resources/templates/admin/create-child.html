@@ -56,15 +56,15 @@
             <div class="mb-3">
               <label class="form-label">Mother's name</label>
               <input type="text" class="form-control" id="mother" placeholder="Enter your mother's name" name="mother" th:field="*{motherName}"/>
-              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
-              <!--               th:errors="*{title}"></p>-->
+                          <p th:if="${#fields.hasErrors('motherName')}" class="text-danger"
+                             th:errors="*{motherName}"></p>
             </div>
 
             <div class="mb-3" >
               <label class="form-label">Father's name</label>
               <input type="text" class="form-control" id="father" placeholder="Enter your father's name" name="father" th:field="*{fatherName}"/>
-              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
-              <!--               th:errors="*{title}"></p>-->
+                          <p th:if="${#fields.hasErrors('fatherName')}" class="text-danger"
+                             th:errors="*{fatherName}"></p>
             </div>
           </div>
 

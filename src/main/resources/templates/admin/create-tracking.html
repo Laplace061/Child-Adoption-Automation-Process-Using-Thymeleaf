@@ -35,14 +35,14 @@
             <div class="mb-3">
               <label class="form-label">Last Checked</label>
               <input type="date" class="form-control" id="lastcheck" placeholder="Date of last check" name="lastcheck" th:field="*{lastChecked}"/>
-              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
-              <!--               th:errors="*{title}"></p>-->
+                          <p th:if="${#fields.hasErrors('lastChecked')}" class="text-danger"
+                             th:errors="*{lastChecked}"></p>
             </div>
             <div class="mb-3">
               <label class="form-label">Next Checked</label>
               <input type="date" class="form-control" id="nextcheck" placeholder="Date of next check" name="nextcheck" th:field="*{nextChecked}"/>
-              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
-              <!--               th:errors="*{title}"></p>-->
+                          <p th:if="${#fields.hasErrors('nextChecked')}" class="text-danger"
+                             th:errors="*{nextChecked}"></p>
             </div>
 
           </div>
@@ -51,8 +51,6 @@
             <div class="mb-3">
               <label class="form-label">Location</label>
               <input type="text" class="form-control" id="location" placeholder="Enter location" name="location" th:field="*{location}"/>
-              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
-              <!--               th:errors="*{title}"></p>-->
             </div>
             <div class="mb-3">
               <label class="form-label" style="display: flex ; flex-direction: column;">Tracking Status</label>
@@ -60,8 +58,6 @@
                 <option th:each="statusOption : ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.TrackingStatus).values()}"
                         th:value="${statusOption}" th:text="${statusOption.displayValue}"></option>
               </select>
-              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
-              <!--               th:errors="*{shortDescription}"></p>-->
             </div>
           </div>
 
@@ -90,8 +86,8 @@
               <label class="form-label">Comment</label>
               <textarea class="form-control" row="5" cols="25" id="comment" placeholder="Enter comment"
                         th:field="*{comment}"></textarea>
-              <!--            <p th:if="${#fields.hasErrors('content')}" class="text-danger"-->
-              <!--               th:errors="*{content}"></p>-->
+                          <p th:if="${#fields.hasErrors('comment')}" class="text-danger"
+                             th:errors="*{comment}"></p>
             </div>
           </div>
 

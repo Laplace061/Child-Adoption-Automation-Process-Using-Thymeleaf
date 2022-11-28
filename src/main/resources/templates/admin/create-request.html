@@ -43,8 +43,7 @@
                     <div class="mb-3">
                         <label class="form-label">Location</label>
                         <input type="text" class="form-control" id="location" placeholder="Enter your location" name="location" th:field="*{location}"/>
-                        <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
-                        <!--               th:errors="*{title}"></p>-->
+
                     </div>
 
                     <div style="display: flex ; justify-content: space-between ; align-items:center ">
@@ -54,8 +53,6 @@
                                 <option th:each="statusOpt : ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.RequestStatus).values()}"
                                         th:value="${statusOpt}" th:text="${statusOpt.displayValue}"></option>
                             </select>
-                            <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
-                            <!--               th:errors="*{shortDescription}"></p>-->
                         </div>
                     </div>
 
@@ -64,8 +61,8 @@
                         <label class="form-label">Reason Or Purpose</label>
                         <textarea class="form-control" row="5" cols="25" id="reason" placeholder="Reason for adoption"
                                   th:field="*{reasonOrPurposeForAdoption}"></textarea>
-                        <!--            <p th:if="${#fields.hasErrors('content')}" class="text-danger"-->
-                        <!--               th:errors="*{content}"></p>-->
+                                    <p th:if="${#fields.hasErrors('reasonOrPurposeForAdoption')}" class="text-danger"
+                                       th:errors="*{reasonOrPurposeForAdoption}"></p>
                     </div>
 
                     <button type="submit" class="btn-btn-primary">Submit</button>

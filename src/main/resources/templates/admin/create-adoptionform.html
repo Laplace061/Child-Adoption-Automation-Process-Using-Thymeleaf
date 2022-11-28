@@ -34,6 +34,8 @@
           <div class="mb-3">
             <label class="form-label">Date of Adoption</label>
             <input type="date" class="form-control" id="date" placeholder="Date of adoption" name="date" th:field="*{dateOfAdoption}"/>
+            <p th:if="${#fields.hasErrors('dateOfAdoption')}" class="text-danger"
+               th:errors="*{dateOfAdoption}"></p>
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
           <div class="mb-3">
@@ -61,8 +63,6 @@
                 <option th:each="inheritanceoption: ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.InheritanceEligibility).values()}"
                         th:value="${inheritanceoption}" th:text="${inheritanceoption.displayValue}"></option>
               </select>
-              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
-              <!--               th:errors="*{shortDescription}"></p>-->
             </div>
           </div>
 
@@ -70,6 +70,8 @@
             <label class="form-label">Other Info</label>
             <textarea class="form-control" row="5" cols="25" id="info" placeholder="Any other information"
                       th:field="*{otherInfo}"></textarea>
+            <p th:if="${#fields.hasErrors('otherInfo')}" class="text-danger"
+               th:errors="*{otherInfo}"></p>
           </div>
 
           <button type="submit" class="btn btn-light">Submit</button>

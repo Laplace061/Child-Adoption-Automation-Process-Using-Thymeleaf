@@ -42,14 +42,14 @@
             <div class="mb-3">
               <label class="form-label">Firstname</label>
               <input type="text" class="form-control" id="firstname" placeholder="Enter your firstname" name="firstname" th:field="*{firstName}"/>
-              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
-              <!--               th:errors="*{title}"></p>-->
+                          <p th:if="${#fields.hasErrors('firstName')}" class="text-danger"
+                             th:errors="*{firstName}"></p>
             </div>
             <div class="mb-3">
               <label class="form-label">Lastname</label>
               <input type="text" class="form-control" id="lastname" placeholder="Enter your lastname" name="lastname" th:field="*{lastName}"/>
-              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
-              <!--               th:errors="*{title}"></p>-->
+                          <p th:if="${#fields.hasErrors('lastName')}" class="text-danger"
+                             th:errors="*{lastName}"></p>
             </div>
           </div>
 
@@ -57,15 +57,15 @@
             <div class="mb-3">
               <label class="form-label">Mother's name</label>
               <input type="text" class="form-control" id="mother" placeholder="Enter your mother's name" name="mother" th:field="*{motherName}"/>
-              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
-              <!--               th:errors="*{title}"></p>-->
+                          <p th:if="${#fields.hasErrors('motherName')}" class="text-danger"
+                             th:errors="*{motherName}"></p>
             </div>
 
             <div class="mb-3" >
               <label class="form-label">Father's name</label>
               <input type="text" class="form-control" id="father" placeholder="Enter your father's name" name="father" th:field="*{fatherName}"/>
-              <!--            <p th:if="${#fields.hasErrors('title')}" class="text-danger"-->
-              <!--               th:errors="*{title}"></p>-->
+                          <p th:if="${#fields.hasErrors('fatherName')}" class="text-danger"
+                             th:errors="*{fatherName}"></p>
             </div>
           </div>
 
@@ -73,15 +73,13 @@
             <div class="mb-3">
               <label class="form-label">Nationality</label>
               <input type="text" class="form-control" id="nationality" placeholder="Enter your country name" name="nationality" th:field="*{nationality}"/>
-              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
-              <!--               th:errors="*{shortDescription}"></p>-->
             </div>
 
             <div class="mb-3">
               <label class="form-label">Date of birth</label>
               <input type="date" class="form-control" id="dob" placeholder="Enter your date of birth." name="dob" th:field="*{dob}"/>
-              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
-              <!--               th:errors="*{shortDescription}"></p>-->
+                          <p th:if="${#fields.hasErrors('dob')}" class="text-danger"
+                             th:errors="*{dob}"></p>
             </div>
 
           </div>
@@ -92,18 +90,8 @@
             <div class="mb-3">
               <label class="form-label">Orphanage Code</label>
               <input type="text" class="form-control" id="orphanage" placeholder="Enter a valid Orphanage home." name="orphanage" th:field="*{orphanageCode}"/>
-              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
-              <!--               th:errors="*{shortDescription}"></p>-->
             </div>
 
-<!--            <div class="mb-3" style="display: flex ; flex-direction: column">-->
-<!--              <label class="form-label">Change Guardian</label>-->
-<!--              <select name="guardian" th:field="*{guardian}" style="width: 100%; padding: 5px 0 5px 5px;border-radius: 5px">-->
-<!--                <th:block th:each="guardian : ${listGuardians}">-->
-<!--                  <option th:value="${guardian.id}" th:text="${guardian.id}"></option>-->
-<!--                </th:block>-->
-<!--              </select>-->
-<!--            </div>-->
           </div>
 
           <div style="display: flex ; justify-content: space-between ; align-items:center ">
@@ -113,17 +101,15 @@
                 <option th:each="genderoption : ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.Gender).values()}"
                         th:value="${genderoption}" th:text="${genderoption.displayValue}"></option>
               </select>
-              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
-              <!--               th:errors="*{shortDescription}"></p>-->
             </div>
+
             <div class="mb-3" style="display: flex ; flex-direction: column">
               <label class="form-label">Religion</label>
               <select name="religion" style="width: 200px; padding: 5px 0 5px 5px">
                 <option th:each="religionoption : ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.Religion).values()}"
                         th:value="${religionoption}" th:text="${religionoption.displayValue}"></option>
               </select>
-              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
-              <!--               th:errors="*{shortDescription}"></p>-->
+
             </div>
 
             <div class="mb-3" style="display: flex ; flex-direction: column">
@@ -132,8 +118,7 @@
                 <option th:each="adoptionoption : ${T(com.interswitch.academy.adoptionautomationsystem.entities.enums.AdoptionStatus).values()}"
                         th:value="${adoptionoption}" th:text="${adoptionoption.displayValue}"></option>
               </select>
-              <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
-              <!--               th:errors="*{shortDescription}"></p>-->
+
             </div>
           </div>
 
