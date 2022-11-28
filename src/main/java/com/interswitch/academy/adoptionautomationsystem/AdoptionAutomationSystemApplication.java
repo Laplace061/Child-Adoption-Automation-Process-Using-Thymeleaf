@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+//@EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class}) To disable whitelabel error
 @SpringBootApplication
 public class AdoptionAutomationSystemApplication {
 

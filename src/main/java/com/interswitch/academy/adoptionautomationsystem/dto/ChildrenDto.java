@@ -7,9 +7,7 @@ import com.interswitch.academy.adoptionautomationsystem.entities.enums.Gender;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @Data
@@ -28,6 +26,7 @@ public class ChildrenDto {
     @Size(min = 2, message = "LastName too short")
     private String lastName;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @PastOrPresent(message = "Future date not allowed here")
     private Date dob;
     private String motherName;
     private String fatherName;

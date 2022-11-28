@@ -21,8 +21,8 @@ public interface ChildrenRepository extends JpaRepository<Children, String>{
             "c.parent.name LIKE CONCAT('%', :text, '%')")
     List<Children> searchChildren(String text);
 
-    @Query("SELECT c.parent from Children c WHERE " + " c.parent.id LIKE (:parentId)")
-    Optional<Children> findChildrenByParentExists(String parentId);
+//    @Query("SELECT c.parent from Children c WHERE " + " c.parent.id LIKE (:parentId)")
+    Optional<Children> findChildrenByParentId(String parentId);
 
     List<Children> findChildrenByGuardianId(String guardianId);
 

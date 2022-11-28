@@ -18,7 +18,7 @@ public class GetChildAgeUtil {
         LocalDate givenDate = zone.toLocalDate();
         //Calculating the difference between given date to current date.
         Period period = Period.between(givenDate, LocalDate.now());
-        System.out.print("Age in years is :" + period.getYears() + " years " + "Age in years is :" + period.getMonths()+" and age in days is " + period.getDays()+" days");
+        System.out.print("Age in years is :" + period.getYears() + " years " + "Age in months is :" + period.getMonths()+" and age in days is " + period.getDays()+" days");
         int age =period.getYears();
 
         return age;

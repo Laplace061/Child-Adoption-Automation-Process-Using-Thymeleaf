@@ -2,6 +2,7 @@ package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.RequestDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptionRequest;
+import com.interswitch.academy.adoptionautomationsystem.entities.Children;
 import com.interswitch.academy.adoptionautomationsystem.mapper.RequestMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptionRequestRepository;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
@@ -10,6 +11,7 @@ import com.interswitch.academy.adoptionautomationsystem.util.IdUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,11 +48,16 @@ public class AdoptionRequestServiceImpl implements AdoptionRequestService {
         requestDto.setId(requestId);
        AdoptionRequest request = RequestMapper.mapToRequest(requestDto);
 
-//       Boolean parent = parentRepository.existsById(requestDto.getParent().getId());
+        Optional<AdoptionRequest> optionalParent = requestRepository.findRequestByParentExists(requestDto.getParent().getId());
 
+       if(optionalParent.isPresent() && !(request.getParent().getStatus().equals(request.getStatus().getDisplayValue().equalsIgnoreCase("Revoke")))){
+
+           throw new RuntimeException("Request not allowed, Parent have a pending or granted request");
+       }
         requestRepository.save(request);
         return request;
     }
+
 
     @Override
     public RequestDto findRequestById(String requestId) {

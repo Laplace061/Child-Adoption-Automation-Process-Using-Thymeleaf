@@ -71,7 +71,7 @@
               <div style="display: grid; grid-template-columns: 1fr 1fr ; gap: 20px;">
                   <div class="mb-3">
                       <label class="form-label">Nationality</label>
-                      <input type="text" class="form-control" id="nationality" placeholder="Enter your country name" name="nationality" th:field="*{nationality}"/>
+                      <input type="text" class="form-control" id="nationality" placeholder="Enter your country name" name="nationality" th:field="*{nationality}" required/>
                       <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
                       <!--               th:errors="*{shortDescription}"></p>-->
                   </div>
@@ -106,9 +106,9 @@
 
                   <div class="mb-3">
                       <label class="form-label">Date of birth</label>
-                      <input type="date" class="form-control" id="dob" placeholder="Enter your date of birth." name="dob" th:field="*{dob}"/>
-                      <!--            <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"-->
-                      <!--               th:errors="*{shortDescription}"></p>-->
+                      <input type="date" class="form-control" id="dob" placeholder="Enter your date of birth." name="dob" th:field="*{dob}" required/>
+                                  <p th:if="${#fields.hasErrors('dob')}" class="text-danger"
+                                     th:errors="*{dob}"></p>
                   </div>
               </div>
 

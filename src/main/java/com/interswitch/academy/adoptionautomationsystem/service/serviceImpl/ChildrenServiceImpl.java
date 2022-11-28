@@ -51,28 +51,26 @@ public class ChildrenServiceImpl implements ChildrenService {
         log.info("Child is:  {}", child);
 
 
-        Optional<Children> optionalParent = childrenRepository.findChildrenByParentExists(child.getParent().getId());
+        Optional<Children> optionalParent = childrenRepository.findChildrenByParentId(child.getParent().getId());
         Optional<Children> optionalChild = childrenRepository.findById(child.getId());
 
         if (optionalParent.isPresent() || optionalChild.isPresent()) {
             throw new RuntimeException("Child or Parent already exist");
 
         } else if ( // Conditions for Single Parent
-                !(child.getParent().getMaritalStatus().getDisplayValue().equalsIgnoreCase("Single")
-                        && child.getParent().getAge() >= 35
-                        && (child.getParent().getAge() - childAgeUtil.getChildAge(child.getDob()) >= 21)
-                        && child.getParent().getGender().getDisplayValue().toLowerCase() == child.getGender().getDisplayValue().toLowerCase()
-                        //          && child.getParent().getDocuments().stream().count() == 10
-                        && child.getParent().getNationality().equalsIgnoreCase("Nigerian"))
+                ( child.getParent().getMaritalStatus().getDisplayValue().equalsIgnoreCase("Single")
+                        && (child.getParent().getAge() < 35)
+                        && (child.getParent().getAge() - childAgeUtil.getChildAge(child.getDob()) < 21
+                        && !(child.getParent().getGender().getDisplayValue().toLowerCase().equalsIgnoreCase( child.getGender().getDisplayValue().toLowerCase()))
+                        && !(child.getParent().getNationality().equalsIgnoreCase("Nigerian"))))
 
                         //    Conditions for Married Parent
                         &&
-                        !(child.getParent().getMaritalStatus().getDisplayValue().equalsIgnoreCase("Married")
-                                && child.getParent().getAge() >= 25
-                                && (child.getParent().getAge() - childAgeUtil.getChildAge(child.getDob()) >= 21)
-                                && child.getParent().getGender().getDisplayValue().equalsIgnoreCase(child.getGender().getDisplayValue())
-                                //  && child.getParent().getDocuments().stream().count() == 10
-                                && child.getParent().getNationality().equalsIgnoreCase("Nigerian"))) {
+
+                        ( (child.getParent().getMaritalStatus().getDisplayValue().equalsIgnoreCase("Married")
+                                && (child.getParent().getAge() < 25)
+                                && (child.getParent().getAge() - childAgeUtil.getChildAge(child.getDob()) < 21)
+                                && !(child.getParent().getNationality().equalsIgnoreCase("Nigerian"))))){
 
             throw new RuntimeException(child.getParent().getName() + " and " + child.getFirstName() + " " + child.getLastName() + " adoption process cannot be completed. Please Kindly get a another child ");
 
