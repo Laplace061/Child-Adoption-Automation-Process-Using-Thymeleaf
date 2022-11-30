@@ -46,9 +46,13 @@ public class AdoptionRequestController {
     }
 
     @PostMapping("admin/requests")
-    public String createRequest(@ModelAttribute RequestDto requestDto){
+    public String createRequest(@Valid @ModelAttribute("create_request") RequestDto requestDto, BindingResult result, Model model){
 
         log.info("Dto is:  {}", requestDto );
+        if(result.hasErrors()){
+            model.addAttribute("create_request", requestDto);
+            return "admin/create-request";
+        }
 
        requestDto.setStatus(RequestStatus.PENDING);
         requestService.createRequest(requestDto);

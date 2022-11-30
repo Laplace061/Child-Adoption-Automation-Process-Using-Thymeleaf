@@ -20,7 +20,7 @@ public class AdoptiveParentDto {
 
     @NotEmpty(message = "name cannot be blank")
     @Size(min = 2, message = "FirstName too short")
-    @Pattern(regexp="^[A-Za-z]*$",message = "Invalid Input, Numbers and symbols not allowed")
+//    @Pattern(regexp="^[A-Za-z]*$",message = "Invalid Input, Numbers and symbols not allowed")
     private String name;
 
     @NotEmpty(message = "occupation cannot be blank")

@@ -128,7 +128,7 @@
                     <th style="width: 10%">User Id</th>
                     <th style="width: 30%">Name</th>
                     <th style="width: 30%">Email</th>
-                    <th style="width: 15%">Role</th>
+<!--                    <th style="width: 15%">Role</th>-->
                     <th style="width: 10%">Action</th>
 
                     <!-- All the width Must be equal to 100 -->
@@ -139,10 +139,11 @@
                         <td th:text="${user.id}">Parent Id</td>
                         <td th:text="${user.name}">Name</td>
                         <td th:text="${user.email}">Email</td>
-                        <td th:text="${user.role}">Role</td>
+<!--                        <td th:text="${user.role}">Role</td>-->
+                      <td> <a th:href="@{/admin/users/{userId}/delete(userId=${user.id})}" class="btn btn-danger">Delete</a></td>
 <!--                        <td>-->
 <!--                            <a th:href="@{/admin/parents/{parentId}/edit(parentId=${parent.id})}" class="btn btn-primary"> Edit</a>-->
-<!--                            <a th:href="@{/admin/parents/{parentId}/delete(parentId=${parent.id})}" class="btn btn-danger">Delete</a>-->
+<!--
 <!--                            <a th:href="@{/admin/parents/{parentId}/view(parentId=${parent.id})}" class="btn btn-info">View</a>-->
 <!--                        </td>-->
 

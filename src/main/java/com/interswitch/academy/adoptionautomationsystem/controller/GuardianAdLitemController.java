@@ -43,10 +43,13 @@ public class GuardianAdLitemController {
     }
 
     @PostMapping("admin/guardians")
-    public String createStaff(@ModelAttribute GuardianAdLitemDto guardianAdLitemDto) {
+    public String createStaff(@Valid @ModelAttribute("create_guardian") GuardianAdLitemDto guardianAdLitemDto, BindingResult result, Model model) {
 
         log.info("Dto is:  {}", guardianAdLitemDto);
-
+        if(result.hasErrors()){
+            model.addAttribute("create_guardian", guardianAdLitemDto);
+            return "admin/create-guardian";
+        }
         guardianService.addStaff(guardianAdLitemDto);
         return "redirect:/admin/guardians";
 

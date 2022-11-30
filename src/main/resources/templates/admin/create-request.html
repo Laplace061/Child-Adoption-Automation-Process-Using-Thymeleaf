@@ -32,10 +32,10 @@
                 <form role="form" method="post" th:action="@{/admin/requests}" th:object="${create_request}">
 
                     <div class="mb-3" style="display: flex ; flex-direction: column">
-                        <label class="form-label">Parent Id</label>
+                        <label class="form-label">Parent Name</label>
                         <select name="parent" th:field="*{parent}" style="width: 100%; padding: 5px 0 5px 5px;border-radius: 5px">
                             <th:block th:each="parent : ${listParents}">
-                                <option th:value="${parent.id}" th:text="${parent.id}"></option>
+                                <option th:value="${parent.id}" th:text="${parent.name}"></option>
                             </th:block>
                         </select>
                     </div>

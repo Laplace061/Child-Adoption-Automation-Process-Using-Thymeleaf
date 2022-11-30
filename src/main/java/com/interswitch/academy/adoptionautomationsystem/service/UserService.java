@@ -12,4 +12,7 @@ public interface UserService {
     User findByEmail(String email);
 
     void saveUser(RegistrationDto registrationDto);
+
+    RegistrationDto findUserById(String userId);
+    void deleteUser(String userId);
 }

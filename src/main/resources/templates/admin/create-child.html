@@ -118,7 +118,7 @@
                       <label class="form-label">Assign a Guardian</label>
                       <select name="guardian" th:field="*{guardian}" style="width: 100%; padding: 5px 0 5px 5px;border-radius: 5px">
                           <th:block th:each="guardian : ${listGuardians}">
-                              <option th:value="${guardian.id}" th:text="${guardian.id}"></option>
+                              <option th:value="${guardian.id}" th:text="${guardian.firstname}"></option>
                           </th:block>
                       </select>
                   </div>
@@ -127,7 +127,7 @@
                       <label class="form-label">Parent Id</label>
                       <select name="parent" th:field="*{parent}" style="width: 100%; padding: 5px 0 5px 5px;border-radius: 5px">
                           <th:block th:each="parent : ${listParents}">
-                              <option th:value="${parent.id}" th:text="${parent.id}"></option>
+                              <option th:value="${parent.id}" th:text="${parent.name}"></option>
                           </th:block>
                       </select>
                   </div>

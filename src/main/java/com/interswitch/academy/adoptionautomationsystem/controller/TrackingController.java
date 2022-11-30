@@ -54,10 +54,14 @@ public class TrackingController {
     }
 
     @PostMapping("admin/tracking")
-    public String createTracking(@ModelAttribute TrackingDto trackingDto) {
+    public String createTracking(@Valid @ModelAttribute("create_tracking") TrackingDto trackingDto, BindingResult result, Model model) {
 
         log.info("Dto is:  {}", trackingDto);
 
+        if(result.hasErrors()){
+            model.addAttribute("create_tracking", trackingDto);
+            return "admin/create-tracking";
+        }
         trackingService.addTracking(trackingDto);
         return "redirect:/admin/tracking";
 

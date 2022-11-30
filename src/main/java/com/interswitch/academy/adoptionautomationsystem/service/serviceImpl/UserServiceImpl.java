@@ -1,8 +1,10 @@
 package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.RegistrationDto;
+import com.interswitch.academy.adoptionautomationsystem.entities.Children;
 import com.interswitch.academy.adoptionautomationsystem.entities.Role;
 import com.interswitch.academy.adoptionautomationsystem.entities.User;
+import com.interswitch.academy.adoptionautomationsystem.mapper.ChildrenMapper;
 import com.interswitch.academy.adoptionautomationsystem.mapper.UserMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.RoleRepository;
 import com.interswitch.academy.adoptionautomationsystem.repository.UserRepository;
@@ -58,4 +60,16 @@ public class UserServiceImpl implements UserService {
         user.setId(userId);
         userRepository.save(user);
     }
+
+    @Override
+    public RegistrationDto findUserById(String userId) {
+            User user = userRepository.findById(userId).get();
+            return UserMapper.mapToRegistrationDto(user);
+        }
+
+    @Override
+    public void deleteUser(String userId) {
+        userRepository.deleteById(userId);
+    }
+
 }
