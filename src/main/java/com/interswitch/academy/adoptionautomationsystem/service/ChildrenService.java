@@ -13,6 +13,6 @@ public interface ChildrenService {
     void deleteChild(String childId);
     List<ChildrenDto> searchChildren(String text);
     void updateChild(ChildrenDto childrenDto);
-    List<Children> findChildByGuardianId(String guardianId);
+    List<ChildrenDto> findChildByGuardianId(String guardianId);
     ChildrenDto findChildByParentId(String parentId);
 }

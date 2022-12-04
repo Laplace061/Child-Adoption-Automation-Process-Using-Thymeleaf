@@ -1,5 +1,6 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
+import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.GuardianAdLitemDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.Children;
 import com.interswitch.academy.adoptionautomationsystem.service.ChildrenService;
@@ -109,9 +110,9 @@ public class GuardianAdLitemController {
     }
 
     @GetMapping("/admin/guardian/{guardianId}/viewchidlren")
-    public String viewChildren(@PathVariable("guardianId") String guardianId,
+    public String viewChildrenByGuardianId(@PathVariable("guardianId") String guardianId,
                                 Model model){
-        List<Children> children = childrenService.findChildByGuardianId(guardianId);
+        List<ChildrenDto> children = childrenService.findChildByGuardianId(guardianId);
         model.addAttribute("allChildren", children);
         return "admin/children";
 }

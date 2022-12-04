@@ -108,10 +108,13 @@ public class ChildrenServiceImpl implements ChildrenService {
     }
 
     @Override
-    public List<Children> findChildByGuardianId(String guardianId) {
+    public List<ChildrenDto> findChildByGuardianId(String guardianId) {
 
         List<Children> children = childrenRepository.findChildrenByGuardianId(guardianId);
-        return (List<Children>) ChildrenMapper.mapToChildrenDto((Children) children);
+//        return (List<ChildrenDto>) ChildrenMapper.mapToChildrenDto((Children) children);
+
+        return children.stream().map(ChildrenMapper::mapToChildrenDto)
+                .collect(Collectors.toList());
     }
 
     @Override

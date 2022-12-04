@@ -2,8 +2,10 @@ package com.interswitch.academy.adoptionautomationsystem.entities;
 
 import com.interswitch.academy.adoptionautomationsystem.entities.enums.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Builder
