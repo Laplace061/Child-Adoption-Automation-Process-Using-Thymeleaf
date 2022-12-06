@@ -17,5 +17,6 @@ public interface AdoptiveParentRepository extends JpaRepository<AdoptiveParent,S
             " p.phoneNumber LIKE CONCAT('%', :text, '%')")
     List<AdoptiveParent> searchAdoptiveParent(String text);
 
+    AdoptiveParent findAdoptiveParentByName(String name);
 
 }
