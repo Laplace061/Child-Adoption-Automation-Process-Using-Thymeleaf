@@ -36,12 +36,12 @@ public class WebSpringSecurity {
                 .authorizeRequests()
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/register/**").permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/admin/**").hasAnyRole("ADMIN", "USER", "SYSADMIN")
                 .and()
                 .formLogin(
                         form -> form
                                 .loginPage("/login")
-                                .defaultSuccessUrl("/users")
+                                .defaultSuccessUrl("/render/user/page")
                                 .loginProcessingUrl("/login")
                                 .permitAll()
                 ).logout(

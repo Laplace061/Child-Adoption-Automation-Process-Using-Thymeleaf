@@ -96,7 +96,7 @@ public class TrackingController {
     // handler method to handle delete tracking
     @GetMapping("/admin/tracking/{trackingId}/delete")
     public String deleteTracking(@PathVariable("trackingId") String trackingId){
-        trackingService.deleteTracking(trackingId);
+        this.trackingService.deleteTracking(trackingId);
         return "redirect:/admin/tracking";
     }
 

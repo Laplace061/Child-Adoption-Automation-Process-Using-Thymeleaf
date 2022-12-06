@@ -1,13 +1,22 @@
 package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 
+import com.interswitch.academy.adoptionautomationsystem.dto.AdoptiveParentDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
+import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
 import com.interswitch.academy.adoptionautomationsystem.entities.Children;
+import com.interswitch.academy.adoptionautomationsystem.entities.GuardianAdLitem;
+import com.interswitch.academy.adoptionautomationsystem.entities.User;
+import com.interswitch.academy.adoptionautomationsystem.mapper.AdoptiveParentMapper;
 import com.interswitch.academy.adoptionautomationsystem.mapper.ChildrenMapper;
+import com.interswitch.academy.adoptionautomationsystem.mapper.GuardianAdLitemMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
 import com.interswitch.academy.adoptionautomationsystem.repository.ChildrenRepository;
+import com.interswitch.academy.adoptionautomationsystem.repository.UserRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.ChildrenService;
 import com.interswitch.academy.adoptionautomationsystem.util.GetChildAgeUtil;
 import com.interswitch.academy.adoptionautomationsystem.util.IdUtil;
+import com.interswitch.academy.adoptionautomationsystem.util.SecurityUtils;
+import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -25,12 +34,15 @@ public class ChildrenServiceImpl implements ChildrenService {
     private ChildrenRepository childrenRepository;
 
     private AdoptiveParentRepository parentRepository;
+    private UserRepository userRepository;
 
-    public ChildrenServiceImpl(IdUtil idUtil, GetChildAgeUtil childAgeUtil, ChildrenRepository childrenRepository, AdoptiveParentRepository parentRepository) {
+    public ChildrenServiceImpl(IdUtil idUtil, GetChildAgeUtil childAgeUtil, ChildrenRepository childrenRepository,
+                               AdoptiveParentRepository parentRepository, UserRepository userRepository) {
         this.idUtil = idUtil;
         this.childAgeUtil = childAgeUtil;
         this.childrenRepository = childrenRepository;
         this.parentRepository = parentRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -42,12 +54,14 @@ public class ChildrenServiceImpl implements ChildrenService {
 
     @Override
     public Children addChild(ChildrenDto childrenDto) {
-
+        String email = SecurityUtils.getCurrentUser().getUsername();
+        User user = userRepository.findByEmail(email);
         String childId = idUtil.generateId();
         System.out.println("child : " + childId);
         childrenDto.setId(childId);
 
         Children child = ChildrenMapper.mapToChildren(childrenDto);
+        child.setCreatedBy(user);
         log.info("Child is:  {}", child);
 
 
@@ -82,21 +96,31 @@ public class ChildrenServiceImpl implements ChildrenService {
     }
 
     @Override
-    public ChildrenDto findChildById(String childId) {
+    public ChildrenDto findChildById(String childId){
         Children child = childrenRepository.findById(childId).get();
         return ChildrenMapper.mapToChildrenDto(child);
     }
 
     @Override
     public void updateChild(ChildrenDto childrenDto) {
-
+        String email = SecurityUtils.getCurrentUser().getUsername();
+        User user = userRepository.findByEmail(email);
         Children child = ChildrenMapper.mapToChildren(childrenDto);
+        child.setUpdatedBy(user);
         childrenRepository.save(child);
     }
 
     @Override
     public void deleteChild(String childId) {
         childrenRepository.deleteById(childId);
+
+//        @Override
+//        public void deleteBook(Long id) {
+//            var book = bookRepository.findById(id)
+//                    .orElseThrow(() -> new NotFoundException(String.format("Book not found with ID %d", id)));
+//
+//            bookRepository.deleteById(book.getId());
+//        }
     }
 
     @Override
@@ -111,8 +135,6 @@ public class ChildrenServiceImpl implements ChildrenService {
     public List<ChildrenDto> findChildByGuardianId(String guardianId) {
 
         List<Children> children = childrenRepository.findChildrenByGuardianId(guardianId);
-//        return (List<ChildrenDto>) ChildrenMapper.mapToChildrenDto((Children) children);
-
         return children.stream().map(ChildrenMapper::mapToChildrenDto)
                 .collect(Collectors.toList());
     }

@@ -28,7 +28,7 @@ public class AdoptedChildrenController {
     // handler method to handle delete Adopted Child
     @GetMapping("/admin/adopted/{childId}/delete")
     public String deleteAdoptedChild(@PathVariable("childId") String childId){
-        adoptedChildrenService.deleteChild(childId);
+        this.adoptedChildrenService.deleteChild(childId);
         return "redirect:/admin/adopted-children";
     }
 

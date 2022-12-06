@@ -10,6 +10,8 @@ public enum AdoptionStatus {
     INACTIVE("Inactive"),
     PROBATION("Probation"),
     IN_PROGRESS("In Progress"),
-    COMPLETED("Completed");
+    COMPLETED("Completed"),
+    SUSPENDED("Suspended"),
+    BARRED("Barred");
     private final String displayValue;
 }

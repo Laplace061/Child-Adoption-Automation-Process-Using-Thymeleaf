@@ -88,8 +88,8 @@ public class AdoptionRequestController {
 
     // handler method to handle delete request
     @GetMapping("/admin/requests/{requestId}/delete")
-    public String deletePost(@PathVariable("requestId") String requestId){
-        requestService.deleteRequest(requestId);
+    public String deleteRequest(@PathVariable("requestId") String requestId){
+        this.requestService.deleteRequest(requestId);
         return "redirect:/admin/requests";
     }
 

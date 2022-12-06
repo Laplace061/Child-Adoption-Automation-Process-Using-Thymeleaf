@@ -3,6 +3,7 @@ package com.interswitch.academy.adoptionautomationsystem.entities;
 import com.interswitch.academy.adoptionautomationsystem.entities.enums.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -57,4 +58,20 @@ public class AdoptiveParent {
     @OneToOne(mappedBy = "adoptiveParent")
     private Tracking tracking;
 
+    @CreationTimestamp
+    @Temporal(TemporalType.DATE)
+    private Date createdDate;
+
+
+    @ManyToOne
+    @JoinColumn(name = "created_by_userId") //, nullable = false
+    private User createdBy;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.DATE)
+    private Date updatedOn;
+
+    @ManyToOne
+    @JoinColumn(name = "last_updated_by_userId")
+    private User updatedBy;
 }

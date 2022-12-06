@@ -31,6 +31,7 @@ public class AdoptiveParentController {
     public String getAllParents(Model model){
         List<AdoptiveParentDto> parents = parentService.findAllRequest();
         model.addAttribute("allParents", parents);
+
         return "/admin/parents";  // return a view
     }
 
@@ -82,8 +83,8 @@ public class AdoptiveParentController {
 
     // handler method to handle delete Adoptive Parent
     @GetMapping("/admin/parents/{parentId}/delete")
-    public String deletePost(@PathVariable("parentId") String parentId){
-        parentService.deleteParent(parentId);
+    public String deleteParent(@PathVariable("parentId") String parentId){
+        this.parentService.deleteParent(parentId);
         return "redirect:/admin/parents";
     }
 

@@ -1,13 +1,18 @@
 package com.interswitch.academy.adoptionautomationsystem.controller;
 
+import com.interswitch.academy.adoptionautomationsystem.dto.AdoptiveParentDto;
 import com.interswitch.academy.adoptionautomationsystem.dto.ChildrenDto;
+import com.interswitch.academy.adoptionautomationsystem.dto.GuardianAdLitemDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
+import com.interswitch.academy.adoptionautomationsystem.entities.Children;
 import com.interswitch.academy.adoptionautomationsystem.entities.GuardianAdLitem;
 import com.interswitch.academy.adoptionautomationsystem.entities.enums.AdoptionStatus;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
+import com.interswitch.academy.adoptionautomationsystem.repository.ChildrenRepository;
 import com.interswitch.academy.adoptionautomationsystem.repository.GuardianAdLitemRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.ChildrenService;
 import com.interswitch.academy.adoptionautomationsystem.util.IdUtil;
+import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,14 +29,15 @@ public class ChildrenController {
     private ChildrenService childrenService;
     private AdoptiveParentRepository parentRepository;
     private GuardianAdLitemRepository guardianAdLitemRepository;
+    private ChildrenRepository childrenRepository;
 
-
-    public ChildrenController(IdUtil childIdUtil, ChildrenService childrenService,
-                              AdoptiveParentRepository parentRepository, GuardianAdLitemRepository guardianAdLitemRepository) {
+    public ChildrenController(IdUtil childIdUtil, ChildrenService childrenService, AdoptiveParentRepository parentRepository,
+                              GuardianAdLitemRepository guardianAdLitemRepository, ChildrenRepository childrenRepository) {
         this.childIdUtil = childIdUtil;
         this.childrenService = childrenService;
         this.parentRepository = parentRepository;
         this.guardianAdLitemRepository = guardianAdLitemRepository;
+        this.childrenRepository = childrenRepository;
     }
 
     @GetMapping("/admin/children")
@@ -72,7 +78,7 @@ public class ChildrenController {
     // handler method to handle edit post request
     @GetMapping("/admin/children/{childId}/edit")
     public String editChildForm(@PathVariable("childId") String childId,
-                               Model model){
+                               Model model) throws NotFoundException {
 
         List<GuardianAdLitem> guardians = guardianAdLitemRepository.findAll();
         List<AdoptiveParent> parents = parentRepository.findAll();
@@ -104,18 +110,17 @@ public class ChildrenController {
     // handler method to handle delete Child
     @GetMapping("/admin/children/{childId}/delete")
     public String deleteChild(@PathVariable("childId") String childId){
-        childrenService.deleteChild(childId);
+        this.childrenService.deleteChild(childId);
         return "redirect:/admin/children";
     }
 
     // handler method to handle view Children
     @GetMapping("/admin/children/{childId}/view")
-    public String viewChildInfo(@PathVariable("childId") String childId,
-                               Model model){
-        ChildrenDto childrenDto = childrenService.findChildById(childId);
-        model.addAttribute("children", childrenDto);
+    public String viewChild(@PathVariable("childId") String childId,
+                                      Model model) {
+        Children child = childrenRepository.findChildrenById(childId);
+        model.addAttribute("children", child);
         return "admin/view_child";
-
     }
 
     // handler method to handle search Child

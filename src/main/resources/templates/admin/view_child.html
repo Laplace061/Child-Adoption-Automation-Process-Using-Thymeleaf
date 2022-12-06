@@ -7,7 +7,7 @@
 <div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Spring boot thymeleaf child adoption app</a>
+      <a class="navbar-brand" th:href="@{/}">Adoption Automation Process App</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -30,49 +30,37 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-md-2">
-      <strong> Child Identification No :</strong>
+
+      <div style="margin-top: 5px; float: right">
+        <a th:href="@{/admin/children/{childId}/viewchild(childId=${children.id})}" class="btn btn-info">View Child Info</a>
+      </div>
+      <br> <br>
+
+      <strong> Child No:</strong>
       <p  th:text="${children.id}"></p>
       <hr/>
-      <strong> Image :</strong>
-      <p th:text="${children.image}"></p>
-      <hr />
-      <strong> Firstname :</strong>
+      <strong> firstName :</strong>
       <p  th:text="${children.firstName}"></p>
       <hr />
-      <strong> Lastname :</strong>
-      <p th:text="${children.lastName}"></p>
-      <hr />
-      <strong> Gender :</strong>
-      <p th:text="${children.gender}"></p>
+      <strong> lastName :</strong>
+      <p  th:text="${children.lastName}"></p>
       <hr />
       <strong> Date of Birth :</strong>
       <p th:text="${children.dob}"></p>
       <hr />
-      <strong> Mother's Name :</strong>
-      <p th:text="${children.motherName}"></p>
+      <strong> Gender :</strong>
+      <p th:text="${children.gender}"></p>
       <hr />
-      <strong> father's Name :</strong>
-      <p th:text="${children.fatherName}"></p>
-      <hr />
-      <strong> Orphanage Code :</strong>
-      <p th:text="${children.orphanageCode}"></p>
-      <hr />
-      <strong> Nationality :</strong>
-      <p th:text="${children.nationality}"></p>
-      <hr />
-      <strong> Parent :</strong>
-      <p th:text="${children.parent.name}"></p>
-      <hr />
-      <strong> Guardian :</strong>
-      <p th:text="${children.guardian.id}"></p>
-      <hr />
-      <strong> Status :</strong>
+      <strong> Adoption status :</strong>
       <p th:text="${children.status}"></p>
       <hr />
-
-
-    </div>
-
+      <strong> Orphanage Code:</strong>
+      <p th:text="${children.orphanageCode}"></p>
+      <hr />
+      <strong> nationality :</strong>
+      <p th:text="${children.nationality}"></p>
+      <hr />
+</div>
   </div>
 </div>
 <div th:replace="admin/footer :: footer"></div>

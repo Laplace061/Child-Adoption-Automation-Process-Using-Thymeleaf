@@ -2,11 +2,13 @@ package com.interswitch.academy.adoptionautomationsystem.service.serviceImpl;
 
 import com.interswitch.academy.adoptionautomationsystem.dto.AdoptiveParentDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.AdoptiveParent;
+import com.interswitch.academy.adoptionautomationsystem.entities.User;
 import com.interswitch.academy.adoptionautomationsystem.mapper.AdoptiveParentMapper;
 import com.interswitch.academy.adoptionautomationsystem.repository.AdoptiveParentRepository;
 import com.interswitch.academy.adoptionautomationsystem.repository.UserRepository;
 import com.interswitch.academy.adoptionautomationsystem.service.AdoptiveParentService;
 import com.interswitch.academy.adoptionautomationsystem.util.IdUtil;
+import com.interswitch.academy.adoptionautomationsystem.util.SecurityUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +21,9 @@ public class AdoptiveParentServiceImpl implements AdoptiveParentService {
     private AdoptiveParentRepository parentRepository;
     private UserRepository userRepository;
 
-    public AdoptiveParentServiceImpl(IdUtil idUtil, AdoptiveParentRepository parentRepository, UserRepository userRepository) {
+
+    public AdoptiveParentServiceImpl(IdUtil idUtil, AdoptiveParentRepository parentRepository,
+                                     UserRepository userRepository) {
         this.idUtil = idUtil;
         this.parentRepository = parentRepository;
         this.userRepository = userRepository;
@@ -35,10 +39,12 @@ public class AdoptiveParentServiceImpl implements AdoptiveParentService {
 
     @Override
     public AdoptiveParent createParent(AdoptiveParentDto adoptiveParentDto) {
-
+    String email = SecurityUtils.getCurrentUser().getUsername();
+        User user = userRepository.findByEmail(email);
         String parentId = idUtil.generateId();
         adoptiveParentDto.setId(parentId);
         AdoptiveParent parent = AdoptiveParentMapper.mapToAdoptiveParent(adoptiveParentDto);
+        parent.setCreatedBy(user);
 
         parentRepository.save(parent);
         return parent;
@@ -52,7 +58,10 @@ public class AdoptiveParentServiceImpl implements AdoptiveParentService {
 
     @Override
     public void updateParent(AdoptiveParentDto parentDto) {
+        String email = SecurityUtils.getCurrentUser().getUsername();
+        User user = userRepository.findByEmail(email);
         AdoptiveParent parent = AdoptiveParentMapper.mapToAdoptiveParent(parentDto);
+        parent.setUpdatedBy(user);
         parentRepository.save(parent);
     }
 

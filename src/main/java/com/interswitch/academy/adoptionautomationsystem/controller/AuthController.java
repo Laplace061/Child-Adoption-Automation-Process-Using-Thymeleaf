@@ -3,6 +3,9 @@ package com.interswitch.academy.adoptionautomationsystem.controller;
 import com.interswitch.academy.adoptionautomationsystem.dto.RegistrationDto;
 import com.interswitch.academy.adoptionautomationsystem.entities.User;
 import com.interswitch.academy.adoptionautomationsystem.service.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@Slf4j
 public class AuthController {
 
     private UserService userService;
@@ -62,17 +66,36 @@ public class AuthController {
         return "login";
     }
 
+    @GetMapping("/render/user/page")
+    public String returnUserPage(Model model){
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String obj = auth.getName();
+        log.info(obj);
+        User dbUser = userService.findByEmail(obj);
+//        System.out.println(dbUser.getRoles().stream().map(Role::getName).collect(Collectors.toList()));
+        if(dbUser.getRoles().stream().anyMatch(role -> role.getName().equalsIgnoreCase("ROLE_SYSADMIN"))){
+            model.addAttribute("Users",dbUser);
+            return "/sysadmin/sysadmin dashboard";
+        }else if(dbUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"))){
+//            model.addAttribute("allUsers",dbUser);
+            return "/admin/dashboard";
+        }else
+//            model.addAttribute("allUsers",dbUser);
+        return "/admin/dashboard";
+    }
+
     @GetMapping("/users")
     public String getAllUsers(Model model){
 
         List<RegistrationDto> users = userService.findAllUsers();
         model.addAttribute("allUsers", users);
-        return "admin/dashboard";
+        return "admin/allUsers";
     }
 
     @GetMapping("/admin/users/{userId}/delete")
     public String deleteUser(@PathVariable("userId") String userId){
-        userService.deleteUser(userId);
+        this.userService.deleteUser(userId);
         return "redirect:/admin/dashboard";
     }
 }

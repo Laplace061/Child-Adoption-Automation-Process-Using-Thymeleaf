@@ -162,12 +162,12 @@
       <td th:text="${child.nationality}">Nationality</td>
       <td th:text="${child.image}">Image</td>
       <td th:text="${child.parent.name}">parent</td> <!-- When we change to child.parent.id or any other thing, remember to change the repo because of search -->
-      <td th:text="${child.guardian.id}">Guardian</td>
+      <td th:text="${child.guardian.firstname.concat( child.guardian.lastname)}">Guardian</td>
 
       <td>
         <a th:href="@{/admin/children/{childId}/edit(childId=${child.id})}" class="btn btn-primary"> Edit</a>
         <a th:href="@{/admin/children/{childId}/delete(childId=${child.id})}" class="btn btn-danger">Delete</a>
-        <a th:href="@{/admin/children/{childrenId}/view(childrenId=${child.id})}" class="btn btn-info">View</a>
+        <a th:href="@{/admin/children/{childId}/view(childId=${child.id})}" class="btn btn-info">View</a>
       </td>
 
     </tr>

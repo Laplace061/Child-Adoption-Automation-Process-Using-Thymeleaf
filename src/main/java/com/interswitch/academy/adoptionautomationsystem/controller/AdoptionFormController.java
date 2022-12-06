@@ -76,7 +76,7 @@ private AdoptionFormService adoptionFormService;
     // handler method to handle form delete
     @GetMapping("/admin/adoptionforms/{formId}/delete")
     public String deleteAdoptionForm(@PathVariable("formId") String formId){
-        adoptionFormService.deleteAdoptionForm(formId);
+        this.adoptionFormService.deleteAdoptionForm(formId);
         return "redirect:/admin/adoptionforms";
     }
 

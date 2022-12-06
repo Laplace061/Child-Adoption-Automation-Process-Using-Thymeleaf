@@ -28,5 +28,7 @@ public interface ChildrenRepository extends JpaRepository<Children, String>{
 
     Children findChildByParentId(String parentId);
 
+    Children findChildrenById(String childId);
+
 
 }
